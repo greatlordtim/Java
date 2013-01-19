@@ -87,10 +87,10 @@ public static void main (String [] args) {
 	        			array[row][col] = 32;
         			}
         			else {
-	        		array[row][col] = (char) num;
-	        			if (num == 57) {
-	        				num = 48;
-	        			}
+	        			array[row][col] = (char) num;
+	        				if (num == 57) {
+	        					num = 48;
+	        				}
 	        			else {
 	        				num++;
 	        			}
@@ -100,12 +100,12 @@ public static void main (String [] args) {
 
 	        	else if (col == 0) {
 		        		if (row == 0) {
-	        			array[row][col] = 32;
-	        			num2 = 48;
+	        				array[row][col] = 32;
+	        				num2 = 48;
         			}
         			else {
-	        		array[row][col] = (char) num2;
-	        			if (num2 == 57) {
+	        			array[row][col] = (char) num2;
+	        				if (num2 == 57) {
 	        				num2 = 48;
 	        			}
 	        			else {
@@ -117,14 +117,17 @@ public static void main (String [] args) {
 	        	
         		
         		else {
-        		array[row][col] = 45;
+        			array[row][col] = 45;
         		}
         	
-        	System.out.printf("%2c", array[row][col]);
+        		System.out.printf("%2c", array[row][col]);
+        	
+        	}
+        	
+        	System.out.println();
         	
         }
-        System.out.println();
-        }
+        
         
         //Ask user for moves
         System.out.println();
