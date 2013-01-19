@@ -66,6 +66,14 @@ public static void main (String [] args) {
 	} 
 
 	public void Grid() {
+		//Read file
+		try {
+			input = new Scanner (infile);
+		} catch (FileNotFoundException e) {
+			System.err.println("Error: Cannot open file rocks.txt");
+			System.exit(1);
+		}
+
 		//PrintGrid
 		int num = 48;
 		int num2 = 48;
@@ -116,6 +124,7 @@ public static void main (String [] args) {
         System.out.println();
         }
         
+        //Ask user for moves
         System.out.println();
         System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
         System.out.println("Enter a letter choice to move -> ");
