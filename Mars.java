@@ -116,7 +116,7 @@ public static void main (String [] args) {
 	        		}
 		        }
 	        	
-	        	//Print out rocks, ice, and aliens
+	        	//Print out rocks
 	        	else if (numrocks > 0) {
 	        		int count = 1;
 	        		while (count < numrocks)
@@ -129,10 +129,10 @@ public static void main (String [] args) {
 		        			}
 		        		count++;
 	        		}
-	        		
-		        	
-		        	
 	        	}
+	        	
+	        	//Print out ice
+	        	count = 1;
         		
         		//Everything else
         		else {
