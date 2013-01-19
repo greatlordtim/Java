@@ -14,7 +14,9 @@ public class Mars {
 	private int ice, rocks, aliens;
 	private String move = new String();
 	private File infile;
+	private Scanner txt;
 	Scanner input = new Scanner (System.in);
+	
 	
 	public Mars () {
 	infile = new File ("rocks.txt");
@@ -68,7 +70,7 @@ public static void main (String [] args) {
 	public void Grid() {
 		//Read file
 		try {
-			input = new Scanner (infile);
+			txt = new Scanner (infile);
 		} catch (FileNotFoundException e) {
 			System.err.println("Error: Cannot open file rocks.txt");
 			System.exit(1);
@@ -129,7 +131,7 @@ public static void main (String [] args) {
         System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
         System.out.println("Enter a letter choice to move -> ");
         move = input.next();
-        while ((move != "a.equals(s)") || (move != "d.equals(s)") || (move != "w.equals(s)") || (move !="s.equals(s)")) {
+        while ((move != "a.equals(a)") || (move != "d.equals(d)") || (move != "w.equals(w)") || (move !="s.equals(s)")) {
         	System.out.println("Enter a letter choice to move -> ");
         	move = input.next();
         }
