@@ -12,7 +12,7 @@ public class Mars {
 	private int steps;
 	private int currow, curcol;
 	private int ice, rocks, aliens;
-	private string move;
+	private String move = new String();
 	private File infile;
 	Scanner input = new Scanner (System.in);
 	
@@ -118,8 +118,12 @@ public static void main (String [] args) {
         System.out.println();
         System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
         System.out.println("Enter a letter choice to move -> ");
-        move = input.nextString();
-        
+        move = input.next();
+        while ((move != "a.equals(s)") || (move != "d.equals(s)") || (move != "w.equals(s)") || (move !="s.equals(s)")) {
+        System.out.println("Enter a letter choice to move -> ");
+	    move = input.next();
+        }
+			        
 	}
 	
 }
