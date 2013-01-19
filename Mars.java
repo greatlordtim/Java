@@ -82,7 +82,8 @@ public static void main (String [] args) {
 		for(int row=0; row<26; row++) {          
         	for(int col=0; col<26; col++) {
         	
-        		if (row == 0) { //row zero for x - axis 
+        		//row zero for x - axis 
+        		if (row == 0) { 
         			if (col==0) {
 	        			array[row][col] = 32;
         			}
@@ -97,7 +98,7 @@ public static void main (String [] args) {
 	        		}	
 	        	}
 	        	
-
+	        	//row zero for y - axis 
 	        	else if (col == 0) {
 		        		if (row == 0) {
 	        				array[row][col] = 32;
@@ -114,16 +115,20 @@ public static void main (String [] args) {
 	        		}
 		        }
 	        	
-	        	
+	        	//Print out rocks, ice, and aliens
+	        	else if ()
         		
+        		//Everything else
         		else {
         			array[row][col] = 45;
         		}
-        	
+        		
+        		//Print out table
         		System.out.printf("%2c", array[row][col]);
         	
         	}
         	
+        	//Pat yourself on the back
         	System.out.println();
         	
         }
