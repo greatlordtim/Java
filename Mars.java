@@ -7,11 +7,12 @@ import java.util.*;
 import java.io.*;
 
 public class Mars {
-	private char [][] array = new char [25] [25];
+	private char [][] array = new char [26] [26];
 	private int locrow, locol;
 	private int steps;
 	private int currow, curcol;
 	private int ice, rocks, aliens;
+	private string move;
 	private File infile;
 	Scanner input = new Scanner (System.in);
 	
@@ -26,11 +27,11 @@ public static void main (String [] args) {
 	
 	public void RunGame() {
 		Start();
-		while (steps != 31) {
+		//while (steps != 31) {
 			Status();
 			Grid();
-			steps++;
-		}
+		//	steps++;
+		//}
 	}
 	
 	public void Start() {
@@ -65,8 +66,60 @@ public static void main (String [] args) {
 	} 
 
 	public void Grid() {
-		//PrintGrid 
-		
+		//PrintGrid
+		int num = 48;
+		int num2 = 48;
+		for(int row=0; row<26; row++) {          
+        	for(int col=0; col<26; col++) {
+        	
+        		if (row == 0) { //row zero for x - axis 
+        			if (col==0) {
+	        			array[row][col] = 32;
+        			}
+        			else {
+	        		array[row][col] = (char) num;
+	        			if (num == 57) {
+	        				num = 48;
+	        			}
+	        			else {
+	        				num++;
+	        			}
+	        		}	
+	        	}
+	        	
+
+	        	else if (col == 0) {
+		        		if (row == 0) {
+	        			array[row][col] = 32;
+	        			num2 = 48;
+        			}
+        			else {
+	        		array[row][col] = (char) num2;
+	        			if (num2 == 57) {
+	        				num2 = 48;
+	        			}
+	        			else {
+	        				num2++;
+	        			}
+	        		}
+		        }
+	        	
+	        	
+        		
+        		else {
+        		array[row][col] = 45;
+        		}
+        	
+        	System.out.printf("%2c", array[row][col]);
+        	
+        }
+        System.out.println();
+        }
+        System.out.println();
+        System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
+        System.out.println("Enter a letter choice to move -> ");
+        move = input.nextString();
+        
 	}
 	
 }
