@@ -75,6 +75,7 @@ public static void main (String [] args) {
 			System.err.println("Error: Cannot open file rocks.txt");
 			System.exit(1);
 		}
+		int numrocks = txt.nextInt();
 
 		//PrintGrid
 		int num = 48;
@@ -116,7 +117,18 @@ public static void main (String [] args) {
 		        }
 	        	
 	        	//Print out rocks, ice, and aliens
-	        	else if ()
+	        	else if (numrocks > 0) {
+	        		int count = 1;
+	        		while (count <= numrocks) {
+		        		int r = txt.nextInt();
+		        		int c = txt.nextInt();
+		        		array[r][c] = 'R';
+		        		count++;
+	        		}
+	        		
+		        	
+		        	
+	        	}
         		
         		//Everything else
         		else {
