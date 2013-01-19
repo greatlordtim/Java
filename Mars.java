@@ -119,10 +119,14 @@ public static void main (String [] args) {
 	        	//Print out rocks, ice, and aliens
 	        	else if (numrocks > 0) {
 	        		int count = 1;
-	        		while (count <= numrocks) {
-		        		int r = txt.nextInt();
-		        		int c = txt.nextInt();
-		        		array[r][c] = 'R';
+	        		while (count < numrocks)
+	        		{
+	        			while (txt.hasNextLine()) {
+	        				txt.nextLine();
+	        				int c = txt.nextInt();
+	        				int r = txt.nextInt();
+		        			array[r][c] = 'R';
+		        			}
 		        		count++;
 	        		}
 	        		
