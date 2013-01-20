@@ -37,6 +37,7 @@ public static void main (String [] args) {
 	}
 	
 	public void Start() {
+	
 		//Starting Game
 		System.out.print ("Enter a grid row coordinate (0 - 24, -1 for random choice)	-> ");
 		locrow = input.nextInt();
@@ -61,6 +62,7 @@ public static void main (String [] args) {
 	} 
 	
 	public void Status() {
+	
 		//Print Status
 		System.out.printf ("STATUS REPORT:  ROW: %d   COLUMN: %d \t\t\t %d OF 30 STEPS TAKEN	\n", currow, curcol, steps);
 		System.out.printf ("COLLECTED: %d  ICE SAMPLES,  %d HEMATITITE SAMPLES \t %d ALIEN ENCOUNTERS\n", ice, rocks, aliens);
@@ -68,6 +70,7 @@ public static void main (String [] args) {
 	} 
 
 	public void Grid() {
+	
 		//Read file
 		try {
 			txt = new Scanner (infile);
@@ -161,32 +164,12 @@ public static void main (String [] args) {
         
         
         //Ask user for moves
+        
         System.out.println();
         System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
         System.out.println("Enter a letter choice to move -> ");
         move = input.next();
         usermove = move.charAt(0);
-        /*
-        while (usermove != 'a')  {
-        	System.out.println("Enter a letter choice to move -> ");
-        	move = input.next();
-        	usermove = move.charAt(0);
-        }
-        while (usermove != 'w')  {
-        	System.out.println("Enter a letter choice to move -> ");
-        	move = input.next();
-        	usermove = move.charAt(0);
-        }
-        while (usermove != 'd')  {
-        	System.out.println("Enter a letter choice to move -> ");
-        	move = input.next();
-        	usermove = move.charAt(0);
-        }
-        while (usermove != s)  {
-        	System.out.println("Enter a letter choice to move -> ");
-        	move = input.next();
-        	usermove = move.charAt(0);
-        }*/
         
         //Moving 
         
@@ -241,6 +224,8 @@ public static void main (String [] args) {
 		    Grid();
 	     }
 	     
+	    //Ending
+	    
 	    if (steps == 30) {
         System.out.println("THANK YOU FOR VISITING MARS, GOODBYE!!!!");
         System.exit(1);
