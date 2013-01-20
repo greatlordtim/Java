@@ -51,7 +51,7 @@ public static void main (String [] args) {
 		locol = input.nextInt();
 		while ((locol < -1) || (locol > 24)) {
 			System.out.print ("Enter a grid row coordinate (0 - 24, -1 for random choice)	-> ");
-			locrow = input.nextInt();
+			locol = input.nextInt();
 		}
 		if (locol == -1) {
 			locol = (int) Math.random();
@@ -82,7 +82,15 @@ public static void main (String [] args) {
 		int num2 = 48;
 		for(int row=0; row<26; row++) {          
         	for(int col=0; col<26; col++) {
+        	array[row][col] = 45;
+        	}
+        }
+        
+		for(int row=0; row<26; row++) {          
+        	for(int col=0; col<26; col++) {
         	
+        		
+        		
         		//row zero for x - axis 
         		if (row == 0) { 
         			if (col==0) {
@@ -117,7 +125,7 @@ public static void main (String [] args) {
 		        }
 	        	
 	        	//Print out rocks
-	        	
+	        	if (numrocks > 0) {
 	        		int count = 1;
 	        		while (count < numrocks)
 	        		{
@@ -125,21 +133,23 @@ public static void main (String [] args) {
 	        				txt.nextLine();
 	        				int c = txt.nextInt();
 	        				int r = txt.nextInt();
-		        			array[r][c] = 'R';
+		        			array[r][c] = 'H';
 		        			}
 		        		count++;
 	        		}
-	        	
+	        	}
 	        	
 	        	//Print out ice
-	        	
-	        	count = 1;
-	        	while (count < numrocks)
+	        
+        		
+        		//User Location
+        		if (locrow > -1) {
+	        		array[locrow][locol] = 'R';
+	        		}
         		
         		//Everything else
-        		else {
-        			array[row][col] = 45;
-        		}
+        		
+        		
         		
         		//Print out table
         		System.out.printf("%2c", array[row][col]);
