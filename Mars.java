@@ -13,6 +13,7 @@ public class Mars {
 	private int currow, curcol;
 	private int ice, rocks, aliens;
 	private String move = new String();
+	private char usermove;
 	private File infile;
 	private Scanner txt;
 	Scanner input = new Scanner (System.in);
@@ -89,9 +90,7 @@ public static void main (String [] args) {
 		for(int row=0; row<26; row++) {          
         	for(int col=0; col<26; col++) {
         	
-        		
-        		
-        		//row zero for x - axis 
+        	//row zero for x - axis 
         		if (row == 0) { 
         			if (col==0) {
 	        			array[row][col] = 32;
@@ -167,10 +166,82 @@ public static void main (String [] args) {
         System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
         System.out.println("Enter a letter choice to move -> ");
         move = input.next();
-        while ((move != "a.equals(a)") || (move != "d.equals(d)") || (move != "w.equals(w)") || (move !="s.equals(s)")) {
+        usermove = move.charAt(0);
+        /*
+        while (usermove != 'a')  {
         	System.out.println("Enter a letter choice to move -> ");
         	move = input.next();
+        	usermove = move.charAt(0);
         }
+        while (usermove != 'w')  {
+        	System.out.println("Enter a letter choice to move -> ");
+        	move = input.next();
+        	usermove = move.charAt(0);
+        }
+        while (usermove != 'd')  {
+        	System.out.println("Enter a letter choice to move -> ");
+        	move = input.next();
+        	usermove = move.charAt(0);
+        }
+        while (usermove != s)  {
+        	System.out.println("Enter a letter choice to move -> ");
+        	move = input.next();
+        	usermove = move.charAt(0);
+        }*/
+        
+        //Moving 
+        
+        if (usermove == 'a') {
+	        locol = locol -1;
+	        
+	        //if ice
+	        if (array[locrow][locol] == 'H') {
+		       array[locrow][locol] = 45;
+		       rocks++;
+		   }
+	        
+	        //Grid again!
+	        Status();
+	        Grid();
+        }
+        
+        if (usermove == 's') {
+	        locrow = locrow +1;
+	        
+	         //if ice
+	        if (array[locrow][locol] == 'H') {
+		       array[locrow][locol] = 45;
+		       rocks++;
+		   }
+		   
+		   	Status();
+	        Grid();
+        }
+        
+        if (usermove == 'd') {
+	        locol = locol +1;
+	        
+	         //if ice
+	        if (array[locrow][locol] == 'H') {
+		       array[locrow][locol] = 45;
+		       rocks++;
+		   }
+		    Status();
+	        Grid();
+        }
+        
+        if (usermove == 'w') {
+	        locrow = locrow -1;
+	        
+	         //if ice
+	        if (array[locrow][locol] == 'H') {
+		       array[locrow][locol] = 45;
+		       rocks++;
+		   }
+		   	Status();
+	        Grid();
+        }
+         
         
 			        
 	}
