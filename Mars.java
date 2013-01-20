@@ -244,6 +244,8 @@ public static void main (String [] args) {
 	    if (steps == 30) {
         System.out.println("THANK YOU FOR VISITING MARS, GOODBYE!!!!");
         System.exit(1);
+        
+        //Yay for horrible 1AM commits to Github
         }
          
         
