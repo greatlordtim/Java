@@ -27,6 +27,7 @@ public class Mars {
 public static void main (String [] args) {
 	Mars mars = new Mars ();
 	mars.RunGame();
+	
 	}
 	
 	public void RunGame() {
@@ -189,7 +190,7 @@ public static void main (String [] args) {
         
         //Moving 
         
-        while (steps != 31) {
+        while (steps < 30) {
         
 	        if (usermove == 'a') {
 		        locol = locol -1;
@@ -200,9 +201,7 @@ public static void main (String [] args) {
 			       rocks++;
 			   }
 		        
-		        //Grid again!
-		        Status();
-		        Grid();
+		        
 	        }
 	        
 	        if (usermove == 's') {
@@ -214,8 +213,7 @@ public static void main (String [] args) {
 			       rocks++;
 			   }
 			   
-			   	Status();
-		        Grid();
+			   	
 	        }
 	        
 	        if (usermove == 'd') {
@@ -226,8 +224,7 @@ public static void main (String [] args) {
 			       array[locrow][locol] = 45;
 			       rocks++;
 			   }
-			    Status();
-		        Grid();
+			   
 	        }
 	        
 	        if (usermove == 'w') {
@@ -238,11 +235,15 @@ public static void main (String [] args) {
 			       array[locrow][locol] = 45;
 			       rocks++;
 			   }
-			   	Status();
-		        Grid();
+			   	
 	        }
-	        
-        
+	        Status();
+		    Grid();
+	     }
+	     
+	    if (steps == 30) {
+        System.out.println("THANK YOU FOR VISITING MARS, GOODBYE!!!!");
+        System.exit(1);
         }
          
         
