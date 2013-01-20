@@ -21,6 +21,7 @@ public class Mars {
 	
 	public Mars () {
 	infile = new File ("rocks.txt");
+	steps = 0;
 	}
 
 public static void main (String [] args) {
@@ -29,12 +30,9 @@ public static void main (String [] args) {
 	}
 	
 	public void RunGame() {
-		Start();
-		//while (steps != 31) {
+			Start();
 			Status();
 			Grid();
-		//	steps++;
-		//}
 	}
 	
 	public void Start() {
@@ -191,55 +189,60 @@ public static void main (String [] args) {
         
         //Moving 
         
-        if (usermove == 'a') {
-	        locol = locol -1;
-	        
-	        //if ice
-	        if (array[locrow][locol] == 'H') {
-		       array[locrow][locol] = 45;
-		       rocks++;
-		   }
-	        
-	        //Grid again!
-	        Status();
-	        Grid();
-        }
+        while (steps != 31) {
         
-        if (usermove == 's') {
-	        locrow = locrow +1;
+	        if (usermove == 'a') {
+		        locol = locol -1;
+		        steps++;
+		        //if ice
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			   }
+		        
+		        //Grid again!
+		        Status();
+		        Grid();
+	        }
 	        
-	         //if ice
-	        if (array[locrow][locol] == 'H') {
-		       array[locrow][locol] = 45;
-		       rocks++;
-		   }
-		   
-		   	Status();
-	        Grid();
-        }
+	        if (usermove == 's') {
+		        locrow = locrow +1;
+		        steps++;
+		         //if ice
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			   }
+			   
+			   	Status();
+		        Grid();
+	        }
+	        
+	        if (usermove == 'd') {
+		        locol = locol +1;
+		        steps++;
+		         //if ice
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			   }
+			    Status();
+		        Grid();
+	        }
+	        
+	        if (usermove == 'w') {
+		        locrow = locrow -1;
+		        steps++;
+		         //if ice
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			   }
+			   	Status();
+		        Grid();
+	        }
+	        
         
-        if (usermove == 'd') {
-	        locol = locol +1;
-	        
-	         //if ice
-	        if (array[locrow][locol] == 'H') {
-		       array[locrow][locol] = 45;
-		       rocks++;
-		   }
-		    Status();
-	        Grid();
-        }
-        
-        if (usermove == 'w') {
-	        locrow = locrow -1;
-	        
-	         //if ice
-	        if (array[locrow][locol] == 'H') {
-		       array[locrow][locol] = 45;
-		       rocks++;
-		   }
-		   	Status();
-	        Grid();
         }
          
         
