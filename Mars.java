@@ -136,7 +136,8 @@ public static void main (String [] args) {
 	        				int r = txt.nextInt();
 		        			array[r][c] = 'H';
 		        			}
-		        		count++;
+		        			count++;
+		        		
 	        		}
 	        	}
 	        	
@@ -155,10 +156,15 @@ public static void main (String [] args) {
         		//Print out table
         		System.out.printf("%2c", array[row][col]);
         	
+        		
+        		
         	}
         	
         	//Pat yourself on the back
         	System.out.println();
+        	
+        	
+        	
         	
         }
         
@@ -180,7 +186,7 @@ public static void main (String [] args) {
 		        steps++;
 		        //if ice
 		        if (array[locrow][locol] == 'H') {
-			       array[locrow][locol] = 45;
+			       array[locrow][locol] = '-';
 			       rocks++;
 			   }
 		        
@@ -192,7 +198,7 @@ public static void main (String [] args) {
 		        steps++;
 		         //if ice
 		        if (array[locrow][locol] == 'H') {
-			       array[locrow][locol] = 45;
+			       array[locrow][locol] = '-';
 			       rocks++;
 			   }
 			   
@@ -204,7 +210,7 @@ public static void main (String [] args) {
 		        steps++;
 		         //if ice
 		        if (array[locrow][locol] == 'H') {
-			       array[locrow][locol] = 45;
+			       array[locrow][locol] = '-';
 			       rocks++;
 			   }
 			   
@@ -215,11 +221,12 @@ public static void main (String [] args) {
 		        steps++;
 		         //if ice
 		        if (array[locrow][locol] == 'H') {
-			       array[locrow][locol] = 45;
+			       array[locrow][locol] = '-';
 			       rocks++;
 			   }
 			   	
 	        }
+	        
 	        Status();
 		    Grid();
 	     }
@@ -233,8 +240,6 @@ public static void main (String [] args) {
         //Yay for horrible 1AM commits to Github
         }
          
-        
-			        
-	}
+    }
 	
 }
