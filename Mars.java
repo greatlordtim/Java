@@ -16,25 +16,19 @@ public class Mars {
     private File infile;
     private Scanner txt;
     Scanner input = new Scanner(System. in );
-
+    
 
     public Mars() {
         infile = new File("rocks.txt");
         steps = 0;
+    
     }
-
     public static void main(String[] args) {
         Mars mars = new Mars();
-        mars.RunGame();
-
+        mars.Grid();
+        mars.Start();
     }
-
-    public void RunGame() {
-        Start();
-        Status();
-        Grid();
-    }
-
+    
     public void Start() {
 
         //Starting Game
@@ -60,12 +54,13 @@ public class Mars {
         System.out.println("----------------------------------------------------------------------------");
     }
 
-    public void Status() {
+    public void Print() {
 
         //Print Status
         System.out.printf("STATUS REPORT:  ROW: %d   COLUMN: %d \t\t\t %d OF 30 STEPS TAKEN	\n", currow, curcol, steps);
         System.out.printf("COLLECTED: %d  ICE SAMPLES,  %d HEMATITITE SAMPLES \t %d ALIEN ENCOUNTERS\n", ice, rocks, aliens);
         System.out.println();
+        System.out.printf("%2c", array[row][col]);
     }
 
     public void Grid() {
@@ -132,7 +127,7 @@ public class Mars {
                         array[txt.nextInt()][txt.nextInt()] = 'H';
                     }
 
-                }
+             }
 
                 //Print Alien
                 //array[(int)(Math.random() * 24)][(int)(Math.random() * 4)] = '@';
@@ -144,43 +139,19 @@ public class Mars {
                 if (locrow > -1) {
                     array[locrow][locol] = 'R';
                 }
-                
-                //Print out table
-                System.out.printf("%2c", array[row][col]);
-
-            }
-
-            //Pat yourself on the back
-            System.out.println();
-
-        }
+      }
 
 
-        //Ask user for moves
 
-        System.out.println();
-        System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
-        System.out.println("Enter a letter choice to move -> ");
-        move = input.next();
-        usermove = move.charAt(0);
+        //Ask user for moves\
 
-        //Moving 
-
-        switch (usermove) {
+     public void MoveIt() {
         
-        case 'a':
-        array[
-        }
-
-        //Ending
-
-        if (steps == 30) {
-            System.out.println("THANK YOU FOR VISITING MARS, GOODBYE!!!!");
-            System.exit(1);
-
-            //Yay for horrible 1AM commits to Github
-        }
-
-    }
-
+        	//Print Prompt
+        	System.out.println();
+            System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
+            System.out.println("Enter a letter choice to move -> ");
+            move = input.next();
+            usermove = move.charAt(0);
+     }
 }
