@@ -166,8 +166,7 @@ public class Mars {
 
         //Moving 
 
-        while (steps < 30) {
-
+        switch (usermove) {
             if (usermove == 'a') {
                 locol = locol - 1;
                 steps++;
@@ -235,8 +234,6 @@ public class Mars {
 
             }
 
-            Status();
-            Grid();
         }
 
         //Ending
