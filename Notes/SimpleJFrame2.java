@@ -43,4 +43,19 @@ public class SimpleJFrame2 {
 	
 	
 	}
+} //end class SimpleJFrame2
+
+class MyPanel extends JPanel {
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		int width = getWidth();  //width of the JPanel
+		int height = getHeight(); //height of JPanel
+		
+		// Set background color to white
+		setBackground(Color.white);
+	
+	}
+
+
 }
