@@ -59,15 +59,17 @@ class MyPanel extends JPanel {
 		g.setColor(Color.blue);
 		g.fillRect(10, 10, width - 20, height - 20);
 		
+		g.setColor(Color.green);
+		//g.drawString("Click here", width/2-70, height/2-70);
+		g.drawString("Click here", 70, 70);
+
+		
 		// Draw red oval
 		g.setColor(Color.red);
 		g.fillOval(30, 30, width-60, height-60);
 		
 		// Draw label
-		g.setColor(Color.green);
-		//g.drawString("Click here", width/2-70, height/2-70);
-		g.drawString("Click here", 70, 70);
-	
+			
 	}
 
 
