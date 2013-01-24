@@ -1,17 +1,20 @@
 // Jimmy Liu
 // Januaray 24, 2013
 // SimpleJFram2.java
-// An example of the simplest JFrame and the methods required to make it possible
+// An example of adding a JPanel to a JFrame and painting on the JPanel.
 
-// Topis: JFrame
-// 1. how to create a JFrame object (window)
-// 2. setting of JFrame
-// 3. JFrame components - JLable, JButton
+// Topis: JPanel and paintComponent()
+// 1. how to create a class extending JPanel
+// 2. painting in JPanel
 
 import java.awt.*; // Abstract Window Toolkit
 import javax.swing.*; // Swing library
 
 public class SimpleJFrame2 {
+
+	JFrame frame;
+	MyPanel panel;
+	
 	public static void main (String [] args) {
 	
 	
