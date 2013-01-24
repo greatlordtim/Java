@@ -70,8 +70,6 @@ public static void main (String [] args) {
 	} 
 
 	public void Grid() {
-	
-		//Read file
 
 		//PrintGrid
 		int num = 48;
@@ -118,7 +116,7 @@ public static void main (String [] args) {
 	        		}
 		        }
 	        	
-	        	//Print out rocks
+	        	//Print out rocks and ice
 	        	try {
 					txt = new Scanner (infile);
 				} catch (FileNotFoundException e) {
@@ -133,18 +131,20 @@ public static void main (String [] args) {
 						array[txt.nextInt()][txt.nextInt()] = 'I';
 					}
 					
-					rock = txt.nextInt();
+					rocks = txt.nextInt();
 					
-					for (int count = 0; count < rock; rock++) {
+					for (int count = 0; count < rocks; count++) {
 						array[txt.nextInt()][txt.nextInt()] = 'H';
 					}
+					
 				}
 				
-	        	
-	        	
-	        	//Print out ice
-	        	
-        		
+				//Print Alien
+				//array[(int)(Math.random() * 24)][(int)(Math.random() * 4)] = '@';
+				
+				//txt.close();
+
+
         		//User Location
         		if (locrow > -1) {
 	        		array[locrow][locol] = 'R';
@@ -156,17 +156,12 @@ public static void main (String [] args) {
         		
         		//Print out table
         		System.out.printf("%2c", array[row][col]);
-        	
-        		
         		
         	}
         	
         	//Pat yourself on the back
         	System.out.println();
-        	
-        	
-        	
-        	
+   	
         }
         
         
