@@ -144,11 +144,7 @@ public class Mars {
                 if (locrow > -1) {
                     array[locrow][locol] = 'R';
                 }
-
-                //Everything else
-
-
-
+                
                 //Print out table
                 System.out.printf("%2c", array[row][col]);
 
