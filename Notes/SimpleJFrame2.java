@@ -16,26 +16,26 @@ public class SimpleJFrame2 {
 	MyPanel panel;
 	
 	public static void main (String [] args) {
+		SimpleJFrame2 sjf = new SimpleJFrame2(); 
+		sjf.Run();
+	}
 	
+	public void Run() {
 	
 	// 1. Create the JFrame object 
-	JFrame frame = new JFrame("My Fist JFrame");
+	frame = new JFrame("My Second JFrame");
 	
 	// 2. Set the parameters of the JFrame
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
-	// 3. Create components 
-	JLabel emptyLabel = new JLabel("Empty");
-	JButton bigButton = new JButton("BIG");
-	JButton littleButton = new JButton("little");
-	
-	// 4. Add components to JFrame 
-	frame.getContentPane().add(emptyLabel, BorderLayout.NORTH);
-	frame.getContentPane().add(bigButton, BorderLayout.CENTER);
-	frame.getContentPane().add(littleButton, BorderLayout.SOUTH);
+	// 3. Create JPanel 
+	panel = new MyPanel();
+		
+	// 4. Add JPanel to JFrame 
+	frame.getContentPane().add(panel, BorderLayout.CENTER);
 	
 	// 5. Size and locate the JFrame
-	frame.setSize(300, 100);
+	frame.setSize(500, 500);
 	frame.setLocation(200, 300);
 	
 	// 6. Make JFrame visible
