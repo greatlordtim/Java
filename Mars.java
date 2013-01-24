@@ -167,73 +167,9 @@ public class Mars {
         //Moving 
 
         switch (usermove) {
-            if (usermove == 'a') {
-                locol = locol - 1;
-                steps++;
-                //if rocks
-                if (array[locrow][locol] == 'H') {
-                    array[locrow][locol] = '-';
-                    rocks++;
-                }
-                //if ice
-                if (array[locrow][locol] == 'I') {
-                    array[locrow][locol] = '-';
-                    ice++;
-                }
-                
-
-
-            }
-
-            if (usermove == 's') {
-                locrow = locrow + 1;
-                steps++;
-                //if rocks
-                if (array[locrow][locol] == 'H') {
-                    array[locrow][locol] = '-';
-                    rocks++;
-                }
-                //if ice
-                if (array[locrow][locol] == 'I') {
-                    array[locrow][locol] = '-';
-                    ice++;
-                }
-
-
-            }
-
-            if (usermove == 'd') {
-                locol = locol + 1;
-                steps++;
-                //if rocks
-                if (array[locrow][locol] == 'H') {
-                    array[locrow][locol] = '-';
-                    rocks++;
-                }
-                //if ice
-                if (array[locrow][locol] == 'I') {
-                    array[locrow][locol] = '-';
-                    ice++;
-                }
-
-            }
-
-            if (usermove == 'w') {
-                locrow = locrow - 1;
-                steps++;
-                //if rocks
-                if (array[locrow][locol] == 'H') {
-                    array[locrow][locol] = '-';
-                    rocks++;
-                }
-                //if ice
-                if (array[locrow][locol] == 'I') {
-                    array[locrow][locol] = '-';
-                    ice++;
-                }
-
-            }
-
+        
+        case 'a':
+        array[
         }
 
         //Ending
