@@ -125,31 +125,22 @@ public static void main (String [] args) {
 					System.err.println("Error: Cannot open file rocks.txt");
 					System.exit(1);
 				}
-				ice = txt.nextInt();
-	        	if (numrocks > 0) {
-	        		while (count < numrocks)
-	        		{
-	        			while (txt.hasNextLine()) {
-	        				txt.nextLine();
-	        				int c = txt.nextInt();
-	        				int r = txt.nextInt();
-	        				if (r == 19) {
-		        				txt.nextLine();
-		        				r = txt.nextInt();
-	        				}
-	        				if (derp < 15) {
-		        				array[r][c] = 'H';
-		        				}
-		        			else {
-			        			array[r][c] = 'I';
-			        			}
-		        			derp++;
-		        			}
-		        			
-		        			count++;
-		        		
-	        		}
-	        	}
+				
+				while (txt.hasNext()) {
+					ice = txt.nextInt();
+					
+					for (int count = 0; count < ice; count++) {
+						array[txt.nextInt()][txt.nextInt()] = 'I';
+					}
+					
+					rock = txt.nextInt();
+					
+					for (int count = 0; count < rock; rock++) {
+						array[txt.nextInt()][txt.nextInt()] = 'H';
+					}
+				}
+				
+	        	
 	        	
 	        	//Print out ice
 	        	
