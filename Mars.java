@@ -72,13 +72,6 @@ public static void main (String [] args) {
 	public void Grid() {
 	
 		//Read file
-		try {
-			txt = new Scanner (infile);
-		} catch (FileNotFoundException e) {
-			System.err.println("Error: Cannot open file rocks.txt");
-			System.exit(1);
-		}
-		int numrocks = txt.nextInt();
 
 		//PrintGrid
 		int num = 48;
@@ -126,23 +119,40 @@ public static void main (String [] args) {
 		        }
 	        	
 	        	//Print out rocks
+	        	try {
+					txt = new Scanner (infile);
+				} catch (FileNotFoundException e) {
+					System.err.println("Error: Cannot open file rocks.txt");
+					System.exit(1);
+				}
+				ice = txt.nextInt();
 	        	if (numrocks > 0) {
-	        		int count = 1;
 	        		while (count < numrocks)
 	        		{
 	        			while (txt.hasNextLine()) {
 	        				txt.nextLine();
 	        				int c = txt.nextInt();
 	        				int r = txt.nextInt();
-		        			array[r][c] = 'H';
+	        				if (r == 19) {
+		        				txt.nextLine();
+		        				r = txt.nextInt();
+	        				}
+	        				if (derp < 15) {
+		        				array[r][c] = 'H';
+		        				}
+		        			else {
+			        			array[r][c] = 'I';
+			        			}
+		        			derp++;
 		        			}
+		        			
 		        			count++;
 		        		
 	        		}
 	        	}
 	        	
 	        	//Print out ice
-	        
+	        	
         		
         		//User Location
         		if (locrow > -1) {
