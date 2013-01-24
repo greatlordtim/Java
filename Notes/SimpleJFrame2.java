@@ -54,6 +54,10 @@ class MyPanel extends JPanel {
 		
 		// Set background color to white
 		setBackground(Color.white);
+		
+		// Draw a blue rectange
+		g.setColor(Color.blue);
+		g.fillRect(10, 10, width - 20, height - 20);
 	
 	}
 
