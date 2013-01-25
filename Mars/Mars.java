@@ -134,6 +134,9 @@ public class Mars {
     }
     
     public void PrintIt() {
+    	System.out.printf("STATUS REPORT:  ROW: %d   COLUMN: %d \t\t\t %d OF 30 STEPS TAKEN	\n", currow, curcol, steps);
+        System.out.printf("COLLECTED: %d  ICE SAMPLES,  %d HEMATITITE SAMPLES \t %d ALIEN ENCOUNTERS\n", ice, rocks, aliens);
+        System.out.println();
     	for (int row = 0; row < 26; row++) {
             for (int col = 0; col < 26; col++) {
 	            System.out.printf("%2c", array[row][col]);
@@ -154,7 +157,9 @@ public class Mars {
             switch (usermove) {
             
 	            case 'a':
+	            array[locrow][locol] = 45;
 	            locol = locol -1;
+	            array[locrow][locol] = 'R';
 	            //check borders
 	            if (locrow == 0) { MoveIt(); }    
 		        
@@ -172,7 +177,9 @@ public class Mars {
 			    break;
 			    
 			    case 's':
+			    array[locrow][locol] = 45;
 	            locrow = locrow +1;
+	            array[locrow][locol] = 'R';
 	            //check borders
 	            if (locrow == 0) { MoveIt(); }    
 		        
@@ -190,7 +197,9 @@ public class Mars {
 			    break;
 			    
 			    case 'd':
+			    array[locrow][locol] = 45;
 	            locol = locol +1;
+	            array[locrow][locol] = 'R';
 	            //check borders
 	            if (locrow == 0) { MoveIt(); }    
 		        
@@ -208,7 +217,9 @@ public class Mars {
 			    break;
 			    
 			    case 'w':
+			    array[locrow][locol] = 45;
 	            locrow = locrow -1;
+	            array[locrow][locol] = 'R';
 	            //check borders
 	            if (locrow == 0) { MoveIt(); }    
 		        
