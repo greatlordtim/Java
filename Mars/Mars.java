@@ -149,12 +149,11 @@ public class Mars {
             System.out.println("Enter a letter choice to move -> ");
             move = input.next();
             usermove = move.charAt(0);
-
     } //end PrintIt
     
     public void MoveIt() {
+    
             switch (usermove) {
-            
 	            case 'a':
 	            //check rocks
 		        if (array[locrow][locol-1] == 'H') {
@@ -167,13 +166,16 @@ public class Mars {
 			       ice++;
 			    }
 			    //check alien
-			    if (array[locrow][locol-1] == '@') {
+			    if ((array[locrow][locol-1] == '@') || (array[locrow][locol] == '@')) {
 			       aliens++;
+			       array[locrow][locol] = 45;
 			       array[locrow][locol-1] = '@';
+			       break;
 			    }
 	            array[locrow][locol] = 45;
 	            locol = locol -1;
-	            array[locrow][locol] = 'R'; 
+	            array[locrow][locol] = 'R';
+	             
 		        steps++;
 		        break;
 			    
