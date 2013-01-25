@@ -21,12 +21,13 @@ public class Mars {
     public Mars() {
         infile = new File("rocks.txt");
         steps = 0;
-    
     }
+    
     public static void main(String[] args) {
         Mars mars = new Mars();
         mars.Grid();
         mars.Start();
+        mars.MoveIt();
     }
     
     public void Start() {
@@ -128,6 +129,7 @@ public class Mars {
                     }
 
              }
+             txt.close();
 
                 //Print Alien
                 //array[(int)(Math.random() * 24)][(int)(Math.random() * 4)] = '@';
@@ -139,13 +141,15 @@ public class Mars {
                 if (locrow > -1) {
                     array[locrow][locol] = 'R';
                 }
+      
       }
+
 
 
 
         //Ask user for moves\
 
-     public void MoveIt() {
+     public void MoveIt {
         
         	//Print Prompt
         	System.out.println();
@@ -154,4 +158,5 @@ public class Mars {
             move = input.next();
             usermove = move.charAt(0);
      }
+     
 }
