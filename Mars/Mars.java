@@ -157,17 +157,17 @@ public class Mars {
             
 	            case 'a':
 	            //check rocks
-		        if (array[locrow][locol] == 'H') {
+		        if (array[locrow][locol-1] == 'H') {
 			       array[locrow][locol] = 45;
 			       rocks++;
 			    }
 			    //check ice
-			    if (array[locrow][locol] == 'I') {
+			    if (array[locrow][locol-1] == 'I') {
 			       array[locrow][locol] = 45;
 			       ice++;
 			    }
 			    //check alien
-			    if (array[locrow][locol] == '@') {
+			    if (array[locrow][locol-1] == '@') {
 			       aliens++;
 			       array[locrow][locol-1] = '@';
 			    }
@@ -179,17 +179,17 @@ public class Mars {
 			    
 			    case 's':
 			    //check rocks
-		        if (array[locrow][locol] == 'H') {
+		        if (array[locrow+1][locol] == 'H') {
 			       array[locrow][locol] = 45;
 			       rocks++;
 			    }
 			    //check ice
-			    if (array[locrow][locol] == 'I') {
+			    if (array[locrow+1][locol] == 'I') {
 			       array[locrow][locol] = 45;
 			       ice++;
 			    }
 			    //check alien
-			    if (array[locrow][locol] == '@') {
+			    if (array[locrow+1][locol] == '@') {
 			       aliens++;
 			       array[locrow][locrow+1] = '@';
 			    }
@@ -202,17 +202,17 @@ public class Mars {
 			    
 			    case 'd':
 			    //check rocks
-		        if (array[locrow][locol] == 'H') {
+		        if (array[locrow][locol+1] == 'H') {
 			       array[locrow][locol] = 45;
 			       rocks++;
 			    }
 			    //check ice
-			    if (array[locrow][locol] == 'I') {
+			    if (array[locrow][locol+1] == 'I') {
 			       array[locrow][locol] = 45;
 			       ice++;
 			    }
 			    //check alien
-			    if (array[locrow][locol] == '@') {
+			    if (array[locrow][locol+1] == '@') {
 			       aliens++;
 			       array[locrow][locol+1] = '@';
 			    }
@@ -225,17 +225,17 @@ public class Mars {
 			    
 			    case 'w':
 			    //check rocks
-		        if (array[locrow][locol] == 'H') {
+		        if (array[locrow-1][locol] == 'H') {
 			       array[locrow][locol] = 45;
 			       rocks++;
 			    }
 			    //check ice
-			    if (array[locrow][locol] == 'I') {
+			    if (array[locrow-1][locol] == 'I') {
 			       array[locrow][locol] = 45;
 			       ice++;
 			    }
 			    //check alien
-			    if (array[locrow][locol] == '@') {
+			    if (array[locrow-1][locol] == '@') {
 			       aliens++;
 			       array[locrow][locrow -1] = '@';
 			    }
