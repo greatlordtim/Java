@@ -134,14 +134,22 @@ public class Mars {
     }
     
     public void PrintIt() {
+    	int col, row;
     	System.out.printf("STATUS REPORT:  ROW: %d   COLUMN: %d \t\t\t %d OF 30 STEPS TAKEN	\n", currow, curcol, steps);
         System.out.printf("COLLECTED: %d  ICE SAMPLES,  %d HEMATITITE SAMPLES \t %d ALIEN ENCOUNTERS\n", ice, rocks, aliens);
         System.out.println();
-    	for (int row = 0; row < 26; row++) {
-            for (int col = 0; col < 26; col++) {
-	            System.out.printf("%2c", array[row][col]);
-	            }
-	            System.out.println();
+    	for (row = 0; row < 26; row++) {
+            for (col = 0; col < 26; col++) {
+            	if(Math.abs(col - locol)+ Math.abs(row - locrow) <=3) {
+            		           	 System.out.print(array[row][col] + "");
+            		           	 //System.out.println();
+	           	 }
+	           	 else { 
+		           	 System.out.print(" ");
+	           	 }
+	           	 
+	           	 
+	           	 }
 	    }
     	System.out.println();
     	System.out.println();
