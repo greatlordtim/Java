@@ -35,6 +35,7 @@ public class Mars {
         mars.Grid();
         mars.Start();
         mars.PrintIt();
+        mars.MoveIt();
     }
 
     public void Grid() {
@@ -151,12 +152,85 @@ public class Mars {
             usermove = move.charAt(0);
     
             switch (usermove) {
-	            
-	            
-	            
-	            
-	            
+            
+	            case 'a':
+	            locol = locol -1;
+	            //check borders
+	            if (locrow == 0) { MoveIt(); }    
+		        
+		        steps++;
+		        //check rocks
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			    }
+			    //check ice
+			    if (array[locrow][locol] == 'I') {
+			       array[locrow][locol] = 45;
+			       ice++;
+			    }
+			    break;
+			    
+			    case 's':
+	            locrow = locrow +1;
+	            //check borders
+	            if (locrow == 0) { MoveIt(); }    
+		        
+		        steps++;
+		        //check rocks
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			    }
+			    //check ice
+			    if (array[locrow][locol] == 'I') {
+			       array[locrow][locol] = 45;
+			       ice++;
+			    }
+			    break;
+			    
+			    case 'd':
+	            locol = locol +1;
+	            //check borders
+	            if (locrow == 0) { MoveIt(); }    
+		        
+		        steps++;
+		        //check rocks
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			    }
+			    //check ice
+			    if (array[locrow][locol] == 'I') {
+			       array[locrow][locol] = 45;
+			       ice++;
+			    }
+			    break;
+			    
+			    case 'w':
+	            locrow = locrow -1;
+	            //check borders
+	            if (locrow == 0) { MoveIt(); }    
+		        
+		        steps++;
+		        //check rocks
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			    }
+			    //check ice
+			    if (array[locrow][locol] == 'I') {
+			       array[locrow][locol] = 45;
+			       ice++;
+			    }
+			    break;
+			  
             } //endswitchcase
+            
+            while (steps != 30) {
+				PrintIt();
+				MoveIt();
+			}  
     
     } //end MoveIt
 
