@@ -141,7 +141,7 @@ public class Mars {
     	for (row = 0; row < 26; row++) {
             for (col = 0; col < 26; col++) {
             	if(Math.abs(col - locol)+ Math.abs(row - locrow) <=3) {
-            		           	 System.out.print(array[row][col] + "");
+            		           	 System.out.print(array[row][col] + " ");
             		           	 //System.out.println();
 	           	 }
 	           	 else { 
@@ -149,7 +149,7 @@ public class Mars {
 	           	 }
 	           	 
 	           	 
-	           	 }
+	           	 } System.out.println();
 	    }
     	System.out.println();
     	System.out.println();
