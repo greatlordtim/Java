@@ -144,26 +144,19 @@ public class Mars {
 	            System.out.println();
 	    }
     	System.out.println();
-    
-    } //end PrintIt
-    
-    public void MoveIt() {
-    		System.out.println();
+    	System.out.println();
             System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
             System.out.println("Enter a letter choice to move -> ");
             move = input.next();
             usermove = move.charAt(0);
+
+    } //end PrintIt
     
+    public void MoveIt() {
             switch (usermove) {
             
 	            case 'a':
-	            array[locrow][locol] = 45;
-	            locol = locol -1;
-	            array[locrow][locol] = 'R';
-	            //check borders
-	            if (locrow == 0) { MoveIt(); }    
-		        steps++;
-		        //check rocks
+	            //check rocks
 		        if (array[locrow][locol] == 'H') {
 			       array[locrow][locol] = 45;
 			       rocks++;
@@ -176,39 +169,62 @@ public class Mars {
 			    //check alien
 			    if (array[locrow][locol] == '@') {
 			       aliens++;
-			       array[locrow][locol] = '@';
+			       array[locrow][locol-1] = '@';
 			    }
-			    break;
+	            array[locrow][locol] = 45;
+	            locol = locol -1;
+	            array[locrow][locol] = 'R'; 
+		        steps++;
+		        break;
 			    
 			    case 's':
+			    //check rocks
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			    }
+			    //check ice
+			    if (array[locrow][locol] == 'I') {
+			       array[locrow][locol] = 45;
+			       ice++;
+			    }
+			    //check alien
+			    if (array[locrow][locol] == '@') {
+			       aliens++;
+			       array[locrow][locrow+1] = '@';
+			    }
+
 			    array[locrow][locol] = 45;
 	            locrow = locrow +1;
 	            array[locrow][locol] = 'R';
-	            //check borders
-	            if (locrow == 0) { MoveIt(); }    
-		        
 		        steps++;
-		        //check rocks
-		        if (array[locrow][locol] == 'H') {
-			       array[locrow][locol] = 45;
-			       rocks++;
-			    }
-			    //check ice
-			    if (array[locrow][locol] == 'I') {
-			       array[locrow][locol] = 45;
-			       ice++;
-			    }
 			    break;
 			    
 			    case 'd':
+			    //check rocks
+		        if (array[locrow][locol] == 'H') {
+			       array[locrow][locol] = 45;
+			       rocks++;
+			    }
+			    //check ice
+			    if (array[locrow][locol] == 'I') {
+			       array[locrow][locol] = 45;
+			       ice++;
+			    }
+			    //check alien
+			    if (array[locrow][locol] == '@') {
+			       aliens++;
+			       array[locrow][locol+1] = '@';
+			    }
+
 			    array[locrow][locol] = 45;
 	            locol = locol +1;
 	            array[locrow][locol] = 'R';
-	            //check borders
-	            if (locrow == 0) { MoveIt(); }    
-		        
-		        steps++;
-		        //check rocks
+	          	steps++;
+		      	break;
+			    
+			    case 'w':
+			    //check rocks
 		        if (array[locrow][locol] == 'H') {
 			       array[locrow][locol] = 45;
 			       rocks++;
@@ -218,27 +234,17 @@ public class Mars {
 			       array[locrow][locol] = 45;
 			       ice++;
 			    }
-			    break;
-			    
-			    case 'w':
+			    //check alien
+			    if (array[locrow][locol] == '@') {
+			       aliens++;
+			       array[locrow][locrow -1] = '@';
+			    }
+
 			    array[locrow][locol] = 45;
 	            locrow = locrow -1;
 	            array[locrow][locol] = 'R';
-	            //check borders
-	            if (locrow == 0) { MoveIt(); }    
-		        
-		        steps++;
-		        //check rocks
-		        if (array[locrow][locol] == 'H') {
-			       array[locrow][locol] = 45;
-			       rocks++;
-			    }
-			    //check ice
-			    if (array[locrow][locol] == 'I') {
-			       array[locrow][locol] = 45;
-			       ice++;
-			    }
-			    break;
+	            steps++;
+		    	break;
 			  
             } //endswitchcase
             
