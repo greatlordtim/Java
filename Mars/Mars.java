@@ -34,6 +34,7 @@ public class Mars {
         Mars mars = new Mars();
         mars.Grid();
         mars.Start();
+        mars.PrintIt();
     }
 
     public void Grid() {
@@ -51,7 +52,7 @@ public class Mars {
             for (int col = 0; col < 26; col++) {
 
                 //row zero for x - axis 
-                if (row == 0) {
+               	if (row == 0) {
                     if (col == 0) {
                         array[row][col] = 32;
                     } else {
@@ -65,7 +66,7 @@ public class Mars {
                 }
 
                 //row zero for y - axis 
-                else if (col == 0) {
+                if (col == 0) {
                     if (row == 0) {
                         array[row][col] = 32;
                         num2 = 48;
@@ -100,13 +101,6 @@ public class Mars {
 
                 //txt.close();
 
-
-                //User Location
-                if (locrow > -1) {
-                    array[locrow][locol] = 'R';
-
-                }
-
             } //end col
         } //end row
     } //end Grid()
@@ -132,22 +126,37 @@ public class Mars {
         if (locol == -1) {
             locol = (int) Math.random();
         }
+        //Print out user location
+        array[locrow][locol] = 'R';
         System.out.println();
         System.out.println("----------------------------------------------------------------------------");
     }
     
     public void PrintIt() {
-    
+    	for (int row = 0; row < 26; row++) {
+            for (int col = 0; col < 26; col++) {
+	            System.out.printf("%2c", array[row][col]);
+	            }
+	            System.out.println();
+	    }
+    	System.out.println();
     
     } //end PrintIt
     
     public void MoveIt() {
-    System.out.println();
+    		System.out.println();
             System.out.println("'a' is left, 'd' is right, 'w' is up, and 's' is down");
             System.out.println("Enter a letter choice to move -> ");
             move = input.next();
             usermove = move.charAt(0);
     
+            switch (usermove) {
+	            
+	            
+	            
+	            
+	            
+            } //endswitchcase
     
     } //end MoveIt
 
