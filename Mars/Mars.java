@@ -51,7 +51,8 @@ public class Mars {
 
         for (int row = 0; row < 26; row++) {
             for (int col = 0; col < 26; col++) {
-
+	            
+	            
                 //row zero for x - axis 
                	if (row == 0) {
                     if (col == 0) {
@@ -83,27 +84,30 @@ public class Mars {
 
                 //Print out rocks and ice
                 while (txt.hasNext()) {
-                    ice = txt.nextInt();
+                    int ice2 = txt.nextInt();
 
-                    for (int count = 0; count < ice; count++) {
+                    for (int count = 0; count < ice2; count++) {
                         array[txt.nextInt()][txt.nextInt()] = 'I';
                     }
 
-                    rocks = txt.nextInt();
+                    int rocks2 = txt.nextInt();
 
-                    for (int count = 0; count < rocks; count++) {
+                    for (int count = 0; count < rocks2; count++) {
                         array[txt.nextInt()][txt.nextInt()] = 'H';
                     }
-
+                   
                 }
 
-                //Print Alien
-                //array[(int)(Math.random() * 24)][(int)(Math.random() * 4)] = '@';
+               
+               
 
-                //txt.close();
-
+              
             } //end col
         } //end row
+        
+        //Print Alien
+        array[(int)(Math.random() * 26 )][(int)(Math.random() * 26)] = '@';
+        
     } //end Grid()
 
     public void Start() {
@@ -238,7 +242,7 @@ public class Mars {
 			  
             } //endswitchcase
             
-            while (steps != 30) {
+            while (steps != 31) {
 				PrintIt();
 				MoveIt();
 			}  
