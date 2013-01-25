@@ -98,10 +98,6 @@ public class Mars {
                    
                 }
 
-               
-               
-
-              
             } //end col
         } //end row
         
@@ -166,7 +162,6 @@ public class Mars {
 	            array[locrow][locol] = 'R';
 	            //check borders
 	            if (locrow == 0) { MoveIt(); }    
-		        
 		        steps++;
 		        //check rocks
 		        if (array[locrow][locol] == 'H') {
@@ -177,6 +172,11 @@ public class Mars {
 			    if (array[locrow][locol] == 'I') {
 			       array[locrow][locol] = 45;
 			       ice++;
+			    }
+			    //check alien
+			    if (array[locrow][locol] == '@') {
+			       aliens++;
+			       array[locrow][locol] = '@';
 			    }
 			    break;
 			    
@@ -248,9 +248,4 @@ public class Mars {
 			}  
     
     } //end MoveIt
-
-
-
-
-
 } //end program
