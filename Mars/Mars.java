@@ -166,7 +166,7 @@ public class Mars {
 			       ice++;
 			    }
 			    //check alien
-			    if ((array[locrow][locol-1] == '@') || (array[locrow][locol] == '@')) {
+			    if ((array[locrow][locol-1] == '@')) {
 			       aliens++;
 			       array[locrow][locol] = 45;
 			       array[locrow][locol-1] = '@';
