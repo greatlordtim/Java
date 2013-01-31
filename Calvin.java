@@ -94,10 +94,16 @@ class MyPanel extends JPanel {
 		g.drawLine(110, 320, 70, 320);
 
 		//left eyebrow
-		g.drawArc(220, 210, 40, 20, 180, -150);
+		//g.drawArc(220, 210, 40, 20, 180, -150);
 
 		//right eyebrow
-		g.drawArc(290, 210, 30, 30, 0, 135);
+		//g.drawArc(290, 210, 30, 30, 0, 135);
+
+		//new eyebrows
+		g.drawArc(220, 210, 40, 30 , 45 , 105);
+        g.drawArc(280, 210, 40, 30, 0, 120);
+
+
 		g.drawOval(180, 260, 80, 130);
 		g.drawOval(260, 250, 80, 140);
 
