@@ -99,6 +99,9 @@ class MyPanel extends JPanel {
 		//right eyebrow
 		//g.drawArc(290, 210, 30, 30, 0, 135);
 
+
+       
+
 		//new eyebrows
 		g.drawArc(220, 210, 40, 30 , 45 , 105);
         g.drawArc(280, 210, 40, 30, 0, 120);
@@ -112,7 +115,11 @@ class MyPanel extends JPanel {
 		g.fillOval(270, 320, 20, 40);
 
 		//bottom of face
-		g.drawArc(10, 150, 280, 350, 180, 180);
+		//g.drawArc(10, 150, 280, 350, 180, 180);
+		g.drawArc (110, 200, 270, 300, 170, 200);
+
+
+
 		g.drawLine(230, 460, 260, 470);
 
 		//nose code
@@ -144,6 +151,9 @@ class MyPanel extends JPanel {
 			l += 20;
 			
 		}
+
+		
+
 		g.drawLine(220, 600, 220, 580);
 		g.drawLine(240, 600, 240, 580);
 		g.drawRoundRect(211, 580, 80, 20, 8, 8);
