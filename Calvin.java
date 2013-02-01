@@ -1,13 +1,10 @@
 // Jimmy Liu
 // January 30, 2013
 // Calvin.java
-// This program uses JFrames and paintComponent() to create a graphical picture
-// resembling the cartoon character Calvin.
+// This program paints a picture of Calvin using Paint, JFrames, and JPanel
 // 
 // Class Methods
-// 		Run()						opens the windom called "Calvin" and closes the window if 
-//									the exit button is clicked on. Also sets background color,
-//									size in pixels and makes the frame visible.
+// 		Calvin(): Creates a JFrame and JPanel
 //		paintComponent(Graphic g)	uses a nested for loop to create the grid
 //									used to draw Calvin on, using the graphics compenent.
 // Class Variables					
@@ -31,10 +28,10 @@ public class Calvin {
 
 	public static void main(String[] args) {
 		Calvin calvin = new Calvin();
-		calvin.Run();
+		calvin.Calvin();
 	}
 
-	public void Run() {
+	public void Calvin() {
 		frame = new JFrame("Calvin");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -93,16 +90,7 @@ class MyPanel extends JPanel {
 		g.drawLine(80, 280, 110, 320);
 		g.drawLine(110, 320, 70, 320);
 
-		//left eyebrow
-		//g.drawArc(220, 210, 40, 20, 180, -150);
-
-		//right eyebrow
-		//g.drawArc(290, 210, 30, 30, 0, 135);
-
-
-       
-
-		//new eyebrows
+		//eyebrows
 		g.drawArc(220, 210, 40, 30 , 45 , 105);
         g.drawArc(280, 210, 40, 30, 0, 120);
 
@@ -115,17 +103,12 @@ class MyPanel extends JPanel {
 		g.fillOval(270, 320, 20, 40);
 
 		//bottom of face
-		//g.drawArc(10, 150, 280, 350, 180, 180);
 		g.drawArc (110, 200, 270, 300, 170, 200);
-
-
 
 		g.drawLine(230, 460, 260, 470);
 
 		//nose code
 		g.drawArc(230, 380, 50, 40, 35, -250);
-		//g2.drawLine(380, 370, 380, 325);
-		//g2.drawLine(110, 370, 110, 325);
 
 		//draw CheekArcs
 		g.drawArc(90, 370, 40, 60, 90, 180);
@@ -137,6 +120,7 @@ class MyPanel extends JPanel {
 		g.setColor(Color.black);
 		int l = 0;
 	
+		//body
 		for (int k = 0; k < 4; k++) {
 			g.setColor(Color.white);
 			g2.fillRoundRect(210 - k - 1, 500 + l - 1, 40 + k + k - 2, 20 - 0, 8, 8);
