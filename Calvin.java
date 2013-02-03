@@ -5,16 +5,16 @@
 
 // Class Methods:
 // Calvin(): Creates a JFrame and JPanel
-// paintComponent(Graphic g)	uses a nested for loop to create the grid used to draw Calvin on, using the graphics compenent.
+// paintComponent(Graphic g): uses a nested for loop to create the grid used to draw Calvin on, using the graphics compenent.
 
 // Class Variables:					
-// col: used to refer to the column coordinate
-// row: used to refer to the row coordinate
-// i: used to draw a red line every 5 spaces horizontally
-// j: used to draw a red line every 5 spaces vertically
-// k: used in the for loop to draw the round tect box 4 times								
-// l: used to increase the size of the round rect every time it is printed
-// w: used in another for loop to draw 4 more round rectangles
+// col: column cordinates of grid
+// row: row cordinates of grid
+// redhor: draw a red line every 5 spaces horizontally
+// redvert: draw a red line every 5 spaces vertically
+// rec: draw rectangle body box 4 times							
+// rec2: draw 4 more rectangle boxes
+
 import java.awt.*;
 import javax.swing.*;
 
@@ -55,16 +55,16 @@ class MyPanel extends JPanel { //extends Calvin class
         for (int row = 0; row < 40; row++) {
             g.drawRect(50 + row * 10, 50 + col * 10, 10, 10);
         }
-        int i = 0;
+        int redhor = 0;
         g.setColor(Color.red);
-        while (i < 55) {
-            g.drawLine(50, 50 + i * 10, 450, 50 + i * 10);
-            i += 5;
+        while (redhor < 55) {
+            g.drawLine(50, 50 + redhor * 10, 450, 50 + redhor * 10);
+            redhor += 5;
         }
-        int j = 0;
-        while (j < 40) {
-            g.drawLine(50 + j * 10, 50, 50 + j * 10, 600);
-            j += 5;
+        int redvert = 0;
+        while (redvert < 40) {
+            g.drawLine(50 + redvert * 10, 50, 50 + redvert * 10, 600);
+            redvert += 5;
         }
         //end grid print
 
@@ -121,18 +121,18 @@ class MyPanel extends JPanel { //extends Calvin class
         int l = 0;
 
         //arm
-        for (int k = 0; k < 4; k++) {
+        for (int rec = 0; rec < 4; rec++) {
             g.setColor(Color.white);
-            g2.fillRoundRect(210 - k - 1, 500 + l - 1, 40 + k + k - 2, 20 - 0, 8, 8);
+            g2.fillRoundRect(210 - rec - 1, 500 + l - 1, 40 + rec + rec - 2, 20 - 0, 8, 8);
             g.setColor(Color.black);
-            g2.drawRoundRect(210 - k, 500 + l, 40 + k + k, 20, 8, 8);
+            g2.drawRoundRect(210 - rec, 500 + l, 40 + rec + rec, 20, 8, 8);
             l += 20;
         }
         l = 0;
 
         //body 
-        for (int w = 0; w < 4; w++) {
-            g2.drawRoundRect(250 + w, 500 + l, 30 + 2 * w, 20, 8, 8);
+        for (int rec2 = 0; rec2 < 4; rec2++) {
+            g2.drawRoundRect(250 + rec2, 500 + l, 30 + 2 * rec2, 20, 8, 8);
             l += 20;
 
         }
