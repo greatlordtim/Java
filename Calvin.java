@@ -2,60 +2,56 @@
 // January 30, 2013
 // Calvin.java
 // This program paints a picture of Calvin using Paint, JFrames, and JPanel
-// 
-// Class Methods
-// 		Calvin(): Creates a JFrame and JPanel
-//		paintComponent(Graphic g)	uses a nested for loop to create the grid
-//									used to draw Calvin on, using the graphics compenent.
-// Class Variables					
-//		col							used to refer to the column coordinate
-//		row 						used to refer to the row coordinate
-//		i							used to draw a red line every 5 spaces horizontally
-//		j							used to draw a red line every 5 spaces vertically
-//		k							used in the for loop to draw the round tect box
-//									4 times
-//		l							used to increase the size of the round rect
-//									every time it is printed
-//		w							used in another for loop to draw 4 more round 
-//									rectangles
+
+// Class Methods:
+// Calvin(): Creates a JFrame and JPanel
+// paintComponent(Graphic g)	uses a nested for loop to create the grid used to draw Calvin on, using the graphics compenent.
+									
+// Class Variables:					
+// col: used to refer to the column coordinate
+// row: used to refer to the row coordinate
+// i: used to draw a red line every 5 spaces horizontally
+// j: used to draw a red line every 5 spaces vertically
+// k: used in the for loop to draw the round tect box 4 times								
+// l: used to increase the size of the round rect every time it is printed
+// w: used in another for loop to draw 4 more round rectangles
+
 import java.awt.*;
 import javax.swing.*;
 
 public class Calvin {
 
-	JFrame frame; // JFrame and JPanel must be global object instances
+	JFrame frame; //Creates new Jframe and JPanel
 	MyPanel panel;
 
 	public static void main(String[] args) {
 		Calvin calvin = new Calvin();
-		calvin.Calvin();
+		calvin.Calvin(); //Constructers
 	}
 
 	public void Calvin() {
-		frame = new JFrame("Calvin");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame("Calvin"); //Initilizing JFrame 
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Telling JFrame to exit on close
 
-		// Put JPanel in frame
-
-		panel = new MyPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER); // put panel in
-																// frame
-		panel.setBackground(Color.white); // sets background color to white
-		frame.setSize(500, 650); // explicitly set size in pixels
-		frame.setVisible(true); // set to false to make invisible
+		panel = new MyPanel(); //Initizlizing JPanel
+		frame.getContentPane().add(panel, BorderLayout.CENTER); //JPanel is located in the center
+																
+		panel.setBackground(Color.white); //Background color set to white
+		frame.setSize(500, 650); //Made frame 500x650
+		frame.setVisible(true); //Made JFrame visable, changing default
 
 	}
 
-} // end class SimpleJFrame2
+} // Calvin() end 
 
-// Create a JPanel class
-class MyPanel extends JPanel {
+class MyPanel extends JPanel { //extends Calvin class
 
 	public void paintComponent(Graphics g) {
-		super.paintComponent(g); // execute the superclass method first
+		super.paintComponent(g); //runs superclass constructers
 		Graphics2D g2 = (Graphics2D) g;
-		g.setColor(Color.gray);
-		//g2.setStroke(new BasicStroke(1));
+		g.setColor(Color.gray); //set color to gray
+
+		//print out grid
 		for (int col = 0; col < 55; col++)
 			for (int row = 0; row < 40; row++) {
 				g.drawRect(50 + row * 10, 50 + col * 10, 10, 10);
@@ -71,6 +67,8 @@ class MyPanel extends JPanel {
 			g.drawLine(50 + j * 10, 50, 50 + j * 10, 600);
 			j += 5;
 		}
+		//end grid print
+
 		g2.setStroke(new BasicStroke(2));
 		g.setColor(Color.black);
 		
