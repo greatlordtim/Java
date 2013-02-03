@@ -49,7 +49,7 @@ class MyPanel extends JPanel { //extends Calvin class
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); //runs superclass constructers
 		Graphics2D g2 = (Graphics2D) g;
-		g.setColor(Color.gray); //set color to gray
+		g.setColor(Color.gray); //set color to
 
 		//print out grid
 		for (int col = 0; col < 55; col++)
@@ -72,7 +72,7 @@ class MyPanel extends JPanel { //extends Calvin class
 		g2.setStroke(new BasicStroke(2));
 		g.setColor(Color.black);
 		
-		//draw lines
+		//draw hair lines
 		g.drawLine(320, 200, 350, 120);
 		g.drawLine(360, 230, 410, 190);
 		g.drawLine(360, 240, 430, 250);
@@ -92,33 +92,36 @@ class MyPanel extends JPanel { //extends Calvin class
 		g.drawArc(220, 210, 40, 30 , 45 , 105);
         g.drawArc(280, 210, 40, 30, 0, 120);
 
-
+        //outer eyes
 		g.drawOval(180, 260, 80, 130);
 		g.drawOval(260, 250, 80, 140);
 
-		//draw Oval
+		//inner eyebrows
 		g.fillOval(230, 320, 20, 30);
 		g.fillOval(270, 320, 20, 40);
 
-		//bottom of face
+		//face
 		g.drawArc (110, 200, 270, 300, 170, 200);
 
+		//smile/frown
 		g.drawLine(230, 460, 260, 470);
 
-		//nose code
+		//nose
 		g.drawArc(230, 380, 50, 40, 35, -250);
 
 		//draw CheekArcs
 		g.drawArc(90, 370, 40, 60, 90, 180);
 		g.drawArc(80, 370, 61, 60, -90, 41);
 		g.drawArc(360, 370, 40, 60, 90, -210);
+		//color set white
 		g.setColor(Color.white);
 		g.fillOval(90, 370, 48, 58);
 		g.fillOval(350, 370, 48, 58);
+		//color back to black
 		g.setColor(Color.black);
 		int l = 0;
 	
-		//body
+		//arm
 		for (int k = 0; k < 4; k++) {
 			g.setColor(Color.white);
 			g2.fillRoundRect(210 - k - 1, 500 + l - 1, 40 + k + k - 2, 20 - 0, 8, 8);
@@ -128,6 +131,7 @@ class MyPanel extends JPanel { //extends Calvin class
 		}
 		l = 0;
 		
+		//body 
 		for (int w = 0; w < 4; w++) {
 			g2.drawRoundRect(250 + w, 500 + l, 30 + 2 * w, 20, 8, 8);
 			l += 20;
@@ -135,12 +139,14 @@ class MyPanel extends JPanel { //extends Calvin class
 		}
 
 		
-
+		//bottom rectangle lines
 		g.drawLine(220, 600, 220, 580);
 		g.drawLine(240, 600, 240, 580);
+
+		//bottom rectangle
 		g.drawRoundRect(211, 580, 80, 20, 8, 8);
 		g.setColor(Color.white);
 		g.drawLine(50, 600, 450, 600);
-	} // end paintComponent
+	} // end drawing Calvin
 
-} // end class MyPanel
+} // end MyPanel Class
