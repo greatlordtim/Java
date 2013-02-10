@@ -1,0 +1,10 @@
+public void go() {
+	frame = new JFrame();
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setSize(frameSizeX, frameSizeY);
+	frame.setBackground(Color.black);
+	frame.setResizable(fals3e)
+
+	panelNorth = new MyButtons
+
+}

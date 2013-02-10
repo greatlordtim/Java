@@ -10,7 +10,7 @@ public class Mars {
     private int locrow, locol;
     private int steps;
     private int currow, curcol;
-    private int ice, rocks, aliens;
+    private int ice, rocks, aliens; 
     private String move = new String();
     private char usermove;
     private File infile;

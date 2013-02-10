@@ -16,7 +16,7 @@ public class SimpleJFrame {
 	
 	
 	// 1. Create the JFrame object 
-	JFrame frame = new JFrame("My Fist JFrame");
+	JFrame frame = new JFrame("My First JFrame");
 	
 	// 2. Set the parameters of the JFrame
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

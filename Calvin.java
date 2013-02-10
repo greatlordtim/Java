@@ -13,7 +13,7 @@
 // redhor: draw a red line every 5 spaces horizontally
 // redvert: draw a red line every 5 spaces vertically
 // rec: draw rectangle body box 4 times							
-// rec2: draw 4 more rectangle boxes
+// rec2: draw 4 more rectangle boxesds
 
 import java.awt.*;
 import javax.swing.*;
@@ -111,13 +111,16 @@ class MyPanel extends JPanel { //extends Calvin class
         //draw CheekArcs
         g.drawArc(90, 370, 40, 60, 90, 180);
         g.drawArc(80, 370, 61, 60, -90, 41);
-        g.drawArc(360, 370, 40, 60, 90, -210);
+        
         //color set white
         g.setColor(Color.white);
-        g.fillOval(90, 370, 48, 58);
-        g.fillOval(350, 370, 48, 58);
+        g.fillOval(90, 370, 50, 60);
+        g.fillOval(350, 370, 50, 60);
         //color back to black
         g.setColor(Color.black);
+		g.drawArc(350, 370, 50, 60, 77, -200);
+		g.drawArc(90, 370, 50, 60, 100, 210);
+        
         int l = 0;
 
         //arm
