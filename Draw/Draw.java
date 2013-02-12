@@ -21,7 +21,7 @@ public class Draw {
 	}
 
 	public void Run() {
-		frame = new JFrame("Draw.java");
+		frame = new JFrame("Draw");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// Create JPanel and add to frame
@@ -71,11 +71,29 @@ class MyPanel extends JPanel implements MouseListener, MouseMotionListener{
 		height = getHeight();		// height of JPanel
 		
 		// Set background color
-		setBackground(Color.white);
+		setBackground(Color.gray);
 		
-		// Draw blue rectangle
+		// Draw rectangles
+		g.setColor(Color.black);
+		g.fillRect(10, 10, 75, 75);
+		g.setColor(Color.red);
+		g.fillRect(105, 10, 75, 75);
 		g.setColor(Color.blue);
-		g.fillRect(xloc, yloc, 50, 50);
+		g.fillRect(210, 10, 75, 75);
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(315, 10, 75, 75);
+		g.setColor(Color.green);
+		g.fillRect(420, 10, 75, 75);
+		g.setColor(Color.white);
+
+
+		//Draw words
+		g.setFont(new Font("Helvetica", Font.BOLD, 20));	// font name, style, size
+		g.drawString("Reset", 15, 60);
+		g.drawString("Red", 120, 60);
+		g.drawString("Blue", 225, 60);
+		g.drawString("Gray", 330, 60);
+		g.drawString("Green", 435, 60);
 		////////////////////////////////////////////////
 		// Create Rectangle around drawn rectangle
 		int yoffset = 40;

@@ -1,7 +1,8 @@
 // Jimmy Liu
-// Januarary 16th, 2012
-// Mars.java
-// Does stuff
+// January 30, 2013
+// Web.java
+// This program paints a picture of Calvin using Paint, JFrames, and JPanel
+
 import java.util.*;
 import java.io.*;
 
