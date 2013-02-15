@@ -1,14 +1,38 @@
+// Jimmy Liu
+// Draw.java
+// Feb. 13, 2013
+// This program let's the user pick a color and draw straight lines on a canvas. It also has a reset function that clears the canvas. 
+
+// Class Variables:
+//   width: width of jPanel
+//   height: height of jPanel
+//   choosepaint: the color of the paint for canvas, default color is red
+//   dragging: boolean that decides if the user is dragging his mouse or not
+//   endX: Int of cordinates (x) where the user releases his mouse/stops dragging/stops painting
+//   endY: Int of cordinates (y) where the user releases his mouse/stops dragging/stops painting
+//   X: Int of cordinates (x) where the user first presses his mouse/starts drawing
+//   Y: Int of cordinates (y) where the user first presses his mouse/starts drawing
+//   dragX: coordinates of where the user is dragging (x)
+//   dragY: coordinates of where the user is dragging (y)
+
+// Class Methods: 
+//   Run():
+//   paintComponent(Graphics g):
+//   mousePressed(MouseEvent e):
+//   mouseReleased(MouseEvent e):
+//   mouseDragged(MouseEvent e):
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class Draw {
 
-    JFrame frame;
-    MyPanel panel;
+    JFrame frame; //Create a JFrame to contain the program
+    MyPanel panel; //Create a JPanel to contain drawing and buttons
 
-    int ArrayCount = 0;
-    int[][] painted = new int[1337][3];
+    int ArrayCount = 0; 
+    int[][] painted = new int[1337][3]; //create 2d array for storing drawings
 
     public static void main(String[] args) {
         Draw sjf = new Draw();
@@ -21,50 +45,50 @@ public class Draw {
 
         panel = new MyPanel();
         frame.getContentPane().add(panel, BorderLayout.CENTER);
-        frame.addMouseListener(panel);
-        frame.addMouseMotionListener(panel);
+        frame.addMouseListener(panel); //Add a mouseListener to the JPanel
+        frame.addMouseMotionListener(panel); //Add a mouseMotionListener to the JPanel
 
-        frame.setSize(500, 600);
-        frame.setVisible(true);
+        frame.setSize(500, 600); //creating a 500x600 JFrame 
+        frame.setVisible(true);  //making the jFrame visable to the user
     }
 
 
 
     class MyPanel extends JPanel implements MouseListener, MouseMotionListener {
-        public int width; //width of the panel
-        public int height; //height of the panel
-        public int choosepaint = 1; //decides which color to use, default is red
-        public boolean dragging; //boolean to decide whether or not dragging is occuring
-        public int endX; //the coordinates of the place where the user released the mouse
-        public int endY; //the coordinates of the place where the user released the mouse
-        public int X; //the coordinates of the place where the user clicked down
-        public int Y; //the coordinates of the place where the user clicked down
-        public int dragX; //the coordinates of the place where the user is dragging.
-        public int dragY; //the coordinates of the place where the user is dragging.
+        public int width; 
+        public int height; 
+        public int choosepaint = 1; //1 = red
+        public boolean dragging;  
+        public int endX; 
+        public int endY; 
+        public int X; 
+        public int Y;
+        public int dragX;
+        public int dragY; 
 
 
         public void paintComponent(Graphics g) { //draw the buttons, the currently being dragged line, and the saved lines.
-            width = getWidth();
-            height = getHeight();
+            width = getWidth(); //get width of window
+            height = getHeight(); //get height of window
             super.paintComponent(g);
-            setBackground(Color.lightGray);
+            setBackground(Color.lightGray); //set background of the program to lightgray
 
-            g.setFont(new Font("Arial", Font.BOLD, 24));
+            g.setFont(new Font("Helvetica", Font.BOLD, 24)); //pretty fonts
 
-            g.setColor(Color.black); //Draw First button
+            g.setColor(Color.black); //Draw button (reset, first button)
             g.fillRect(0, 0, width / 5, 100);
 
             g.setColor(Color.red);
-            g.fillRect((width / 5) + 2, 0, width / 5, 100); //Draw Second Button
+            g.fillRect((width / 5) + 2, 0, width / 5, 100); //Draw button (red, second button)
 
             g.setColor(Color.blue);
-            g.fillRect((2 * width / 5) + 4, 0, width / 5, 100); //Draw Third Button
+            g.fillRect((2 * width / 5) + 4, 0, width / 5, 100); //Draw button (blue, third button)
 
             g.setColor(Color.gray);
-            g.fillRect((3 * width / 5) + 6, 0, width / 5, 100); //Draw Fourth Button
+            g.fillRect((3 * width / 5) + 6, 0, width / 5, 100); //Draw button (gray, fourth button)
 
             g.setColor(Color.green);
-            g.fillRect((4 * width / 5) + 8, 0, width / 5, 100); //Draw Fifth Button
+            g.fillRect((4 * width / 5) + 8, 0, width / 5, 100); //Draw button (green, fifth button)
 
             //draw top margin
             g.setColor(Color.lightGray);
@@ -237,7 +261,7 @@ public class Draw {
                 repaint();
             }
         }
-        //@Override
+    
         public void mouseMoved(MouseEvent e) {}
     }
 } //end the biggest class
