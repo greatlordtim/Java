@@ -16,11 +16,18 @@
 //   dragY: coordinates of where the user is dragging (y)
 
 // Class Methods: 
-//   Run():
-//   paintComponent(Graphics g):
-//   mousePressed(MouseEvent e):
-//   mouseReleased(MouseEvent e):
-//   mouseDragged(MouseEvent e):
+//   Run(): Creates a new JFrame with the name draw. Set default close operation to close. Define panel as JPanel, use BorderLayout
+//	 manager to set it to Center, add mouseListerner and mouseMotionListerner to JPanel, set JFrame size to 500x600, and 
+//   set visability of JFrame to true.
+//   paintComponent(Graphics g): Get width of panel, and draw buttons + draw strings on them to represent the buttons on the user interface. 
+//   Also sets the top margin and background as lightgray. A switch-case is in here to let users chose the color they would like to draw with, 
+//   default color is Red. Lastly, it prints out the line the user is currently drawing, and stores it in a 2-d array
+//   mousePressed(MouseEvent e): Get current color and print it out in Terminal. If Reset, print that out. If the user presses reset, reset
+//   the canvas, and make sure user cannot drag during that time. 
+//   mouseReleased(MouseEvent e): Make sure the default does not go back to 0, 0. Checks if the user is drawing on the button pane, if so, does not let 
+//   it. Also make sure the user draws within the constraints.  
+//   mouseDragged(MouseEvent e): If the mouse is currently dragging, get the coordinates. If Y coordinate is "off-plain", set it to maximum size. 
+//   so that the user cannot draw on top of the buttons.
 
 import java.awt.*;
 import java.awt.event.*;
@@ -40,7 +47,7 @@ public class Draw {
     }
 
     public void Run() {
-        frame = new JFrame("Web");
+        frame = new JFrame("Draw");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panel = new MyPanel();
