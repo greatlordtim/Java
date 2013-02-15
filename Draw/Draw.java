@@ -8,7 +8,7 @@ public class Draw {
         MyPanel panel;
 
         int ArrayCount = 0;
-        int[][]painted = new int [999999][3];
+        int[][]painted = new int [1337][3];
 
         public static void main(String[] args) {
                 Draw sjf = new Draw();
@@ -20,18 +20,13 @@ public class Draw {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                 panel = new MyPanel();
-
-
-
                 frame.getContentPane().add(panel, BorderLayout.CENTER);
                 frame.addMouseListener(panel);
                 frame.addMouseMotionListener(panel);
 
                 frame.setSize(500, 600);
                 frame.setVisible(true);
-
-
-        }
+    }
 
 
 
@@ -224,6 +219,6 @@ System.out.println("Color is gray"); choosepaint = 3;}
                 }
         }
     //@Override
-    public void mouseMoved (MouseEvent e) {}
+public void mouseMoved (MouseEvent e) {}
 }
 } //end the biggest class
