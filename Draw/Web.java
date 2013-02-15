@@ -179,8 +179,7 @@ public class Draw {
                     choosepaint = 3;
                 }
                 if (X > 4 * width / 5 + 13) {
-                    System.out.println("Color is
-green");
+                    System.out.println("Color is green");
                     choosepaint = 4;
                 }
             } //end changing the color
@@ -207,10 +206,10 @@ green");
                 painted[ArrayCount][2] = choosepaint;
             }
 
-        }@Override
+        }
         public void mouseClicked(MouseEvent e) {}
 
-        @Override
+        
         public void mouseReleased(MouseEvent e) {
             dragging = false; //the dragging has stopped after user releases
 
@@ -249,7 +248,7 @@ green");
             }
         }
 
-        @Override
+        
         public void mouseEntered(MouseEvent e) {}@Override
         public void mouseExited(MouseEvent e) {}@Override
 
