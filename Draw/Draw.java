@@ -110,7 +110,7 @@ public class Draw {
             g.drawString("GREEN", (width / 5) * 4 + (width / 10) - 35, 60);
             g.setColor(Color.red); //this is where the buttons have finished being drawn
 
-            switch (choosepaint) { //set the color
+            switch (choosepaint) { //switch case for setting the color
                 case 1:
                     g.setColor(Color.red);
                     break;
@@ -271,4 +271,8 @@ public class Draw {
     
         public void mouseMoved(MouseEvent e) {}
     }
+<<<<<<< HEAD
 } //end the biggest class
+=======
+} //end public class
+>>>>>>> yollo
