@@ -19,13 +19,17 @@
 //   Run(): Creates a new JFrame with the name draw. Set default close operation to close. Define panel as JPanel, use BorderLayout
 //	 manager to set it to Center, add mouseListerner and mouseMotionListerner to JPanel, set JFrame size to 500x600, and 
 //   set visability of JFrame to true.
+//
 //   paintComponent(Graphics g): Get width of panel, and draw buttons + draw strings on them to represent the buttons on the user interface. 
 //   Also sets the top margin and background as lightgray. A switch-case is in here to let users chose the color they would like to draw with, 
 //   default color is Red. Lastly, it prints out the line the user is currently drawing, and stores it in a 2-d array
+//
 //   mousePressed(MouseEvent e): Get current color and print it out in Terminal. If Reset, print that out. If the user presses reset, reset
 //   the canvas, and make sure user cannot drag during that time. 
+//
 //   mouseReleased(MouseEvent e): Make sure the default does not go back to 0, 0. Checks if the user is drawing on the button pane, if so, does not let 
 //   it. Also make sure the user draws within the constraints.  
+//
 //   mouseDragged(MouseEvent e): If the mouse is currently dragging, get the coordinates. If Y coordinate is "off-plain", set it to maximum size. 
 //   so that the user cannot draw on top of the buttons.
 
@@ -75,12 +79,12 @@ public class Draw {
 
 
         public void paintComponent(Graphics g) { //draw the buttons, the currently being dragged line, and the saved lines.
-            width = getWidth(); //get width of window
-            height = getHeight(); //get height of window
+            width = getWidth(); //get window width
+            height = getHeight(); //get window width
             super.paintComponent(g);
-            setBackground(Color.lightGray); //set background of the program to lightgray
+            setBackground(Color.lightGray); //background: set to light gray
 
-            g.setFont(new Font("Helvetica", Font.BOLD, 24)); //pretty fonts
+            g.setFont(new Font("Helvetica", Font.BOLD, 24)); //pretty fonts :D
 
             g.setColor(Color.black); //Draw button (reset, first button)
             g.fillRect(0, 0, width / 5, 100);
@@ -108,67 +112,66 @@ public class Draw {
             g.drawString("BLUE", (width / 5) * 2 + (width / 10) - 30, 60);
             g.drawString("GRAY", (width / 5) * 3 + (width / 10) - 30, 60);
             g.drawString("GREEN", (width / 5) * 4 + (width / 10) - 35, 60);
-            g.setColor(Color.red); //this is where the buttons have finished being drawn
+            g.setColor(Color.red); //buttons and text are finished drawn
 
             switch (choosepaint) { //switch case for setting the color
                 case 1:
-                    g.setColor(Color.red);
+                    g.setColor(Color.red); //red color
                     break;
                 case 2:
-                    g.setColor(Color.blue);
+                    g.setColor(Color.blue); //blue color
                     break;
                 case 3:
-                    g.setColor(Color.gray);
+                    g.setColor(Color.gray); //gray color
                     break;
                 case 4:
-                    g.setColor(Color.green);
+                    g.setColor(Color.green); //green color
                     break;
             }
 
-            g.drawLine(X - 7, Y - 27, dragX - 7, dragY - 27); //draw the line that the user is currently manipulating
+            g.drawLine(X - 7, Y - 27, dragX - 7, dragY - 27); //draw line the user is currently trying to draw
 
             for (int i = 0; i < ArrayCount;) {
-                // switch the color to the one stored in the array for that particular point
+               //chnage color to the one the user selects
                 switch (painted[i][2]) {
                     case 1:
-                        g.setColor(Color.red);
+                        g.setColor(Color.red); //set red
                         break;
                     case 2:
-                        g.setColor(Color.blue);
+                        g.setColor(Color.blue); //set blue
                         break;
                     case 3:
-                        g.setColor(Color.gray);
+                        g.setColor(Color.gray); //set gray
                         break;
                     case 4:
-                        g.setColor(Color.green);
+                        g.setColor(Color.green); //set green
                         break;
                     default:
                         g.setColor(Color.black);
                         break;
-                } //end switch statement for color
+                } 
 
                 g.drawLine(painted[i][0] - 7, painted[i][1] - 27,
-                painted[i + 1][0] - 7, painted[i + 1][1] - 27); //draw
-                ////that stored line
+                painted[i + 1][0] - 7, painted[i + 1][1] - 27); //store lines + draw them
                 i = i + 2;
 
             }
         } // end paintComponent
 
+ 
+        public void mousePressed(MouseEvent e) { //start mousePressed event
+            dragging = true; //user is now dragging
 
-        public void mousePressed(MouseEvent e) {
-            dragging = true; //the user is now dragging after he clicked down
+            X = e.getX(); //current X point
+            Y = e.getY(); //current Y point
 
-            X = e.getX(); //the current point
-            Y = e.getY(); //the current point
-
-            if (Y < 123) { //if the user clicks inside the button, reset all values except for initial X to ensure no lines drawn.
+            if (Y < 123) { //make sure user does not draw any lines into buttons by resetting values when there
                 dragging = false;
                 Y = endX = endY = dragX = dragY = 0;
                 repaint();
             }
 
-            if (Y <= 123) { //If the initial click is within bounds of the Buttons, change the color to the one selected
+            if (Y <= 123) { //Change the colors/reset if the user clicks on one of the buttons
 
                 if (X <= (width / 5) + 5) {
                     System.out.println("RESET");
@@ -192,19 +195,19 @@ public class Draw {
                 }
             } //end changing the color
 
-            if (choosepaint == 5) { //if the user presses reset, everything goes away
-                for (int row = 0; row < painted.length; row++) { //reset the array (delete all its contents)
+            if (choosepaint == 5) { //reset canvas if user presses reset
+                for (int row = 0; row < painted.length; row++) { //byebye stuff on array
                     for (int col = 0; col < 3; col++) {
                         painted[row][col] = 0;
                     }
                 }
-                dragging = false; //no more dragging we reseted
+                dragging = false; //reset no dragging
                 X = Y = endX = endY = dragX = dragY = 0; //reset everything back to zero
                 repaint();
                 choosepaint = 1; //reset the color.
             }
 
-            if (Y > 123) { //If in the canvas, assign the coordinates of the first click
+            if (Y > 123) { //If in canvas, get first click
                 painted[ArrayCount][0] = X;
                 painted[ArrayCount][1] = Y;
                 painted[ArrayCount][2] = choosepaint;
@@ -218,19 +221,19 @@ public class Draw {
         public void mouseReleased(MouseEvent e) {
             dragging = false; //the dragging has stopped after user releases this part cannot be put into mouseDragged as the mouse was not dragged.
 
-            dragX = X; //if the user doesn't drag, prevents dragX to defaulting to (0,0)
-            dragY = Y; //if the user doesn't drag, prevents dragX to defaulting to (0,0)
+            dragX = X; //if user does not drag mouse, do not change dragX to default 0.0
+            dragY = Y; //if user does not drag mouse, do not change dragY to default 0.0
 
             endX = e.getX(); //get the endpoint
             endY = e.getY(); //get the endpoint
 
-            if (Y < 123) { //if the action is happening inside the button panel, make sure to reset everything so nothing is drawn.
+            if (Y < 125) { //if the action is happening inside the button panel, make sure to reset everything so nothing is drawn.
                 dragging = false;
                 Y = endX = endY = dragX = dragY = 0;
                 repaint();
-            } //TROUBLESHOOTING
+            }
 
-            if (endY > 123) { //make sure the endpoint is outside of the constraint
+            if (endY > 125) { //make sure the endpoint is outside of the constraint
                 ArrayCount++;
                 painted[ArrayCount][0] = endX;
                 painted[ArrayCount][1] = endY;
@@ -247,9 +250,9 @@ public class Draw {
         }
 
 
-        public void mouseEntered(MouseEvent e) {}
+        public void mouseEntered(MouseEvent e) {} //nothing to do here
 
-        public void mouseExited(MouseEvent e) {}
+        public void mouseExited(MouseEvent e) {} //nothing to do here
 
 
         public void mouseDragged(MouseEvent e) { //the dragging
@@ -257,10 +260,10 @@ public class Draw {
                 dragX = e.getX();
                 dragY = e.getY();
 
-                if (dragY < 123) { //cannot draw into the buttons
+                if (dragY < 125) { //cannot draw into the buttons
                     dragY = 130;
                 }
-                if (Y < 123) {
+                if (Y < 125) {
                     dragging = false;
                     Y = endX = endY = dragX = dragY = 0;
                     repaint();
@@ -269,10 +272,10 @@ public class Draw {
             }
         }
     
-        public void mouseMoved(MouseEvent e) {}
+        public void mouseMoved(MouseEvent e) {} //nothing to do here
     }
-<<<<<<< HEAD
-} //end the biggest class
-=======
-} //end public class
->>>>>>> yollo
+
+} //end all classes
+
+
+
