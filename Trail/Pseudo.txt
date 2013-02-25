@@ -1,0 +1,13 @@
+Initial Design: 
+	Create a window
+	Create 5x5 black box in center
+	Initizlize 2D array
+	
+1st Refinement: 
+	Get keyboard input from user
+	When input, draw new box to where user wants to go
+	Used keytype for what the user types
+	
+	Decrease brightness of squares (RGB brightness decrease)
+	Loop until user closes the program
+	
