@@ -48,7 +48,7 @@ public class SimpleKey {
 	// - implement an KeyListener
 	// - implement a FocusListener
 	//
-	class NorthPanel extends JPanel {
+	class NorthPanel extends JPanel implements KeyListener{
 		JTextField tf;			// Text field for input
 	
 		public NorthPanel() {
@@ -57,6 +57,7 @@ public class SimpleKey {
 			/////////////////////////////////
 			// - add an KeyListener
 			// - add a FocusListener
+			tf.addKeyListener(this);
 		}
 		
 		public void paintComponent(Graphics g) {
@@ -68,6 +69,22 @@ public class SimpleKey {
 		//			keyReleased (KeyEvent e)
 		//			keyTyped (KeyEvent e)
 		//
+		public void keyPressed (KeyEvent e) {
+			
+			char c = e.getKeyChar();
+			System.out.println("keyPressed, c= " + c);
+		
+		} 
+		public void keyReleased (KeyEvent e) {
+			
+		
+		}
+		public void keyTyped (KeyEvent e) {
+		
+			char c = e.getKeyChar();
+			System.out.println("keyTyped, c= " +c);
+		
+		}
 		
 		//////////////////////////////////////////
 		// Define focusGained (FocusEvent e)
