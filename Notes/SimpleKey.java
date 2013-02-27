@@ -48,7 +48,7 @@ public class SimpleKey {
 	// - implement an KeyListener
 	// - implement a FocusListener
 	//
-	class NorthPanel extends JPanel implements KeyListener{
+	class NorthPanel extends JPanel implements KeyListener, FocusListener{
 		JTextField tf;			// Text field for input
 	
 		public NorthPanel() {
@@ -58,6 +58,7 @@ public class SimpleKey {
 			// - add an KeyListener
 			// - add a FocusListener
 			tf.addKeyListener(this);
+			tf.addFocusListener(this);
 		}
 		
 		public void paintComponent(Graphics g) {
@@ -90,6 +91,12 @@ public class SimpleKey {
 		// Define focusGained (FocusEvent e)
 		// Define focusLost (FocusEvent e)
 		//
+		public void focusGained (FocusEvent e) {
+			
+			System.out.println("NorthPanel focusedGained");
+		}
+		
+		public void focusLost (FocusEvent e) {}
 		
 	}	// end class NorthPanel
 	
@@ -97,7 +104,7 @@ public class SimpleKey {
 	// - implement an ActionListener
 	// - implement a FocusListener
 	//
-	class SouthPanel extends JPanel implements ActionListener {
+	class SouthPanel extends JPanel implements ActionListener, FocusListener {
 		JTextField ta;			// Text field for input
 	
 		public SouthPanel() {
@@ -108,6 +115,7 @@ public class SimpleKey {
 			// - add a FocusListener
 			//
 			ta.addActionListener(this);
+			ta.addFocusListener(this);
 		}
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -126,6 +134,13 @@ public class SimpleKey {
 		// Define focusGained (FocusEvent e)
 		// Define focusLost (FocusEvent e)
 		//
+		
+		public void focusGained (FocusEvent e) {
+			
+			System.out.println("SouthPanel focusedGained");
+		}
+		
+		public void focusLost (FocusEvent e) {}
 
 	}	// end class SouthPanel
 }	// end class SimpleKey
