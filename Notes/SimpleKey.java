@@ -97,7 +97,7 @@ public class SimpleKey {
 	// - implement an ActionListener
 	// - implement a FocusListener
 	//
-	class SouthPanel extends JPanel {
+	class SouthPanel extends JPanel implements ActionListener {
 		JTextField ta;			// Text field for input
 	
 		public SouthPanel() {
@@ -107,6 +107,7 @@ public class SimpleKey {
 			// - add an ActionListener
 			// - add a FocusListener
 			//
+			ta.addActionListener(this);
 		}
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
@@ -115,7 +116,12 @@ public class SimpleKey {
 		//////////////////////////////////////////
 		// Define actionPerformed(ActionEvent e)
 		//
+		public void actionPerformed (ActionEvent e) {
 		
+			String str = e.getActionCommand();
+			System.out.println("actionPerformed str = " + str);
+		
+		}
 		//////////////////////////////////////////
 		// Define focusGained (FocusEvent e)
 		// Define focusLost (FocusEvent e)
