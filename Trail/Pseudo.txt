@@ -23,28 +23,39 @@ Initial Design:
 	switch [c] {
 		case a {
 			move left
+			break;
 		}
 		case d {
 			move right
+			break;
 		}
 		case w {
 			move up 
+			break;
 		}
 		case x {
 			move down 
+			break;
 		}
 		case q {
 			diagonal up-left
+			break;
 		}
 		case e {
 			diagonal up-right
+			break;
 		}
 		case z {
 			diagonal down-left
+			break;
 		} 
 		case c {
-			 diagonal down-right
+			diagonal down-right
+			break;
 		}
 	}
 
 	After getting movement, save new location in a 2D array
+	array [locationx] [locationy] [5] [5];
+	repaint(); (Do this to print out new square and old squares saved in array)
+	
