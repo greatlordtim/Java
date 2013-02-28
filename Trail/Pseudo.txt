@@ -1,7 +1,8 @@
 Initial Design: 
 	Create a window (Jpanel)
-	Initizlize 2D array
-       Create keyTyped listener for input type
+	 Initialize 2D array
+        Create keyTyped listener for input type
+	Initialize variables, (i.e. colorcount, xloc, yloc, etc.)
 	
 1st Refinement: 
 	Draw black box in middle of JFrame
@@ -13,6 +14,17 @@ Initial Design:
 	Loop until user closes the program
 
 2nd Refinement:
+	Draw black 5x5 box in middle of program
+	Add in KeyListener: tf.addKeyListener
+	Get key pressed, put it in a char (i.e. c) -->
+	After getting user input, use a switch case statement to get move
+	After getting new location, save this in the 2D array initialized in the beginning
+ 	(i.e. array [xloc][yloc])
+	Repaint all triangles. When repainting from array, use variable colorcount to keep 	track of fading. colorcount++ each time after
+	
+	
+	
+3rd Refinement:
 	Draw a 5x5 black box in center of program, (250, 250)
 	tf.addKeyListener(this);
 	public void keyPressed (KeyEvent e) {
@@ -58,4 +70,9 @@ Initial Design:
 	After getting movement, save new location in a 2D array
 	array [locationx] [locationy] [5] [5];
 	repaint(); (Do this to print out new square and old squares saved in array)
+        colorcount =1;
+	Use color count to repaint triangles from array
+	colorcount++;
+	Repeat these steps until user is done
+	System.exit(1);
 	
