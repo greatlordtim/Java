@@ -1,6 +1,6 @@
-// Mr Greenstein
+// Jimmy Liu
 // February 20, 2013
-// SimpleKey.java
+// Trail.java
 // An example of key (keyboard) events, action events, and focus events.
 
 // Topics:	Implement KeyListener
@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class SimpleKey {
+public class Trail {
 
 	JFrame frame;			// JFrame and JPanel must be global object instances
 	NorthPanel np;			// KeyListener, FocusListener panel with text field
