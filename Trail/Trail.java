@@ -11,9 +11,13 @@ public class Trail {
 	
 	JFrame frame;			// JFrame and JPanel must be global object instances
 	DerpPanel np;			// KeyListener, FocusListener panel with text field
-	int[][] array = new int[1337][2];
+	int[][] array = new int[100][100];
+
 	int move = 0;
 	int xloc, yloc;
+	int x = 49;
+	int y =49;
+	boolean moved = false;
 	
 	public Trail () {
 	
@@ -36,6 +40,13 @@ public class Trail {
 		frame.setSize(500, 500);		// explicitly set size in pixels
 		frame.setLocation(500,300);	// set location on my screen
 		frame.setVisible(true);		// set to true to make visible
+		for(int i=0; i < 100; i++)
+		{
+			for(int j=0; j < 100; j++)
+			{
+				array[i][j] = 255;
+			}
+		}
 		
 	} //end Run()
 	
@@ -48,7 +59,11 @@ public class Trail {
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			g.setColor(Color.black);
+			if(move == 0)
+			{
+				g.fillRect(49*5,49*5,5,5);
+			}
+			/*g.setColor(Color.black);
 			g.fillRect(250, 250, 5, 5);
 			array[0][0] = 250;
 			array[0][1] = 250;
@@ -56,7 +71,24 @@ public class Trail {
 			
 			g.fillRect(xloc, yloc, 5, 5);
 			array[move][0] = xloc;
-			array[move][1] = yloc;
+			array[move][1] = yloc;*/
+
+			
+			for(int i=0; i < 100; i++)
+			{
+				for(int j=0; j < 100; j++)
+				{
+					if(array[i][j] < 255 && moved)
+					{
+						array[x][y]+=5;
+						Color myColor = new Color(array[i][j], array[i][j], array[i][j]); //sets color
+						g.setColor(myColor);
+						g.fillRect(i*5, j*5, 5, 5);
+						moved = false;
+					}
+				}
+			}
+
 
 			
 
@@ -82,13 +114,13 @@ public class Trail {
 			switch (c) {
 
 				case 'a': 
-				xloc = array[move][0];
-				yloc = array[move][1];
+				//xloc = array[move][0];
+				//yloc = array[move][1];
+				x--;
 				move++;
-				xloc = xloc + 5;
-				repaint();
-				
-
+				//xloc = xloc + 5;
+				moved = true;
+				repaint();			
 				break;
 
 				case 'd':
