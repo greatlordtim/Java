@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Trail {
 	
 	JFrame frame;			// JFrame and JPanel must be global object instances
-	NorthPanel np;			// KeyListener, FocusListener panel with text field
+	DerpPanel np;			// KeyListener, FocusListener panel with text field
 	
 	public Trail () {
 	
@@ -30,7 +30,7 @@ public class Trail {
 		np = new DerpPanel();
 		frame.getContentPane().add(np, BorderLayout.CENTER);
 						
-		frame.setSize(300, 500);		// explicitly set size in pixels
+		frame.setSize(500, 500);		// explicitly set size in pixels
 		frame.setLocation(500,300);	// set location on my screen
 		frame.setVisible(true);		// set to true to make visible
 		
@@ -39,17 +39,35 @@ public class Trail {
 	class DerpPanel extends JPanel implements KeyListener {
 		
 		public DerpPanel() {
-			
-			
-			
-			
+			frame.addKeyListener(this);
 		} //end public DerpPanel
 		
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			
+			g.setColor(Color.black);
+			g.fillRect(250, 250, 5, 5);
+
+
+
 		} //end paintComponent
+
+		public void keyPressed (KeyEvent e) {
+
+			
+ 
+		} //end keyPressed
+
+		public void keyReleased (KeyEvent e) {
+
+
+		} //end keyReleased 
+
+		public void keyTyped (KeyEvent e) {
+			char c = e.getKeyChar();
+			System.out.println("keyPressed, c= " + c);
+
+		} //end keyTyped
 		
 	} //end DerpPanel
 	
