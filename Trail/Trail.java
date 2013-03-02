@@ -11,6 +11,8 @@ public class Trail {
 	
 	JFrame frame;			// JFrame and JPanel must be global object instances
 	DerpPanel np;			// KeyListener, FocusListener panel with text field
+	int[][] array = new int[1337][2];
+	int move = 0;
 	
 	public Trail () {
 	
@@ -47,10 +49,49 @@ public class Trail {
 			super.paintComponent(g);
 			g.setColor(Color.black);
 			g.fillRect(250, 250, 5, 5);
+			array[0][0] = 250;
+			array[1][0] = 250;
+
 
 
 
 		} //end paintComponent
+
+		public void moving(Graphics g) {
+			super.paintComponent(g);
+			switch (c) {
+
+				case 'a': 
+				int xloc = array[0][move];
+				int yloc = array[1][move];
+				super.paintComponent(g);
+				g.fillRect((xloc - 5), yloc, 5, 5);
+
+				break;
+
+				case 'd':
+				break;
+
+				case 'w':
+				break;
+
+				case 'x':
+				break;
+
+				case 'q':
+				break;
+
+				case 'e':
+				break;
+
+				case 'z':
+				break;
+
+				case 'c':
+				break;
+
+			} //end switchcase
+		}
 
 		public void keyPressed (KeyEvent e) {
 
@@ -66,6 +107,7 @@ public class Trail {
 		public void keyTyped (KeyEvent e) {
 			char c = e.getKeyChar();
 			System.out.println("keyPressed, c= " + c);
+			trail.moving(Graphics g);
 
 		} //end keyTyped
 		
