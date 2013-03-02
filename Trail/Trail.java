@@ -51,12 +51,14 @@ public class Trail {
 			g.setColor(Color.black);
 			g.fillRect(250, 250, 5, 5);
 			array[0][0] = 250;
-			array[1][0] = 250;
+			array[0][1] = 250;
 
-			for (int x = 0; x < 999; x++) {
+			
+			g.fillRect(xloc, yloc, 5, 5);
+			array[move][0] = xloc;
+			array[move][1] = yloc;
 
-				g.fillRect((xloc - 5), yloc, 5, 5);
-			}
+			
 
 
 		} //end paintComponent
@@ -80,9 +82,12 @@ public class Trail {
 			switch (c) {
 
 				case 'a': 
-				xloc = array[0][move];
-				yloc = array[1][move];
+				xloc = array[move][0];
+				yloc = array[move][1];
+				move++;
+				xloc = xloc + 5;
 				repaint();
+				
 
 				break;
 
