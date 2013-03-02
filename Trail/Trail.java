@@ -13,6 +13,7 @@ public class Trail {
 	DerpPanel np;			// KeyListener, FocusListener panel with text field
 	int[][] array = new int[1337][2];
 	int move = 0;
+	int xloc, yloc;
 	
 	public Trail () {
 	
@@ -52,20 +53,36 @@ public class Trail {
 			array[0][0] = 250;
 			array[1][0] = 250;
 
+			for (int x = 0; x < 999; x++) {
 
+				g.fillRect((xloc - 5), yloc, 5, 5);
+			}
 
 
 		} //end paintComponent
 
-		public void moving(Graphics g) {
-			super.paintComponent(g);
+		
+
+		public void keyPressed (KeyEvent e) {
+
+			
+ 
+		} //end keyPressed
+
+		public void keyReleased (KeyEvent e) {
+
+
+		} //end keyReleased 
+
+		public void keyTyped (KeyEvent e) {
+			char c = e.getKeyChar();
+			System.out.println("keyPressed, c= " + c);
 			switch (c) {
 
 				case 'a': 
-				int xloc = array[0][move];
-				int yloc = array[1][move];
-				super.paintComponent(g);
-				g.fillRect((xloc - 5), yloc, 5, 5);
+				xloc = array[0][move];
+				yloc = array[1][move];
+				repaint();
 
 				break;
 
@@ -90,29 +107,13 @@ public class Trail {
 				case 'c':
 				break;
 
-			} //end switchcase
-		}
-
-		public void keyPressed (KeyEvent e) {
-
-			
- 
-		} //end keyPressed
-
-		public void keyReleased (KeyEvent e) {
-
-
-		} //end keyReleased 
-
-		public void keyTyped (KeyEvent e) {
-			char c = e.getKeyChar();
-			System.out.println("keyPressed, c= " + c);
-			trail.moving(Graphics g);
+			}
 
 		} //end keyTyped
 		
 	} //end DerpPanel
 	
 } //end Trail
+
 	
 
