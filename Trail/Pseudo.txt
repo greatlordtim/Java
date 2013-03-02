@@ -18,6 +18,16 @@ Initial Design:
 	Add in KeyListener: tf.addKeyListener
 	Get key pressed, put it in a char (i.e. c) -->
 	After getting user input, use a switch case statement to get move
+		switch c {
+			case a: move left
+			case d: move right
+			case w: move up
+			case x: move down
+			case q: diagonal up-left
+			case e: diagonal up-right
+			case z: diagonal down-left
+			case c: diagonal down-right
+		}
 	After getting new location, save this in the 2D array initialized in the beginning
  	(i.e. array [xloc][yloc])
 	Repaint all triangles. When repainting from array, use variable colorcount to keep 	track of fading. colorcount++ each time after
