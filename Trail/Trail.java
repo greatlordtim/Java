@@ -78,13 +78,11 @@ public class Trail {
 			{
 				for(int j=0; j < 100; j++)
 				{
-					if(array[i][j] < 255 && moved)
+					if(array[i][j] < 255)
 					{
-						array[x][y]+=5;
 						Color myColor = new Color(array[i][j], array[i][j], array[i][j]); //sets color
 						g.setColor(myColor);
-						g.fillRect(i*5, j*5, 5, 5);
-						moved = false;
+						g.fillRect((i)*5, (j)*5, 5, 5);
 					}
 				}
 			}
@@ -112,45 +110,70 @@ public class Trail {
 			char c = e.getKeyChar();
 			System.out.println("keyPressed, c= " + c);
 			switch (c) {
-
 				case 'a': 
-				//xloc = array[move][0];
-				//yloc = array[move][1];
 				x--;
+				array[x][y] = 0;
 				move++;
-				//xloc = xloc + 5;
-				moved = true;
-				repaint();			
 				break;
 
 				case 'd':
+				x++;
+				array[x][y] = 0;
+				move++;
 				break;
 
 				case 'w':
+				y--;
+				array[x][y] = 0;
+				move++;
 				break;
 
 				case 'x':
+				y++;
+				array[x][y] = 0;
+				move++;
 				break;
 
 				case 'q':
+				x--;
+				y--;
+				array[x][y] = 0;
+				move++;
 				break;
 
 				case 'e':
+				x--;
+				array[x][y] = 0;
+				move++;
 				break;
 
 				case 'z':
+				x--;
+				array[x][y] = 0;
+				move++;
 				break;
 
 				case 'c':
+				x--;
+				array[x][y] = 0;
+				move++;
 				break;
 
 			}
+			for(int i=0; i < 100; i++)
+			{
+				for(int j=0; j < 100; j++)
+				{
+					if(array[i][j] < 255)
+					{
+						array[i][j]+=5;
+					}
+				}
+			}
+			repaint();	
 
 		} //end keyTyped
 		
 	} //end DerpPanel
 	
 } //end Trail
-
-	
-
