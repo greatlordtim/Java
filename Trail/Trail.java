@@ -143,18 +143,21 @@ public class Trail {
 
 				case 'e':
 				x--;
+				y++;
 				array[x][y] = 0;
 				move++;
 				break;
 
 				case 'z':
-				x--;
+				x++;
+				y--;
 				array[x][y] = 0;
 				move++;
 				break;
 
 				case 'c':
-				x--;
+				x++;
+				y++;
 				array[x][y] = 0;
 				move++;
 				break;
