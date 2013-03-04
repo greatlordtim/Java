@@ -1,7 +1,24 @@
 // Jimmy Liu
 // February 27, 2013
 // Trail.java
-// Yolo
+// The trail starts fading after a X ammount of moves by the user.
+// This program starts a JFrame and has a window, where the user uses his keyboard to control a "trail", and move it around. 
+
+// Class Methods:
+// Run: Creates a new JFrame called "frame" with the title "Trail". Adds a JPanel called "DerpPanel" to JFrame. Tells JFrame to exit when closing the
+//       program. Set JFrame size to 500x500. Fill the array array "array" with 255, which is white. Set BorderLayout to center.
+// paintComponent: If move =0, fill the center with the beginning trail. Otherwise, paints the current ones that are drawn, and assign the correct colors
+//                 to the block. 
+// keyTyped: A switch case is made for getting what the user presses and changing the array so that movement is recorded. Assign color to the new movement,
+//           and repaint the canvas when it is ready.
+
+
+// Class Variables: 
+// move: Records the move number, so if it's the first one, we paint the middle square that starts
+// x: The x location of the square
+// y: The y location of the square
+// array: Main array, 100x100 that records the color of the squares in the window. Since each square is 5x5, each array represents a square. It gets the 
+//        color. Default color is 255, which is white, then changes it to 0 when it needs to be black.
 
 import java.awt.*;
 import java.awt.event.*;
@@ -14,10 +31,8 @@ public class Trail {
 	int[][] array = new int[100][100];
 
 	int move = 0;
-	int xloc, yloc;
 	int x = 49;
 	int y =49;
-	boolean moved = false;
 	
 	public Trail () {
 	
@@ -33,7 +48,7 @@ public class Trail {
 		frame = new JFrame("Trail");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// Create North JPanel and add to JFrame
+		// Create DerpPanel and add to JFrame
 		np = new DerpPanel();
 		frame.getContentPane().add(np, BorderLayout.CENTER);
 						
@@ -53,25 +68,17 @@ public class Trail {
 	class DerpPanel extends JPanel implements KeyListener {
 		
 		public DerpPanel() {
-			frame.addKeyListener(this);
+			frame.addKeyListener(this); //hi
 		} //end public DerpPanel
 		
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			if(move == 0)
+			if(move == 0) //if first move, draw square in the center
 			{
-				g.fillRect(49*5,49*5,5,5);
+				g.fillRect(49*5,49*5,5,5); //center square
 			}
-			/*g.setColor(Color.black);
-			g.fillRect(250, 250, 5, 5);
-			array[0][0] = 250;
-			array[0][1] = 250;
 
-			
-			g.fillRect(xloc, yloc, 5, 5);
-			array[move][0] = xloc;
-			array[move][1] = yloc;*/
 
 			
 			for(int i=0; i < 100; i++)
@@ -82,7 +89,7 @@ public class Trail {
 					{
 						Color myColor = new Color(array[i][j], array[i][j], array[i][j]); //sets color
 						g.setColor(myColor);
-						g.fillRect((i)*5, (j)*5, 5, 5);
+						g.fillRect((i)*5, (j)*5, 5, 5); //fill the rectangle, 5x5
 					}
 				}
 			}
@@ -96,24 +103,21 @@ public class Trail {
 		
 
 		public void keyPressed (KeyEvent e) {
-
-			
- 
+			//nothing to do here
 		} //end keyPressed
 
 		public void keyReleased (KeyEvent e) {
-
-
+			//nothing to do here
 		} //end keyReleased 
 
 		public void keyTyped (KeyEvent e) {
 			char c = e.getKeyChar();
 			System.out.println("keyPressed, c= " + c);
-			switch (c) {
+			switch (c) { //Switch case for getting what direction the user wants to go
 				case 'a': 
 				x--;
-				array[x][y] = 0;
-				move++;
+				array[x][y] = 0; //make it black
+				move++; //increment move
 				break;
 
 				case 'd':
@@ -124,56 +128,57 @@ public class Trail {
 
 				case 'w':
 				y--;
-				array[x][y] = 0;
-				move++;
+				array[x][y] = 0; //make it black
+				move++; //increment move
 				break;
 
 				case 'x':
 				y++;
-				array[x][y] = 0;
-				move++;
+				array[x][y] = 0; //make it black
+				move++; //increment move
 				break;
 
 				case 'q':
 				x--;
 				y--;
-				array[x][y] = 0;
-				move++;
+				array[x][y] = 0; //make it black
+				move++; //increment move
 				break;
 
 				case 'e':
 				x--;
 				y++;
-				array[x][y] = 0;
-				move++;
+				array[x][y] = 0; //make it black
+				move++; //increment move
 				break;
 
 				case 'z':
 				x++;
 				y--;
-				array[x][y] = 0;
-				move++;
+				array[x][y] = 0; //make it black
+				move++; //increment move
 				break;
 
-				case 'c':
+				case 'c':qeqeq
 				x++;
 				y++;
-				array[x][y] = 0;
-				move++;
+				array[x][y] = 0; //make it black
+				move++; //increment move
 				break;
 
 			}
-			for(int i=0; i < 100; i++)
+			
+			for(int i=0; i < 100; i++) //fading effect for squares
 			{
 				for(int j=0; j < 100; j++)
 				{
-					if(array[i][j] < 255)
+					if(array[i][j] < 255) //if not white
 					{
-						array[i][j]+=5;
+						array[i][j]+=5; //add 5 rgb to it
 					}
 				}
 			}
-			repaint();	
+			repaint();	//repaint after movement
 
 		} //end keyTyped
 		
