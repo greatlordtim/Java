@@ -1,0 +1,8 @@
+Pacman Java PseudoCode
+
+Pre-code:
+	Initilize 10x10 array 
+	
+Revision One:
+	1. Draw board onto the program. 10x10 frame, blue border and 	   gray stroke.
+	2. 
