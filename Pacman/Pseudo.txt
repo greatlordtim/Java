@@ -1,8 +1,19 @@
 Pacman Java PseudoCode
+Author: Jimmy Liu ~ 
 
 Pre-code:
 	Initilize 10x10 array 
 	
 Revision One:
-	1. Draw board onto the program. 10x10 frame, blue border and 	   gray stroke.
-	2. 
+	1. Draw board onto the program. 10x10 frame, blue border and 	   gray stroke. Draw directions on the bottom
+	2. Determine cheese location on the array. Each array would be 
+	   single box on the grid. 
+	   	Array System:
+	   	1 - Empty
+	   	2 - Cheese
+	   	3 - Ghost
+	   	4 - Pacman
+	3. Fill in ghosts into array. Follow array system above. Timer 	   ghosts to move around automatically
+	4. Draw Pacman animation. Add timer for keeping track of 	   opening and closing of the mouth of Pacman.
+	5. Game logic. If timer changes array block that Pacman is 	   currently on, the player loses. If there are no more 	   cheese, the player wins. If Pacman eats one cheese, remove
+	   it (use a counter to keep track of cheese eats)
