@@ -55,10 +55,11 @@ Revision Two:
 	   
 Revision Three:
 	1. Paint the following on the board to get started:
-			Frame Size: 500x500px
-			Blue frame around game
-			10x10 grid with a 5px gray stroke around each box
-			On bottom, red background, black text, Helvetica
+			- Frame Size: 500x500px
+			- Blue frame around game
+			- 10x10 grid with a 5px gray stroke around each box
+			- On bottom, red background, black text, Helvetica.
+			  Sorry, sans/+sarif is uguly.
 	2. Create 10x10 array. Each array would be 
 	   single box on the grid. 
 	   	Array System:
@@ -80,6 +81,8 @@ Revision Three:
 	   gradual closing + opening.
 	4. Ghost switching. Have a timer for 3s, where then the ghost
 	   would then move to a new random location. Changes to array.
+	   After this, check if Pacman is on the array square. If so,
+	   player loses (see 6).
 	5. Game Logic. The following would need to be implemented:
 			-Pacman eating cheese. Counter would start with 0, and
 			 everytime Pacman eats a cheese, this counter would rise
