@@ -1,8 +1,11 @@
-Pacman Java PseudoCode
-Author: Jimmy Liu ~ 
+Pacman Java Pseudocode
+Author: Jimmy Liu ~ http://github.com/lele0108
 
 Pre-code:
-	Initilize 10x10 array 
+	Initilize 10x10 array
+	Create variable for keeping track of cheese
+	Timers for ghost and Pacman animation
+	KeyListner (KeyTyped)
 	
 Revision One:
 	1. Draw board onto the program. 10x10 frame, blue border and 	   gray stroke. Draw directions on the bottom
@@ -17,3 +20,36 @@ Revision One:
 	4. Draw Pacman animation. Add timer for keeping track of 	   opening and closing of the mouth of Pacman.
 	5. Game logic. If timer changes array block that Pacman is 	   currently on, the player loses. If there are no more 	   cheese, the player wins. If Pacman eats one cheese, remove
 	   it (use a counter to keep track of cheese eats)
+	   
+Revision Two:
+
+	1. Paint the following on the board to get started:
+			Frame Size: 500x500px
+			Blue frame around game
+			10x10 grid with a 5px gray stroke around each box
+			On bottom, red background, black text, Helvetica
+	2. Create 10x10 array. Each array would be 
+	   single box on the grid. 
+	   	Array System:
+	   	1 - Empty
+	   	2 - Cheese
+	   	3 - Ghost
+	   	4 - Pacman
+		Purpose of array would be keeping track of what each box 		is currently. First, we would fill all the array with 		default, which would be 1. Afterwords, using a random 
+		generator, we would fill the cheese, ghost, and Pacman. 
+	3. Animations. Pacman's animations would be drawn at 5ms. 
+	   This would simulate the opening and closing of his mouth.
+	4. Ghost switching. Have a timer for 3s, where then the ghost
+	   would then move to a new random location. Changes to array.
+	5. Game Logic. The following would need to be implemented:
+			-Pacman eating cheese. Counter would start with 0, and
+			 everytime Pacman eats a cheese, this counter would rise
+			 until 6, where it would tell the player they have won.
+			-Ghost. If Pacman is on the same array square as a ghost, 
+			 then the game is over, and the player loses and does not 
+			 collect $200. 
+	6. Losing and winning. When player wins, display so. If player 
+	   loses, display so. Using keylistner, if user presses the
+	   key 'R' or "r", then it would reset the game. 
+
+						
