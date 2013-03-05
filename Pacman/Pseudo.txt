@@ -1,11 +1,13 @@
 Pacman Java Pseudocode
-Author: Jimmy Liu ~ http://github.com/lele0108
+Author: Jimmy Liu
+Fork me please: http://github.com/lele0108/java
 
 Pre-code:
 	Initilize 10x10 array
 	Create variable for keeping track of cheese
 	Timers for ghost and Pacman animation
 	KeyListner (KeyTyped)
+	Extra: Instead of drawing images, use a sprite sheet
 	
 Revision One:
 	1. Draw board onto the program. 10x10 frame, blue border and 	   gray stroke. Draw directions on the bottom
@@ -22,7 +24,6 @@ Revision One:
 	   it (use a counter to keep track of cheese eats)
 	   
 Revision Two:
-
 	1. Paint the following on the board to get started:
 			Frame Size: 500x500px
 			Blue frame around game
@@ -51,5 +52,58 @@ Revision Two:
 	6. Losing and winning. When player wins, display so. If player 
 	   loses, display so. Using keylistner, if user presses the
 	   key 'R' or "r", then it would reset the game. 
+	   
+Revision Three:
+	1. Paint the following on the board to get started:
+			Frame Size: 500x500px
+			Blue frame around game
+			10x10 grid with a 5px gray stroke around each box
+			On bottom, red background, black text, Helvetica
+	2. Create 10x10 array. Each array would be 
+	   single box on the grid. 
+	   	Array System:
+	   	1 - Empty
+	   	2 - Cheese
+	   	3 - Ghost
+	   	4 - Pacman
+		Purpose of array would be keeping track of what each box 		is currently. First, we would fill all the array with 		default, which would be 1. Afterwords, using a random 
+		generator, we would fill the cheese, ghost, and Pacman.
+		
+		After ths is done, we need to have defined templates for 
+		drawing Pacman, ghosts, and cheese. Pacman would be a arc,
+		Ghosts would be circles with circle eyes and rectangular
+		mouths, and cheese would be rectangular yellow objects. 
+	3. Animations. Pacman's animations would be drawn at 2ms. 
+	   This would simulate the opening and closing of his mouth. 
+	   We would have this in a infinate loop. Possible extra
+	   would be smooth animations by doing 1ms, and adding
+	   gradual closing + opening.
+	4. Ghost switching. Have a timer for 3s, where then the ghost
+	   would then move to a new random location. Changes to array.
+	5. Game Logic. The following would need to be implemented:
+			-Pacman eating cheese. Counter would start with 0, and
+			 everytime Pacman eats a cheese, this counter would rise
+			 until 6, where it would tell the player they have won.
+			-Ghost. If Pacman is on the same array square as a ghost, 
+			 then the game is over, and the player loses and does not 
+			 collect $200. 
+	6. Getting input from the user. Using the keylistner, we would 
+      want to know where the user wants to go. This would be done 
+      via a switch-case statement, with each assigned key as a 		 choice. 
+      
+      	switch (c): 
+      		case a: move pacman to one array unit left
+      		case d: move pacman to one array unit right
+      		case w: move pacman to one array unit top
+      		case s: move pacman to one array unit down
+      	
+      	Obviously after runnig this, we would repaint, and 
+      	recheck if the player is dead or not. We can't have
+      	the walking dead here.
+	7. Losing and winning. When player wins, display so. If player 
+	   loses, display so. Using keylistner, if user presses the
+	   key 'R' or "r", then it would reset the game. Resetting 
+	   would be done by dumping the array and refilling it as 
+	   described above.
 
 						
