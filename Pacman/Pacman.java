@@ -13,6 +13,7 @@ public class Pacman {
 	DerpPanel np;			// KeyListener, FocusListener panel with text field
 	GridPanel gp;
 	int[][] array = new int[10][10];
+	private JLayeredPane lpane = new JLayeredPane();
 
 	
 	public Pacman () {
@@ -28,17 +29,36 @@ public class Pacman {
 	public void Run() {
 		frame = new JFrame("Pacman");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+
+		 //create blue border
 		
 		// Create DerpPanel and add to JFrame
-		np = new DerpPanel();
-		frame.getContentPane().add(np, BorderLayout.CENTER);
-						
-		frame.setSize(500, 500);		// explicitly set size in pixels
-		frame.setLocation(500,300);	// set location on my screen
-		frame.setVisible(true);		// set to true to make visible
+		
 
 		gp = new GridPanel();
-		frame.getContentPane().add(gp, BorderLayout.CENTER);
+		
+
+		np = new DerpPanel();
+		
+		//stand back, I'm going to try this
+        frame.setSize(new Dimension(500, 560));
+        frame.setLayout(new BorderLayout());
+        frame.add(lpane, BorderLayout.CENTER);
+        lpane.setBounds(0, 0, 500, 500);
+        np.setBounds(0, 0, 500, 560);
+        np.setOpaque(false);
+        gp.setBounds(0, 0, 500, 500);
+        gp.setOpaque(true);
+        lpane.add(gp, new Integer(0), 0);
+        lpane.add(np, new Integer(1), 0);
+        frame.setVisible(true);
+        gp.setBorder(BorderFactory.createLineBorder(Color.blue, 8));
+
+
+
+		
 
 		for(int i=0; i < 10; i++)
 		{
@@ -59,6 +79,15 @@ public class Pacman {
 		public void paintComponent(Graphics g) {
 
 			super.paintComponent(g);
+			Graphics2D g2 = (Graphics2D) g;
+   			g.setColor(Color.lightGray);
+			g2.setStroke(new BasicStroke(3));
+
+			for (int col = 0; col < 10; col++)  {
+        		for (int row = 0; row < 10; row++) {
+					g2.drawRect(row * 48+10, col * 48+10, 48, 48);
+        		}
+   			 }
 
 		} //end paintComponennt
 
@@ -74,6 +103,12 @@ public class Pacman {
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
+			//red bottom
+			g.setColor(Color.red);
+   			g.fillRect(0, 500, 560, 60);
+   			g.setColor(Color.black);
+   			g.setFont(new Font("Helvetica", Font.BOLD, 20));
+   			g.drawString("Directions: Ohai", 20, 530);
 
 
 			/*if(move == 0) //if first move, draw square in the center
