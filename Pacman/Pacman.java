@@ -110,8 +110,8 @@ public class Pacman {
 			g.setColor(Color.red);
    			g.fillRect(0, 500, 560, 60);
    			g.setColor(Color.black);
-   			g.setFont(new Font("Helvetica", Font.BOLD, 20));
-   			g.drawString("Directions: Ohai", 20, 530);
+   			g.setFont(new Font("Helvetica", Font.BOLD, 15));
+   			g.drawString("Directions? Ain't nobody got time for that.", 20, 530);
    			//end red bottom
 
    			if (move==0) { //first turn pacman, cheese, ghost
