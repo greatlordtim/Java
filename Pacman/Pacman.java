@@ -6,7 +6,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
+import java.util.Random;
 
 public class Pacman {
 
@@ -101,6 +101,12 @@ public class Pacman {
 
         public DerpPanel() {
             frame.addKeyListener(this);
+            Mover mover = new Mover();
+            Timer timer = new Timer(3000, mover);
+            Pacmann pacmann = new Pacmann();
+            Timer timer2 = new Timer(500, pacmann);
+            timer.start();
+            timer2.start();
         } //end public DerpPanel
 
 
@@ -203,6 +209,11 @@ public class Pacman {
                         g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
                     }
 
+                    if (a == 5) { //pacman
+                        g.setColor(Color.green);
+                        g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
+                    }
+
                     if (a == 3) { //ghost
                         g.setColor(Color.blue);
                         g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
@@ -219,7 +230,81 @@ public class Pacman {
 
         } //end paintComponent
 
-        private class Ghost implements ActionListener {}
+        private class Pacmann implements ActionListener {
+        	public void actionPerformed (ActionEvent e) {
+        		System.out.println("Pacman Animation");
+
+        			for (int i = 0; i < 10; i++) {
+                		for (int j = 0; j < 10; j++) {
+                    		int a = array[i][j];
+
+                    		if (a == 4) {
+                    			array[i][j] = 5;
+                    			repaint();
+                    		}
+
+                    		if (a == 5) {
+                    			array[i][j] = 4;
+                    			repaint();
+                    		}
+
+                    	}
+                    } //end for loops
+        	
+        	} //end public void
+
+        } //end pacmann
+
+
+
+        private class Mover implements ActionListener {
+        	public void actionPerformed (ActionEvent e) {
+        		System.out.println("Ghost Move");
+        		
+        		for (int i = 0; i < 10; i++) {
+                	for (int j = 0; j < 10; j++) {
+                    int a = array[i][j];
+          
+					if (a == 3) { //ghost
+						int random = 1 + (int)(Math.random() * ((4 - 1) + 1));
+                        switch (random) {
+                        	case 1:
+                        	if (i == 0)
+                        	break;
+                        	array[i][j] = 1;
+                        	array[i-1][j] = 3;
+                        	break;
+
+                        	case 2: 
+                        	if (i == 9 )
+                        	break;
+                        	array[i][j] = 1;
+                        	array[i+1][j] = 3;                        	
+                        	break;
+
+                        	case 3:
+                        	if (j == 0)
+                        	break;
+                         	array[i][j] = 1;
+                        	array[i][j-1] = 3;                       	
+                        	break;
+
+                        	case 4:
+                        	if (j == 9)
+                        	break;
+                        	array[i][j] = 1;
+                        	array[i][j+1] = 3;	
+                        	break;
+					
+					} //end switch case
+						repaint();
+                    } //end ghost
+
+				} //end for
+            } //end second for
+
+        	} //end public void
+		} //end ghost
 
 
 
