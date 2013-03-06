@@ -11,6 +11,7 @@ public class Pacman {
 	
 	JFrame frame;			// JFrame and JPanel must be global object instances
 	DerpPanel np;			// KeyListener, FocusListener panel with text field
+	GridPanel gp;
 	int[][] array = new int[10][10];
 
 	
@@ -35,6 +36,10 @@ public class Pacman {
 		frame.setSize(500, 500);		// explicitly set size in pixels
 		frame.setLocation(500,300);	// set location on my screen
 		frame.setVisible(true);		// set to true to make visible
+
+		gp = new GridPanel();
+		frame.getContentPane().add(gp, BorderLayout.CENTER);
+
 		for(int i=0; i < 10; i++)
 		{
 			for(int j=0; j < 10; j++)
@@ -44,6 +49,21 @@ public class Pacman {
 		}
 		
 	} //end Run()
+
+	class GridPanel extends JPanel {
+
+		public GridPanel() {
+
+		} //end public GridPanel
+
+		public void paintComponent(Graphics g) {
+
+			super.paintComponent(g);
+
+		} //end paintComponennt
+
+
+	} //end GridPanel
 	
 	class DerpPanel extends JPanel implements KeyListener {
 		
@@ -54,7 +74,9 @@ public class Pacman {
 		
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
-			if(move == 0) //if first move, draw square in the center
+
+
+			/*if(move == 0) //if first move, draw square in the center
 			{
 				g.fillRect(49*5,49*5,5,5); //center square
 			}
@@ -72,7 +94,7 @@ public class Pacman {
 						g.fillRect((i)*5, (j)*5, 5, 5); //fill the rectangle, 5x5
 					}
 				}
-			}
+			}*/
 
 
 			
@@ -94,69 +116,26 @@ public class Pacman {
 			char c = e.getKeyChar();
 			System.out.println("keyPressed, c= " + c);
 			switch (c) { //Switch case for getting what direction the user wants to go
+
 				case 'a': 
-				x--;
-				array[x][y] = 0; //make it black
-				move++; //increment move
+				
 				break;
 
 				case 'd':
-				x++;
-				array[x][y] = 0;
-				move++;
+				
 				break;
 
 				case 'w':
-				y--;
-				array[x][y] = 0; //make it black
-				move++; //increment move
+				
 				break;
 
-				case 'x':
-				y++;
-				array[x][y] = 0; //make it black
-				move++; //increment move
+				case 's':
+				
 				break;
 
-				case 'q':
-				x--;
-				y--;
-				array[x][y] = 0; //make it black
-				move++; //increment move
-				break;
+				case 'r':
 
-				case 'e':
-				x--;
-				y++;
-				array[x][y] = 0; //make it black
-				move++; //increment move
 				break;
-
-				case 'z':
-				x++;
-				y--;
-				array[x][y] = 0; //make it black
-				move++; //increment move
-				break;
-
-				case 'c':qeqeq
-				x++;
-				y++;
-				array[x][y] = 0; //make it black
-				move++; //increment move
-				break;
-
-			}
-			
-			for(int i=0; i < 100; i++) //fading effect for squares
-			{
-				for(int j=0; j < 100; j++)
-				{
-					if(array[i][j] < 255) //if not white
-					{
-						array[i][j]+=5; //add 5 rgb to it
-					}
-				}
 			}
 			repaint();	//repaint after movement
 
