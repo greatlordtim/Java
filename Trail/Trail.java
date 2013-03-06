@@ -115,7 +115,7 @@ public class Trail {
 			System.out.println("keyPressed, c= " + c);
 			switch (c) { //Switch case for getting what direction the user wants to go
 				case 'a': 
-				if (x<=0) {
+				if (x==0) {
 					repaint();
 					break;
 				}
@@ -125,8 +125,8 @@ public class Trail {
 				break;
 
 				case 'd':
-				if (x<=100) {
-					repaint();
+				if (x==99) {
+					
 					break;
 				}
 				x++;
@@ -136,7 +136,7 @@ public class Trail {
 
 				case 'w':
 				if (y==0) {
-					repaint();
+					
 					break;
 				}
 				y--;
@@ -145,8 +145,8 @@ public class Trail {
 				break;
 
 				case 'x':
-				if (y==500) {
-					repaint();
+				if (y==99) {
+					
 					break;
 				}
 				y++;
@@ -158,11 +158,11 @@ public class Trail {
 				x--;
 				y--;
 				if (x==0) {
-					repaint();
+					
 					break;
 				}
 				if (y==0) {
-					repaint();
+					
 					break;
 				}
 				array[x][y] = 0; //make it black
@@ -170,14 +170,14 @@ public class Trail {
 				break;
 
 				case 'e':
-				x--;
-				y++;
+				x++;
+				y--;
 				if (x==0) {
-					repaint();
+					
 					break;
 				}
-				if (y==500) {
-					repaint();
+				if (y==99) {
+					
 					break;
 				}
 				array[x][y] = 0; //make it black
@@ -185,14 +185,14 @@ public class Trail {
 				break;
 
 				case 'z':
-				x++;
-				y--;
-				if (x==500) {
-					repaint();
+				x--;
+				y++;
+				if (x==99) {
+					
 					break;
 				}
 				if (y==0) {
-					repaint();
+					
 					break;
 				}
 				array[x][y] = 0; //make it black
@@ -202,12 +202,11 @@ public class Trail {
 				case 'c':
 				x++;
 				y++;
-				if (x==500) {
-					repaint();
+				if (x==99) {
+					
 					break;
 				}
-				if (y==500) {
-					repaint();
+				if (y==99) {
 					break;
 				}
 				array[x][y] = 0; //make it black
