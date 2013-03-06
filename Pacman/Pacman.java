@@ -3,6 +3,8 @@
 // 3 March, 2013
 // Yolo
 
+//Fork me: http://github.com/lele0108/java/Pacman
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
