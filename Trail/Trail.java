@@ -115,24 +115,40 @@ public class Trail {
 			System.out.println("keyPressed, c= " + c);
 			switch (c) { //Switch case for getting what direction the user wants to go
 				case 'a': 
+				if (x<=0) {
+					repaint();
+					break;
+				}
 				x--;
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
 
 				case 'd':
+				if (x<=100) {
+					repaint();
+					break;
+				}
 				x++;
 				array[x][y] = 0;
 				move++;
 				break;
 
 				case 'w':
+				if (y==0) {
+					repaint();
+					break;
+				}
 				y--;
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
 
 				case 'x':
+				if (y==500) {
+					repaint();
+					break;
+				}
 				y++;
 				array[x][y] = 0; //make it black
 				move++; //increment move
@@ -141,6 +157,14 @@ public class Trail {
 				case 'q':
 				x--;
 				y--;
+				if (x==0) {
+					repaint();
+					break;
+				}
+				if (y==0) {
+					repaint();
+					break;
+				}
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
@@ -148,6 +172,14 @@ public class Trail {
 				case 'e':
 				x--;
 				y++;
+				if (x==0) {
+					repaint();
+					break;
+				}
+				if (y==500) {
+					repaint();
+					break;
+				}
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
@@ -155,13 +187,29 @@ public class Trail {
 				case 'z':
 				x++;
 				y--;
+				if (x==500) {
+					repaint();
+					break;
+				}
+				if (y==0) {
+					repaint();
+					break;
+				}
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
 
-				case 'c':qeqeq
+				case 'c':
 				x++;
 				y++;
+				if (x==500) {
+					repaint();
+					break;
+				}
+				if (y==500) {
+					repaint();
+					break;
+				}
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
