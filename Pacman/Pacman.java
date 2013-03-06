@@ -3,7 +3,7 @@
 // 3 March, 2013
 // Yolo
 
-//Fork me: https://github.com/lele0108/Java/tree/master/Pacman
+// Fork me: https://github.com/lele0108/Java/tree/master/Pacman
 
 import java.awt.*;
 import java.awt.event.*;
@@ -49,7 +49,8 @@ public class Pacman {
 
 		np = new DerpPanel();
 		
-		//stand back, I'm doing science
+		//stand back, I'm doing serious science here
+		//<3 stackoverflow <3
         frame.setSize(new Dimension(500, 560));
         frame.setLayout(new BorderLayout());
         frame.add(lpane, BorderLayout.CENTER);
@@ -63,10 +64,7 @@ public class Pacman {
         frame.setVisible(true);
         gp.setBorder(BorderFactory.createLineBorder(Color.blue, 8));
 
-
-
-		
-
+        //fill array up with normal
 		for(int i=0; i < 10; i++) {
 			for(int j=0; j < 10; j++) {
 				array[i][j] = 1;
