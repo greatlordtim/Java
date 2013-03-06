@@ -16,6 +16,7 @@ public class Pacman {
 	DerpPanel np;			// KeyListener, FocusListener panel with text field
 	GridPanel gp;
 	int[][] array = new int[10][10];
+	int[][] cheddar = new int[10][10];
 	int move = 0;
 	int xloc, yloc; //pacman x and y
 	int cheese = 0;
@@ -68,6 +69,7 @@ public class Pacman {
 		for(int i=0; i < 10; i++) {
 			for(int j=0; j < 10; j++) {
 				array[i][j] = 1;
+				cheddar[i][j] = 1;
 			}
 		}
 		
@@ -100,7 +102,7 @@ public class Pacman {
 	class DerpPanel extends JPanel implements KeyListener {
 		
 		public DerpPanel() {
-			frame.addKeyListener(this); //hi
+			frame.addKeyListener(this); 
 		} //end public DerpPanel
 		
 		
@@ -128,7 +130,7 @@ public class Pacman {
    						cheesey = 0 + (int)(Math.random() * ((9 - 0) + 1));
    					}
 
-   					while (array[cheesex][cheesey] == 2) { //check duplicate ghost
+   					while (array[cheesex][cheesey] == 3) { //check duplicate cheese
    						cheesex = 0 + (int)(Math.random() * ((9 - 0) + 1));
    						cheesey = 0 + (int)(Math.random() * ((9 - 0) + 1));
 
@@ -137,7 +139,7 @@ public class Pacman {
    							cheesey = 0 + (int)(Math.random() * ((9 - 0) + 1));
    						}
 					}
-   					array[cheesex][cheesey] = 2;
+   					cheddar[cheesex][cheesey] = 2;
 				} //end cheese
 
 				for (int z = 0; z < 6; z++) {
@@ -149,7 +151,7 @@ public class Pacman {
    						ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
    					}
 
-   					while (array[ghostx][ghosty] == 2) { //check duplicate cheese
+   					while (cheddar[ghostx][ghosty] == 2) { //check duplicate cheese
    						ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
    						ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
 
@@ -168,7 +170,7 @@ public class Pacman {
    							ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
    						}
 
-   						while (array[ghostx][ghosty] == 2) {
+   						while (cheddar[ghostx][ghosty] == 2) {
    						ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
    						ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
    						}
@@ -196,6 +198,7 @@ public class Pacman {
    			for(int i=0; i < 10; i++) {
 				for(int j=0; j < 10; j++) {
 					int a = array[i][j];
+					int c = cheddar[i][j];
 
 					if (a == 4) { //pacman
 						g.setColor(Color.black);
@@ -207,7 +210,7 @@ public class Pacman {
 						g.fillRect((i+1) * 48, (j+1) * 48, 5, 5);
 					}
 
-					if (a == 2) { //cheese
+					if (c == 2) { //cheese
 						g.setColor(Color.yellow);
 						g.fillRect((i+1) * 48, (j+1) * 48, 5, 5);
 					}
@@ -234,8 +237,9 @@ public class Pacman {
 			switch (c) { //Switch case for getting what direction the user wants to go
 
 				case 'a':
-					if (array[xloc-1][yloc] == 2) {
+					if (cheddar[xloc-1][yloc] == 2) {
 						cheese++;
+						cheddar[xloc-1][yloc] = 1;
 					}
 
 					if (array[xloc-1][yloc] == 3) {
@@ -250,8 +254,9 @@ public class Pacman {
 
 				case 'd':
 
-					if (array[xloc+1][yloc] == 2) {
+					if (cheddar[xloc+1][yloc] == 2) {
 						cheese++;
+						cheddar[xloc+1][yloc] = 1;
 					}
 
 					if (array[xloc+1][yloc] == 3) {
@@ -269,8 +274,9 @@ public class Pacman {
 
 				case 'w':
 
-					if (array[xloc][yloc-1] == 2) {
+					if (cheddar[xloc][yloc-1] == 2) {
 						cheese++;
+						cheddar[xloc][yloc-1] = 1;
 					}
 
 					if (array[xloc][yloc-1] == 3) {
@@ -286,8 +292,9 @@ public class Pacman {
 				
 				case 's':
 
-					if (array[xloc][yloc+1] == 2) {
+					if (cheddar[xloc][yloc+1] == 2) {
 						cheese++;
+						cheddar[xloc][yloc+1] = 1;
 					}
 
 					if (array[xloc][yloc+1] == 3) {
@@ -304,6 +311,7 @@ public class Pacman {
 					for(int i=0; i < 10; i++) {
 						for(int j=0; j < 10; j++) {
 							array[i][j] = 1;
+							cheddar[i][j] = 1;
 						}
 					}
 					move = 0;
