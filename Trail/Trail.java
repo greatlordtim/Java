@@ -76,7 +76,8 @@ public class Trail {
 			super.paintComponent(g);
 			if(move == 0) //if first move, draw square in the center
 			{
-				g.fillRect(49*5,49*5,5,5); //center square
+				g.fillRect(49*5,49*5,5,5); 
+				//center square
 			}
 
 
@@ -115,27 +116,31 @@ public class Trail {
 			System.out.println("keyPressed, c= " + c);
 			switch (c) { //Switch case for getting what direction the user wants to go
 				case 'a': 
-				if (x==0) {
+
+				if (x==0) { //checks if going outside of grid
 					repaint();
 					break;
 				}
+
 				x--;
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
 
 				case 'd':
-				if (x==99) {
+
+				if (x==99) { //checks if going outside of grid
 					
 					break;
 				}
+
 				x++;
 				array[x][y] = 0;
 				move++;
 				break;
 
 				case 'w':
-				if (y==0) {
+				if (y==0) { //check if giong outside of grid
 					
 					break;
 				}
@@ -145,7 +150,8 @@ public class Trail {
 				break;
 
 				case 'x':
-				if (y==99) {
+
+				if (y==99) { //checks if going outside of grid
 					
 					break;
 				}
@@ -154,60 +160,42 @@ public class Trail {
 				move++; //increment move
 				break;
 
-				case 'q':
-				x--;
-				y--;
-				if (x==0) {
-					
-					break;
-				}
-				if (y==0) {
-					
-					break;
+				case 'q': 
+				if(x>0&&y>0) //if inside, move. If outsidfe of grid, don't. 
+				{	
+					x--;
+					y--;
 				}
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
 
 				case 'e':
-				x++;
-				y--;
-				if (x==0) {
-					
-					break;
+				if(x<99&&y>0) //if inside, move. If outsidfe of grid, don't. 
+				{
+					x++;
+					y--;
 				}
-				if (y==99) {
-					
-					break;
-				}
+
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
 
 				case 'z':
-				x--;
-				y++;
-				if (x==99) {
-					
-					break;
-				}
-				if (y==0) {
-					
-					break;
+				if(x>0&&y<100) //if inside, move. If outsidfe of grid, don't. 
+				{	
+					x--;
+					y++;
 				}
 				array[x][y] = 0; //make it black
 				move++; //increment move
 				break;
 
 				case 'c':
-				x++;
-				y++;
-				if (x==99) {
-					
-					break;
-				}
-				if (y==99) {
-					break;
+				if(x<99&&y<99) //if inside, move. If outsidfe of grid, don't. 
+				{
+					x++;
+					y++;
 				}
 				array[x][y] = 0; //make it black
 				move++; //increment move
