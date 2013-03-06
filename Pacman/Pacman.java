@@ -2,7 +2,9 @@
 // Author: Jimmy Liu
 // 3 March, 2013
 // Yolo
+
 // Fork me: https://github.com/lele0108/Java/tree/master/Pacman
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -492,4 +494,4 @@ public class Pacman {
 
     } //end DerpPanel
 
-} //end Trail
+} //end Pacman
