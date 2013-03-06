@@ -16,6 +16,8 @@ public class Pacman {
 	int[][] array = new int[10][10];
 	int move = 0;
 	int xloc, yloc; //pacman x and y
+	int cheese = 0;
+	boolean gameover = false;
 	private JLayeredPane lpane = new JLayeredPane();
 
 	
@@ -63,10 +65,8 @@ public class Pacman {
 
 		
 
-		for(int i=0; i < 10; i++)
-		{
-			for(int j=0; j < 10; j++)
-			{
+		for(int i=0; i < 10; i++) {
+			for(int j=0; j < 10; j++) {
 				array[i][j] = 1;
 			}
 		}
@@ -114,28 +114,80 @@ public class Pacman {
    			g.drawString("Directions: Ohai", 20, 530);
    			//end red bottom
 
-   			if (move==0) { //first turn pacman generate
+   			if (move==0) { //first turn pacman, cheese, ghost
    				xloc = 0 + (int)(Math.random() * ((9 - 0) + 1));
    				yloc = 0 + (int)(Math.random() * ((9 - 0) + 1));
    				array[xloc][yloc] = 4;
 
-   				for (int z = 0; z < 6; z++) {
+   				for (int z = 0; z < 6; z++) { 
    					int cheesex = 0 + (int)(Math.random() * ((9 - 0) + 1));
    					int cheesey = 0 + (int)(Math.random() * ((9 - 0) + 1));
-   					array[cheesex][cheesey] = 3;
-				} //end while
+
+   					while ((cheesex == xloc) && (cheesey == yloc)) { //check duplicate pacman
+   						cheesex = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						cheesey = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   					}
+
+   					while (array[cheesex][cheesey] == 2) { //check duplicate ghost
+   						cheesex = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						cheesey = 0 + (int)(Math.random() * ((9 - 0) + 1));
+
+   						while ((cheesex == xloc) && (cheesey == yloc)) {
+   							cheesex = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   							cheesey = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						}
+					}
+   					array[cheesex][cheesey] = 2;
+				} //end cheese
 
 				for (int z = 0; z < 6; z++) {
    					int ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
    					int ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
-   					array[ghostx][ghosty] = 2;
+
+   					while ((ghostx == xloc) && (ghosty == yloc)) { //check duplicate pacman
+   						ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   					}
+
+   					while (array[ghostx][ghosty] == 2) { //check duplicate cheese
+   						ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
+
+   						while ((ghostx == xloc) && (ghosty == yloc)) {
+   							ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   							ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						}
+					}
+
+					while (array[ghostx][ghosty] == 3) { //check duplicate ghost
+   						ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
+
+   						while ((ghostx == xloc) && (ghosty == yloc)) {
+   							ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   							ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						}
+
+   						while (array[ghostx][ghosty] == 2) {
+   						ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
+   						}
+
+					}
+   					array[ghostx][ghosty] = 3;
 				} //end while
 
    				move++;
    				
-   			} //end pacman
+   			} //end pacman, cheese, and ghost generator
 
-   			
+   			if (gameover == true) { //check if game is over
+   				g.drawString("U SUCK :(", 250, 250);
+			}
+
+			if (cheese == 6) { //check if you win
+				g.drawString("U WUN :)", 250, 250);
+			}
 
 
 
@@ -164,30 +216,6 @@ public class Pacman {
 			}
 
 
-			/*if(move == 0) //if first move, draw square in the center
-			{
-				g.fillRect(49*5,49*5,5,5); //center square
-			}
-
-
-			
-			for(int i=0; i < 100; i++)
-			{
-				for(int j=0; j < 100; j++)
-				{
-					if(array[i][j] < 255)
-					{
-						Color myColor = new Color(array[i][j], array[i][j], array[i][j]); //sets color
-						g.setColor(myColor);
-						g.fillRect((i)*5, (j)*5, 5, 5); //fill the rectangle, 5x5
-					}
-				}
-			}*/
-
-
-			
-
-
 		} //end paintComponent
 
 		
@@ -206,34 +234,82 @@ public class Pacman {
 			switch (c) { //Switch case for getting what direction the user wants to go
 
 				case 'a':
-				array[xloc-1][yloc] = 4;
-				array[xloc][yloc]=1;
-				xloc = xloc-1;
-				repaint();
+					if (array[xloc-1][yloc] == 2) {
+						cheese++;
+					}
+
+					if (array[xloc-1][yloc] == 3) {
+						gameover = true;
+					}
+					array[xloc-1][yloc] = 4;
+					array[xloc][yloc]=1;
+					xloc = xloc-1;
+					repaint();
 				
-				break;
+					break;
 
 				case 'd':
 
-				repaint();
+					if (array[xloc+1][yloc] == 2) {
+						cheese++;
+					}
+
+					if (array[xloc+1][yloc] == 3) {
+						gameover = true;
+					}
+					array[xloc+1][yloc] = 4;
+					array[xloc][yloc]=1;
+					xloc = xloc+1;
+					repaint();
 				
-				break;
+					break;
+				
+				
+				
 
 				case 'w':
 
-				repaint();
-				
-				break;
+					if (array[xloc][yloc-1] == 2) {
+						cheese++;
+					}
 
+					if (array[xloc][yloc-1] == 3) {
+						gameover = true;
+					}
+
+					array[xloc][yloc -1] = 4;
+					array[xloc][yloc]= 1;
+					yloc = yloc-1;
+					repaint();
+				
+					break;
+				
 				case 's':
 
-				repaint();
+					if (array[xloc][yloc+1] == 2) {
+						cheese++;
+					}
+
+					if (array[xloc][yloc+1] == 3) {
+						gameover = true;
+					}
+					array[xloc][yloc+1] = 4;
+					array[xloc][yloc]=1;
+					yloc = yloc +1;
+					repaint();
 				
-				break;
+					break;
 
 				case 'r':
-
-				break;
+					for(int i=0; i < 10; i++) {
+						for(int j=0; j < 10; j++) {
+							array[i][j] = 1;
+						}
+					}
+					move = 0;
+					gameover = false;
+					cheese = 0;
+					break;
 			}
 			repaint();	//repaint after movement
 
