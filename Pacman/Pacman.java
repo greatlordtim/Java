@@ -204,12 +204,12 @@ public class Pacman {
                     int a = array[i][j];
                     int c = cheddar[i][j];
 
-                    if (a == 4) { //pacman
+                    if (a == 4) { //pacman open
                         g.setColor(Color.black);
                         g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
                     }
 
-                    if (a == 5) { //pacman
+                    if (a == 5) { //pacman closed
                         g.setColor(Color.green);
                         g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
                     }
@@ -272,11 +272,15 @@ public class Pacman {
                         	if (i == 0)
                         	break;
                         	array[i][j] = 1;
+                        	if (array[i-1][j] == 3)
+                        	break;
                         	array[i-1][j] = 3;
                         	break;
 
                         	case 2: 
                         	if (i == 9 )
+                        	break;
+                        	if (array[i+1][j] == 3)
                         	break;
                         	array[i][j] = 1;
                         	array[i+1][j] = 3;                        	
@@ -285,12 +289,16 @@ public class Pacman {
                         	case 3:
                         	if (j == 0)
                         	break;
+                        	if (array[i][j-1] == 3)
+                        	break;
                          	array[i][j] = 1;
                         	array[i][j-1] = 3;                       	
                         	break;
 
                         	case 4:
                         	if (j == 9)
+                        	break;
+                        	if (array[i][j+1] == 3)
                         	break;
                         	array[i][j] = 1;
                         	array[i][j+1] = 3;	
