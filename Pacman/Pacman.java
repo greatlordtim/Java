@@ -237,6 +237,24 @@ public class Pacman {
 			switch (c) { //Switch case for getting what direction the user wants to go
 
 				case 'a':
+					if (xloc == 0) {
+						array[9][yloc] = 4;
+
+							if (cheddar[9][yloc] == 2) {
+								cheese++;
+								cheddar[9][yloc] = 1;
+							}
+
+							if (array[9][yloc] == 3) {
+								gameover = true;
+							}	
+							array[xloc][yloc]=1;
+							xloc = 9;
+
+						repaint();
+						break;
+					} //end if for wrapping
+
 					if (cheddar[xloc-1][yloc] == 2) {
 						cheese++;
 						cheddar[xloc-1][yloc] = 1;
@@ -245,6 +263,7 @@ public class Pacman {
 					if (array[xloc-1][yloc] == 3) {
 						gameover = true;
 					}
+
 					array[xloc-1][yloc] = 4;
 					array[xloc][yloc]=1;
 					xloc = xloc-1;
@@ -254,6 +273,24 @@ public class Pacman {
 
 				case 'd':
 
+					if (xloc == 9) {
+						array[0][yloc] = 4;
+
+							if (cheddar[0][yloc] == 2) {
+								cheese++;
+								cheddar[0][yloc] = 1;
+							}
+
+							if (array[0][yloc] == 3) {
+								gameover = true;
+							}	
+							array[xloc][yloc]=1;
+							xloc = 0;
+
+						repaint();
+						break;
+
+					} //end if for wrapping
 					if (cheddar[xloc+1][yloc] == 2) {
 						cheese++;
 						cheddar[xloc+1][yloc] = 1;
@@ -274,6 +311,24 @@ public class Pacman {
 
 				case 'w':
 
+					if (yloc == 0) {
+						array[xloc][9] = 4;
+
+							if (cheddar[xloc][9] == 2) {
+								cheese++;
+								cheddar[xloc][9] = 1;
+							}
+
+							if (array[xloc][9] == 3) {
+								gameover = true;
+							}	
+							array[xloc][yloc]=1;
+							yloc = 9;
+
+						repaint();
+						break;
+					} //end if for wrapping
+
 					if (cheddar[xloc][yloc-1] == 2) {
 						cheese++;
 						cheddar[xloc][yloc-1] = 1;
@@ -291,6 +346,24 @@ public class Pacman {
 					break;
 				
 				case 's':
+
+					if (yloc == 9) {
+						array[xloc][0] = 4;
+
+							if (cheddar[xloc][0] == 2) {
+								cheese++;
+								cheddar[xloc][0] = 1;
+							}
+
+							if (array[xloc][0] == 3) {
+								gameover = true;
+							}	
+							array[xloc][yloc]=1;
+							yloc = 0;
+
+						repaint();
+						break;
+					} //end if for wrapping				
 
 					if (cheddar[xloc][yloc+1] == 2) {
 						cheese++;
