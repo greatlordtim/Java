@@ -70,22 +70,21 @@ public class Pacman {
         gp = new GridPanel();
         np = new DerpPanel();
 
-        //stand back, I'm doing serious science here
         //<3 stackoverflow <3
         frame.setSize(new Dimension(500, 560));
         frame.setLayout(new BorderLayout());
         frame.add(lpane, BorderLayout.CENTER);
         lpane.setBounds(0, 0, 500, 500);
         np.setBounds(0, 0, 500, 560);
-        np.setOpaque(false);
+        np.setOpaque(false); //default opacity for background of DerpPanel is transparent
         gp.setBounds(0, 0, 500, 500);
-        gp.setOpaque(true);
-        lpane.add(gp, new Integer(0), 0);
-        lpane.add(np, new Integer(1), 0);
-        frame.setVisible(true);
-        gp.setBorder(BorderFactory.createLineBorder(Color.blue, 8));
+        gp.setOpaque(true); //auto-paint gridpanel background
+        lpane.add(gp, new Integer(0), 0); //add gridpanel to the layeredpane
+        lpane.add(np, new Integer(1), 0); //add derppanel to the layeredpane
+        frame.setVisible(true); //set frame visable
+        gp.setBorder(BorderFactory.createLineBorder(Color.blue, 8)); //create border around program
 
-        //fill array up with normal
+        //fill array up with normal for array and cheddar
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 array[i][j] = 1;
