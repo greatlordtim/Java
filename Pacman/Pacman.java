@@ -157,15 +157,7 @@ public class Pacman {
                         ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
                     }
 
-                    while (cheddar[ghostx][ghosty] == 2) { //check duplicate cheese
-                        ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
-                        ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
-
-                        while ((ghostx == xloc) && (ghosty == yloc)) {
-                            ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
-                            ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
-                        }
-                    }
+                    
 
                     while (array[ghostx][ghosty] == 3) { //check duplicate ghost
                         ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
@@ -176,10 +168,7 @@ public class Pacman {
                             ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
                         }
 
-                        while (cheddar[ghostx][ghosty] == 2) {
-                            ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
-                            ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
-                        }
+               
 
                     }
                     array[ghostx][ghosty] = 3;
@@ -210,6 +199,13 @@ public class Pacman {
                         g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 0, 350);
                     }
 
+                    
+
+                    if (c == 2) { //cheese
+                        g.setColor(Color.yellow);
+                        g.fillRect(((i + 1) * 48) - 30, ((j + 1) * 48) - 30, 35, 35);
+                    }
+
                     if (a == 3) { //ghost
                         g.setColor(Color.red);
                         g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 0, 360);
@@ -217,11 +213,6 @@ public class Pacman {
                         g.fillArc(((i + 1) * 48) -25, ((j + 1) * 48) -25, 7, 7, 0, 360);
                         g.fillArc(((i + 1) * 48) -10, ((j + 1) * 48) -25, 7, 7, 0, 360);
                         g.fillRect(((i + 1) * 48) -25, ((j + 1) * 48) -10, 23, 3);
-                    }
-
-                    if (c == 2) { //cheese
-                        g.setColor(Color.yellow);
-                        g.fillRect(((i + 1) * 48) - 30, ((j + 1) * 48) - 30, 35, 35);
                     }
 
                 }
@@ -287,6 +278,8 @@ public class Pacman {
                         	if (array[i-1][j] == 3)
                         	break;
                         	array[i-1][j] = 3;
+                        	if (array[i-1][j] == 4)
+                        		gameover = true;
                         	break;
 
                         	case 2: 
@@ -294,6 +287,8 @@ public class Pacman {
                         	break;
                         	if (array[i+1][j] == 3)
                         	break;
+                        	if (array[i+1][j] == 4)
+                        		gameover = true;
                         	array[i][j] = 1;
                         	array[i+1][j] = 3;                        	
                         	break;
@@ -303,6 +298,8 @@ public class Pacman {
                         	break;
                         	if (array[i][j-1] == 3)
                         	break;
+                        	if (array[i][j-1] == 4)
+                        		gameover = true;
                          	array[i][j] = 1;
                         	array[i][j-1] = 3;                       	
                         	break;
@@ -312,6 +309,8 @@ public class Pacman {
                         	break;
                         	if (array[i][j+1] == 3)
                         	break;
+                        	if (array[i][j+1] == 4)
+                        		gameover = true;
                         	array[i][j] = 1;
                         	array[i][j+1] = 3;	
                         	break;
