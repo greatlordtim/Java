@@ -223,7 +223,7 @@ public class Pacman {
 
                     if (c == 2) { //cheese
                         g.setColor(Color.yellow);
-                        g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
+                        g.fillRect(((i + 1) * 48) - 30, ((j + 1) * 48) - 30, 35, 35);
                     }
 
                 }
