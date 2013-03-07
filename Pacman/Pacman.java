@@ -119,7 +119,7 @@ public class Pacman {
             g.fillRect(0, 500, 560, 60);
             g.setColor(Color.black);
             g.setFont(new Font("Helvetica", Font.BOLD, 15));
-            g.drawString("Directions? Ain't nobody got time for that.", 20, 530);
+            g.drawString("Directions: a = left, d = right, w = up, s = down, r = reset", 50, 520);
             //end red bottom
 
             if (move == 0) { //first turn pacman, cheese, ghost
@@ -189,13 +189,7 @@ public class Pacman {
 
             } //end pacman, cheese, and ghost generator
 
-            if (gameover == true) { //check if game is over
-                g.drawString("U SUCK :(", 250, 250);
-            }
-
-            if (cheese == 6) { //check if you win
-                g.drawString("U WUN :)", 250, 250);
-            }
+           
 
 
 
@@ -231,6 +225,18 @@ public class Pacman {
                     }
 
                 }
+            } //end for loop for printing
+
+            if (gameover == true) { //check if game is over
+            	g.setFont(new Font("Helvetica", Font.BOLD, 50));
+            	g.setColor(Color.green);
+                g.drawString("YOU LOSE :(", 100, 280);
+            }
+
+            if (cheese == 6) { //check if you win
+            	g.setFont(new Font("Helvetica", Font.BOLD, 50));
+            	g.setColor(Color.green);
+                g.drawString("YOU WIN :)", 100, 280);
             }
 
 
