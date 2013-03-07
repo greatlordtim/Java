@@ -38,17 +38,8 @@ public class Pacman {
         frame = new JFrame("Pacman");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-
-        //create blue border
-
-        // Create DerpPanel and add to JFrame
-
-
         gp = new GridPanel();
-
-
-        np = new DerpPanel();
+		np = new DerpPanel();
 
         //stand back, I'm doing serious science here
         //<3 stackoverflow <3
@@ -199,9 +190,7 @@ public class Pacman {
                         g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 0, 350);
                     }
 
-                    
-
-                    if (c == 2) { //cheese
+					if (c == 2) { //cheese
                         g.setColor(Color.yellow);
                         g.fillRect(((i + 1) * 48) - 30, ((j + 1) * 48) - 30, 35, 35);
                     }
@@ -411,10 +400,7 @@ public class Pacman {
 
                     break;
 
-
-
-
-                case 'w':
+				case 'w':
 
                     if (yloc == 0) {
                         array[xloc][9] = 4;
