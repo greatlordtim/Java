@@ -2,7 +2,7 @@
 // Author: Jimmy Liu
 // 3 March, 2013
 // This program creates a JFrame, and has two JPanels. Inside is a simplified Pacman game, where the user collects yellow blocks and tries to avoid 
-// ghosts. The objective of the game is the collect all 6 cheeses. 
+// ghosts. The objective of the game is the collect all 6 cheeses.
 
 // Class Variables
 // 	DerpPanel: The main panel of this program. This panel contains all of the ghosts, cheese, and Pacman. This panel also contains the red documentation
@@ -18,7 +18,6 @@
 //	cheese: The number of cheese the user collects. Starts at 0.
 //	gameover: Boolean to see if the user loses the game by getting caught by a monster. Default is false, if it is true, tell the user he has lost
 //			  the game.
-
 
 // Class Methods
 // 	Run(): This sets up the JFrame, and adds two JPanels into the JFrame. Also sets up the JLayeredPanel, disables auto-background painting for DerpPanel,
@@ -69,7 +68,7 @@ public class Pacman {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         gp = new GridPanel();
-		np = new DerpPanel();
+        np = new DerpPanel();
 
         //stand back, I'm doing serious science here
         //<3 stackoverflow <3
@@ -178,7 +177,7 @@ public class Pacman {
                         ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
                     }
 
-                    
+
 
                     while (array[ghostx][ghosty] == 3) { //check duplicate ghost
                         ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
@@ -189,7 +188,7 @@ public class Pacman {
                             ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
                         }
 
-               
+
 
                     }
                     array[ghostx][ghosty] = 3;
@@ -199,7 +198,7 @@ public class Pacman {
 
             } //end pacman, cheese, and ghost generator
 
-           
+
 
 
 
@@ -212,40 +211,40 @@ public class Pacman {
 
                     if (a == 4) { //pacman open
                         g.setColor(Color.blue);
-                        g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 20, 320);
+                        g.fillArc(((i + 1) * 48) - 35, ((j + 1) * 48) - 35, 40, 40, 20, 320);
                     }
 
                     if (a == 5) { //pacman closed
                         g.setColor(Color.blue);
-                        g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 0, 350);
+                        g.fillArc(((i + 1) * 48) - 35, ((j + 1) * 48) - 35, 40, 40, 0, 350);
                     }
 
-					if (c == 2) { //cheese
+                    if (c == 2) { //cheese
                         g.setColor(Color.yellow);
                         g.fillRect(((i + 1) * 48) - 30, ((j + 1) * 48) - 30, 35, 35);
                     }
 
                     if (a == 3) { //ghost
                         g.setColor(Color.red);
-                        g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 0, 360);
+                        g.fillArc(((i + 1) * 48) - 35, ((j + 1) * 48) - 35, 40, 40, 0, 360);
                         g.setColor(Color.black);
-                        g.fillArc(((i + 1) * 48) -25, ((j + 1) * 48) -25, 7, 7, 0, 360);
-                        g.fillArc(((i + 1) * 48) -10, ((j + 1) * 48) -25, 7, 7, 0, 360);
-                        g.fillRect(((i + 1) * 48) -25, ((j + 1) * 48) -10, 23, 3);
+                        g.fillArc(((i + 1) * 48) - 25, ((j + 1) * 48) - 25, 7, 7, 0, 360);
+                        g.fillArc(((i + 1) * 48) - 10, ((j + 1) * 48) - 25, 7, 7, 0, 360);
+                        g.fillRect(((i + 1) * 48) - 25, ((j + 1) * 48) - 10, 23, 3);
                     }
 
                 }
             } //end for loop for printing
 
             if (gameover == true) { //check if game is over
-            	g.setFont(new Font("Helvetica", Font.BOLD, 50));
-            	g.setColor(Color.green);
+                g.setFont(new Font("Helvetica", Font.BOLD, 50));
+                g.setColor(Color.green);
                 g.drawString("YOU LOSE :(", 100, 280);
             }
 
             if (cheese == 6) { //check if you win
-            	g.setFont(new Font("Helvetica", Font.BOLD, 50));
-            	g.setColor(Color.green);
+                g.setFont(new Font("Helvetica", Font.BOLD, 50));
+                g.setColor(Color.green);
                 g.drawString("YOU WIN :)", 100, 280);
             }
 
@@ -253,96 +252,96 @@ public class Pacman {
         } //end paintComponent
 
         private class Pacmann implements ActionListener {
-        	public void actionPerformed (ActionEvent e) {
-        		System.out.println("Pacman Animation");
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Pacman Animation");
 
-        			for (int i = 0; i < 10; i++) {
-                		for (int j = 0; j < 10; j++) {
-                    		int a = array[i][j];
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+                        int a = array[i][j];
 
-                    		if (a == 4) {
-                    			array[i][j] = 5;
-                    			repaint();
-                    		}
+                        if (a == 4) {
+                            array[i][j] = 5;
+                            repaint();
+                        }
 
-                    		if (a == 5) {
-                    			array[i][j] = 4;
-                    			repaint();
-                    		}
+                        if (a == 5) {
+                            array[i][j] = 4;
+                            repaint();
+                        }
 
-                    	}
-                    } //end for loops
-        	
-        	} //end public void
+                    }
+                } //end for loops
+
+            } //end public void
 
         } //end pacmann
 
 
 
         private class Mover implements ActionListener {
-        	public void actionPerformed (ActionEvent e) {
-        		System.out.println("Ghost Move");
-        		
-        		for (int i = 0; i < 10; i++) {
-                	for (int j = 0; j < 10; j++) {
-                    int a = array[i][j];
-          
-					if (a == 3) { //ghost
-						int random = 1 + (int)(Math.random() * ((4 - 1) + 1));
-                        switch (random) {
-                        	case 1:
-                        	if (i == 0) //check if out of bounds
-                        		break;
-                        	array[i][j] = 1;
-                        	if (array[i-1][j] == 3) //check if another ghost
-                        		break;
-                        	array[i-1][j] = 3;  
-                        	if (array[i-1][j] == 4) //check for pacman
-                        		gameover = true;
-                        	break;
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Ghost Move");
 
-                        	case 2: 
-                        	if (i == 9 ) //check for out of bounds
-                        		break;
-                        	if (array[i+1][j] == 3) //check for ghosts
-                        		break;
-                        	if (array[i+1][j] == 4) //check for pacman
-                        		gameover = true;
-                        	array[i][j] = 1;
-                        	array[i+1][j] = 3;                        	
-                        	break;
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+                        int a = array[i][j];
 
-                        	case 3:
-                        	if (j == 0) //check for out of bounds
-                        		break;
-                        	if (array[i][j-1] == 3) //check for other ghosts
-                        		break;
-                        	if (array[i][j-1] == 4) //check for pacman
-                        		gameover = true;
-                         	array[i][j] = 1;
-                        	array[i][j-1] = 3;                       	
-                        	break;
+                        if (a == 3) { //ghost
+                            int random = 1 + (int)(Math.random() * ((4 - 1) + 1));
+                            switch (random) {
+                                case 1:
+                                    if (i == 0) //check if out of bounds
+                                    break;
+                                    array[i][j] = 1;
+                                    if (array[i - 1][j] == 3) //check if another ghost
+                                    break;
+                                    array[i - 1][j] = 3;
+                                    if (array[i - 1][j] == 4) //check for pacman
+                                    gameover = true;
+                                    break;
 
-                        	case 4: 
-                        	if (j == 9) //check for out of bounds
-                        		break;
-                        	if (array[i][j+1] == 3) //check for other ghosts
-                        		break;
-                        	if (array[i][j+1] == 4) //check for pacman
-                        		gameover = true;
-                        	array[i][j] = 1;
-                        	array[i][j+1] = 3;	
-                        	break;
-					
-					} //end switch case
-						repaint();
-                    } //end ghost
+                                case 2:
+                                    if (i == 9) //check for out of bounds
+                                    break;
+                                    if (array[i + 1][j] == 3) //check for ghosts
+                                    break;
+                                    if (array[i + 1][j] == 4) //check for pacman
+                                    gameover = true;
+                                    array[i][j] = 1;
+                                    array[i + 1][j] = 3;
+                                    break;
 
-				} //end for
-            } //end second for
+                                case 3:
+                                    if (j == 0) //check for out of bounds
+                                    break;
+                                    if (array[i][j - 1] == 3) //check for other ghosts
+                                    break;
+                                    if (array[i][j - 1] == 4) //check for pacman
+                                    gameover = true;
+                                    array[i][j] = 1;
+                                    array[i][j - 1] = 3;
+                                    break;
 
-        	} //end public void
-		} //end ghost
+                                case 4:
+                                    if (j == 9) //check for out of bounds
+                                    break;
+                                    if (array[i][j + 1] == 3) //check for other ghosts
+                                    break;
+                                    if (array[i][j + 1] == 4) //check for pacman
+                                    gameover = true;
+                                    array[i][j] = 1;
+                                    array[i][j + 1] = 3;
+                                    break;
+
+                            } //end switch case
+                            repaint();
+                        } //end ghost
+
+                    } //end for
+                } //end second for
+
+            } //end public void
+        } //end ghost
 
 
 
@@ -430,7 +429,7 @@ public class Pacman {
 
                     break;
 
-				case 'w':
+                case 'w':
 
                     if (yloc == 0) {
                         array[xloc][9] = 4;
