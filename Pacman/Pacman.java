@@ -5,28 +5,35 @@
 // ghosts. The objective of the game is the collect all 6 cheeses. 
 
 // Class Variables
-// 	DerpPanel:
-//	GridPanel:
-//	lpane:
-//	array:
-//	cheddar:
-//	move:
-//	xloc, yloc:
-//	cheese:
-//	gameover
+// 	DerpPanel: The main panel of this program. This panel contains all of the ghosts, cheese, and Pacman. This panel also contains the red documentation
+//			   located below the blue frame.
+//	GridPanel: The secondary panel that is set below DerpPanel. This panel has the blue border and gray bordered background.
+//	lpane: This JLayeredPane allows me to create two panels and put one on top of another. This makes the program more efficient, not letting forcing me
+//		   repaint the Grid over and over again.		
+//	array: This array stores the ghosts and pacman. It is 10x10 in size, each unit represents a block in the program. Key: 1 = nothing, 3 = ghost, 
+//         4 = pacman.
+//	cheddar: This is the array for storing cheese. It is similar to array, but only for cheese. Key: 1 = nothing, 2 = cheese. 
+//	move: This is for checking if it is the first time the program is running. If it is, run the if statement to fill array with Pacman, ghosts, and cheddar.
+//	xloc, yloc: The x and y location of Pacman in the game. 
+//	cheese: The number of cheese the user collects. Starts at 0.
+//	gameover: Boolean to see if the user loses the game by getting caught by a monster. Default is false, if it is true, tell the user he has lost
+//			  the game.
 
 
 // Class Methods
-// 	Run():
+// 	Run(): This sets up the JFrame, and adds two JPanels into the JFrame. Also sets up the JLayeredPanel, disables auto-background painting for DerpPanel,
+//		   so that GridPanel can be seen. Start sets default frame size to 500x520. Also creates blue border around GridPanel. Finnaly fills up array for both
+//		   cheese and array to 1. 
 // 	GridPanel:
-//		paintComponent:
+//		paintComponent: This paintComponent paints the gray grid in the program. This only runs once.
 // 	DerpPanel:
-//		paintComponent:
-//		Pacmann:
-//		Mover:
-//		keyTyped:
+//		paintComponent: This starts the program by determining Pacman, cheese, and ghost location. Has checking built in. Then, has painting by reading from
+//					    both arrays. Finnaly, checks if user wins/loses, if so, displays correct mesasge.
+//		Pacmann: This timer causes the Pacman animation. 
+//		Mover: This timer causes the ghosts to move. Has checking built in.
+//		keyTyped: This gets the key input from the user, and translates it into moving Pacman. Has border restrctions, cheese eating, ghost dying.
 
-// Fork me: https://github.com/lele0108/Java/tree/master/Pacman
+// Fork me here: https://github.com/lele0108/Java/tree/master/Pacman
 
 import java.awt.*;
 import java.awt.event.*;
