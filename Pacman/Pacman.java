@@ -272,44 +272,44 @@ public class Pacman {
 						int random = 1 + (int)(Math.random() * ((4 - 1) + 1));
                         switch (random) {
                         	case 1:
-                        	if (i == 0)
-                        	break;
+                        	if (i == 0) //check if out of bounds
+                        		break;
                         	array[i][j] = 1;
-                        	if (array[i-1][j] == 3)
-                        	break;
-                        	array[i-1][j] = 3;
-                        	if (array[i-1][j] == 4)
+                        	if (array[i-1][j] == 3) //check if another ghost
+                        		break;
+                        	array[i-1][j] = 3;  
+                        	if (array[i-1][j] == 4) //check for pacman
                         		gameover = true;
                         	break;
 
                         	case 2: 
-                        	if (i == 9 )
-                        	break;
-                        	if (array[i+1][j] == 3)
-                        	break;
-                        	if (array[i+1][j] == 4)
+                        	if (i == 9 ) //check for out of bounds
+                        		break;
+                        	if (array[i+1][j] == 3) //check for ghosts
+                        		break;
+                        	if (array[i+1][j] == 4) //check for pacman
                         		gameover = true;
                         	array[i][j] = 1;
                         	array[i+1][j] = 3;                        	
                         	break;
 
                         	case 3:
-                        	if (j == 0)
-                        	break;
-                        	if (array[i][j-1] == 3)
-                        	break;
-                        	if (array[i][j-1] == 4)
+                        	if (j == 0) //check for out of bounds
+                        		break;
+                        	if (array[i][j-1] == 3) //check for other ghosts
+                        		break;
+                        	if (array[i][j-1] == 4) //check for pacman
                         		gameover = true;
                          	array[i][j] = 1;
                         	array[i][j-1] = 3;                       	
                         	break;
 
-                        	case 4:
-                        	if (j == 9)
-                        	break;
-                        	if (array[i][j+1] == 3)
-                        	break;
-                        	if (array[i][j+1] == 4)
+                        	case 4: 
+                        	if (j == 9) //check for out of bounds
+                        		break;
+                        	if (array[i][j+1] == 3) //check for other ghosts
+                        		break;
+                        	if (array[i][j+1] == 4) //check for pacman
                         		gameover = true;
                         	array[i][j] = 1;
                         	array[i][j+1] = 3;	
