@@ -143,17 +143,10 @@ public class Pacman {
 
         public DerpPanel() {
             frame.addKeyListener(this);
-            
-                
-            	image = ImageIO.read(new File("ghost.png"));
-				image2 = ImageIO.read(new File("fruit.png"));
-
-            	sprite = ImageIO.read(new File("sprite.png"));
-            	cherry = sprite.getSubImage(0, 0, 38, 38);
-            	ghost = sprite.getSubImage(38, 38, 38, 38);
-
-       		
-
+            try {sprite = ImageIO.read(new File("sprite.png"));}
+            catch (IOException ex) {System.out.println("Image error");}
+            cherry = sprite.getSubimage(0, 0, 48, 48);
+            ghost = sprite.getSubimage(48, 0, 40, 40);
             Mover mover = new Mover();
             Timer timer = new Timer(3000, mover);
             Pacmann pacmann = new Pacmann();
@@ -258,13 +251,13 @@ public class Pacman {
                     if (c == 2) { //cheese
                        // g.drawImage(image2, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                     	
-                    	g.drawImage(sprite.getSubImage(0, 0, 38, 38), ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                    	g.drawImage(cherry, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                     }
 
                     if (a == 3) { //ghost
                         
                         //g.drawImage(image, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
-                        //g.drawImage(sprite.getSubImage(0, 0, 38, 38), ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                        g.drawImage(ghost, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                         
                     }
 
