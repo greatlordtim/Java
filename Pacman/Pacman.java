@@ -207,18 +207,22 @@ public class Pacman {
                     int c = cheddar[i][j];
 
                     if (a == 4) { //pacman open
-                        g.setColor(Color.black);
-                        g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
+                        g.setColor(Color.blue);
+                        g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 20, 320);
                     }
 
                     if (a == 5) { //pacman closed
-                        g.setColor(Color.green);
-                        g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
+                        g.setColor(Color.blue);
+                        g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 0, 350);
                     }
 
                     if (a == 3) { //ghost
-                        g.setColor(Color.blue);
-                        g.fillRect((i + 1) * 48, (j + 1) * 48, 5, 5);
+                        g.setColor(Color.red);
+                        g.fillArc(((i + 1) * 48) -35, ((j + 1) * 48) -35, 40, 40, 0, 360);
+                        g.setColor(Color.black);
+                        g.fillArc(((i + 1) * 48) -25, ((j + 1) * 48) -25, 7, 7, 0, 360);
+                        g.fillArc(((i + 1) * 48) -10, ((j + 1) * 48) -25, 7, 7, 0, 360);
+                        g.fillRect(((i + 1) * 48) -25, ((j + 1) * 48) -10, 23, 3);
                     }
 
                     if (c == 2) { //cheese
