@@ -40,12 +40,17 @@ import javax.swing.*;
 import java.util.Random;
 
 
+import java.awt.image.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+
+
+
+
 
 public class Pacman {
 
@@ -131,25 +136,23 @@ public class Pacman {
 
     class DerpPanel extends JPanel implements KeyListener {
 
-    	private BufferedImage image;
-    	private BufferedImage image2;
-
+    	
+    		public BufferedImage image, image2;
+    		public BufferedImage sprite, cherry, ghost;
     	
 
         public DerpPanel() {
             frame.addKeyListener(this);
             
-            try {                
-            	image = ImageIO.read(new File("sprite.png"));
-       		} catch (IOException ex) {
-            System.out.println("Nope.avi");
-       		}	
+                
+            	image = ImageIO.read(new File("ghost.png"));
+				image2 = ImageIO.read(new File("fruit.png"));
 
-       		try {                
-            	image2 = ImageIO.read(new File("sprite2.png"));
-       		} catch (IOException ex) {
-            System.out.println("Nope.avi");
-       		}
+            	sprite = ImageIO.read(new File("sprite.png"));
+            	cherry = sprite.getSubImage(0, 0, 38, 38);
+            	ghost = sprite.getSubImage(38, 38, 38, 38);
+
+       		
 
             Mover mover = new Mover();
             Timer timer = new Timer(3000, mover);
@@ -232,6 +235,11 @@ public class Pacman {
 
 
             //printing array
+
+                           
+            	
+       		
+
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     int a = array[i][j];
@@ -248,12 +256,15 @@ public class Pacman {
                     }
 
                     if (c == 2) { //cheese
-                        g.drawImage(image2, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                       // g.drawImage(image2, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                    	
+                    	g.drawImage(sprite.getSubImage(0, 0, 38, 38), ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                     }
 
                     if (a == 3) { //ghost
                         
-                        g.drawImage(image, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                        //g.drawImage(image, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                        //g.drawImage(sprite.getSubImage(0, 0, 38, 38), ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                         
                     }
 
