@@ -1,7 +1,30 @@
 // Pacman.java
 // Author: Jimmy Liu
 // 3 March, 2013
-// Yolo
+// This program creates a JFrame, and has two JPanels. Inside is a simplified Pacman game, where the user collects yellow blocks and tries to avoid 
+// ghosts. The objective of the game is the collect all 6 cheeses. 
+
+// Class Variables
+// 	DerpPanel:
+//	GridPanel:
+//	lpane:
+//	array:
+//	cheddar:
+//	move:
+//	xloc, yloc:
+//	cheese:
+//	gameover
+
+
+// Class Methods
+// 	Run():
+// 	GridPanel:
+//		paintComponent:
+// 	DerpPanel:
+//		paintComponent:
+//		Pacmann:
+//		Mover:
+//		keyTyped:
 
 // Fork me: https://github.com/lele0108/Java/tree/master/Pacman
 
