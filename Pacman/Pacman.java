@@ -49,6 +49,7 @@ public class Pacman {
     int move = 0;
     int xloc, yloc; //pacman x and y
     int cheese = 0;
+    int countdown = 5;
     boolean gameover = false;
     private JLayeredPane lpane = new JLayeredPane();
 
@@ -83,6 +84,8 @@ public class Pacman {
         lpane.add(np, new Integer(1), 0); //add derppanel to the layeredpane
         frame.setVisible(true); //set frame visable
         gp.setBorder(BorderFactory.createLineBorder(Color.blue, 8)); //create border around program
+
+
 
         //fill array up with normal for array and cheddar
         for (int i = 0; i < 10; i++) {
@@ -126,6 +129,8 @@ public class Pacman {
             Timer timer = new Timer(3000, mover);
             Pacmann pacmann = new Pacmann();
             Timer timer2 = new Timer(500, pacmann);
+           // Restart restart = new Restart();
+           // Timer timer3 = new Timer(1000, restart);
             timer.start();
             timer2.start();
         } //end public DerpPanel
@@ -239,12 +244,14 @@ public class Pacman {
                 g.setFont(new Font("Helvetica", Font.BOLD, 50));
                 g.setColor(Color.green);
                 g.drawString("YOU LOSE :(", 100, 280);
+                
             }
 
             if (cheese == 6) { //check if you win
                 g.setFont(new Font("Helvetica", Font.BOLD, 50));
                 g.setColor(Color.green);
                 g.drawString("YOU WIN :)", 100, 280);
+                
             }
 
 
@@ -274,8 +281,6 @@ public class Pacman {
             } //end public void
 
         } //end pacmann
-
-
 
         private class Mover implements ActionListener {
             public void actionPerformed(ActionEvent e) {
