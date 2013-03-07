@@ -39,14 +39,6 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
 
-
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-
 public class Pacman {
 
     JFrame frame; // JFrame and JPanel must be global object instances
@@ -131,30 +123,14 @@ public class Pacman {
 
     class DerpPanel extends JPanel implements KeyListener {
 
-    	private BufferedImage image;
-    	private BufferedImage image2;
-
-    	
-
         public DerpPanel() {
             frame.addKeyListener(this);
-            
-            try {                
-            	image = ImageIO.read(new File("sprite.png"));
-       		} catch (IOException ex) {
-            System.out.println("Nope.avi");
-       		}	
-
-       		try {                
-            	image2 = ImageIO.read(new File("sprite2.png"));
-       		} catch (IOException ex) {
-            System.out.println("Nope.avi");
-       		}
-
             Mover mover = new Mover();
             Timer timer = new Timer(3000, mover);
             Pacmann pacmann = new Pacmann();
             Timer timer2 = new Timer(500, pacmann);
+           // Restart restart = new Restart();
+           // Timer timer3 = new Timer(1000, restart);
             timer.start();
             timer2.start();
         } //end public DerpPanel
@@ -248,13 +224,17 @@ public class Pacman {
                     }
 
                     if (c == 2) { //cheese
-                        g.drawImage(image2, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                        g.setColor(Color.yellow);
+                        g.fillRect(((i + 1) * 48) - 30, ((j + 1) * 48) - 30, 35, 35);
                     }
 
                     if (a == 3) { //ghost
-                        
-                        g.drawImage(image, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
-                        
+                        g.setColor(Color.red);
+                        g.fillArc(((i + 1) * 48) - 35, ((j + 1) * 48) - 35, 40, 40, 0, 360);
+                        g.setColor(Color.black);
+                        g.fillArc(((i + 1) * 48) - 25, ((j + 1) * 48) - 25, 7, 7, 0, 360);
+                        g.fillArc(((i + 1) * 48) - 10, ((j + 1) * 48) - 25, 7, 7, 0, 360);
+                        g.fillRect(((i + 1) * 48) - 25, ((j + 1) * 48) - 10, 23, 3);
                     }
 
                 }
