@@ -38,19 +38,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.Random;
-
-
 import java.awt.image.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-
-
-
-
 
 public class Pacman {
 
@@ -87,6 +79,7 @@ public class Pacman {
         //<3 stackoverflow <3
         frame.setSize(new Dimension(500, 560));
         frame.setLayout(new BorderLayout());
+        frame.setResizable(false);
         frame.add(lpane, BorderLayout.CENTER);
         lpane.setBounds(0, 0, 500, 500);
         np.setBounds(0, 0, 500, 560);
@@ -136,10 +129,7 @@ public class Pacman {
 
     class DerpPanel extends JPanel implements KeyListener {
 
-    	
-    		public BufferedImage image, image2;
     		public BufferedImage sprite, cherry, ghost;
-    	
 
         public DerpPanel() {
             frame.addKeyListener(this);
@@ -222,17 +212,7 @@ public class Pacman {
 
             } //end pacman, cheese, and ghost generator
 
-
-
-
-
-
-            //printing array
-
-                           
-            	
-       		
-
+            //printing
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     int a = array[i][j];
@@ -249,14 +229,14 @@ public class Pacman {
                     }
 
                     if (c == 2) { //cheese
-                       // g.drawImage(image2, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                       
                     	
                     	g.drawImage(cherry, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                     }
 
                     if (a == 3) { //ghost
                         
-                        //g.drawImage(image, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                        
                         g.drawImage(ghost, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                         
                     }
