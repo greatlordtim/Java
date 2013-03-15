@@ -60,7 +60,7 @@ public class Pacman {
 
 
     public Pacman() {
-
+        //nothing to do here
     }
 
     public static void main(String[] args) {
@@ -72,7 +72,6 @@ public class Pacman {
     public void Run() {
         frame = new JFrame("Pacman");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         gp = new GridPanel();
         np = new DerpPanel();
 
@@ -90,8 +89,6 @@ public class Pacman {
         lpane.add(np, new Integer(1), 0); //add derppanel to the layeredpane
         frame.setVisible(true); //set frame visable
         gp.setBorder(BorderFactory.createLineBorder(Color.blue, 8)); //create border around program
-
-
 
         //fill array up with normal for array and cheddar
         for (int i = 0; i < 10; i++) {
@@ -116,6 +113,7 @@ public class Pacman {
             g.setColor(Color.lightGray);
             g2.setStroke(new BasicStroke(3));
 
+            //Draw the gray lines onto the canvas
             for (int col = 0; col < 10; col++) {
                 for (int row = 0; row < 10; row++) {
                     g2.drawRect(row * 48 + 10, col * 48 + 10, 48, 48);
@@ -129,20 +127,20 @@ public class Pacman {
 
     class DerpPanel extends JPanel implements KeyListener {
 
-    		public BufferedImage sprite, cherry, ghost;
+    	public BufferedImage sprite, cherry, ghost; //Define Images
 
         public DerpPanel() {
             frame.addKeyListener(this);
-            try {sprite = ImageIO.read(new File("sprite.png"));}
-            catch (IOException ex) {System.out.println("Image error");}
-            cherry = sprite.getSubimage(0, 0, 48, 48);
+            try {sprite = ImageIO.read(new File("sprite.png"));} //Get my sprite sheet
+            catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
+            cherry = sprite.getSubimage(0, 0, 48, 48); //Cut up sprite sheet
             ghost = sprite.getSubimage(48, 0, 40, 40);
-            Mover mover = new Mover();
-            Timer timer = new Timer(3000, mover);
-            Pacmann pacmann = new Pacmann();
+            Mover mover = new Mover(); //Ghost move timer
+            Timer timer = new Timer(1500, mover);
+            Pacmann pacmann = new Pacmann(); //Pacman animation timer
             Timer timer2 = new Timer(500, pacmann);
             timer.start();
-            timer2.start();
+            timer2.start(); //start 'em timers
         } //end public DerpPanel
 
 
@@ -191,9 +189,7 @@ public class Pacman {
                         ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
                     }
 
-
-
-                    while (array[ghostx][ghosty] == 3) { //check duplicate ghost
+                while (array[ghostx][ghosty] == 3) { //check duplicate ghost
                         ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
                         ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
 
@@ -201,9 +197,6 @@ public class Pacman {
                             ghostx = 0 + (int)(Math.random() * ((9 - 0) + 1));
                             ghosty = 0 + (int)(Math.random() * ((9 - 0) + 1));
                         }
-
-
-
                     }
                     array[ghostx][ghosty] = 3;
                 } //end while
@@ -229,30 +222,24 @@ public class Pacman {
                     }
 
                     if (c == 2) { //cheese
-                       
-                    	
-                    	g.drawImage(cherry, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
+                       g.drawImage(cherry, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
                     }
 
                     if (a == 3) { //ghost
-                        
-                        
                         g.drawImage(ghost, ((i + 1) * 48) - 35, ((j + 1) * 48) - 35, null);
-                        
                     }
-
                 }
             } //end for loop for printing
 
             if (gameover == true) { //check if game is over
-                g.setFont(new Font("Helvetica", Font.BOLD, 50));
+                g.setFont(new Font("Helvetica", Font.BOLD, 50)); //Pretty fonts
                 g.setColor(Color.green);
-                g.drawString("YOU LOSE :(", 100, 280);
+                g.drawString("YOU LOSE :(", 100, 280); 
                 
             }
 
             if (cheese == 6) { //check if you win
-                g.setFont(new Font("Helvetica", Font.BOLD, 50));
+                g.setFont(new Font("Helvetica", Font.BOLD, 50)); //Pretty fonts
                 g.setColor(Color.green);
                 g.drawString("YOU WIN :)", 100, 280);
                 
@@ -300,9 +287,9 @@ public class Pacman {
                                 case 1:
                                     if (i == 0) //check if out of bounds
                                     break;
-                                    array[i][j] = 1;
                                     if (array[i - 1][j] == 3) //check if another ghost
                                     break;
+                                    array[i][j] = 1;
                                     array[i - 1][j] = 3;
                                     if (array[i - 1][j] == 4) //check for pacman
                                     gameover = true;
@@ -520,6 +507,7 @@ public class Pacman {
                     cheese = 0;
                     break;
             }
+
             repaint(); //repaint after movement
 
         } //end keyTyped

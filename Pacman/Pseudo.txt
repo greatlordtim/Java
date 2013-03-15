@@ -1,7 +1,5 @@
 Pacman Java Pseudocode
 Author: Jimmy Liu
-Fork me please: http://github.com/lele0108/java
-
 Pre-code:
 	Initilize 10x10 array
 	Create variable for keeping track of cheese
