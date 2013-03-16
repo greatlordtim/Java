@@ -79,6 +79,7 @@ public class Pacman {
         frame.setSize(new Dimension(500, 560));
         frame.setLayout(new BorderLayout());
         frame.setResizable(false);
+        frame.setBackground(Color.black);
         frame.add(lpane, BorderLayout.CENTER);
         lpane.setBounds(0, 0, 500, 500);
         np.setBounds(0, 0, 500, 560);
@@ -88,7 +89,7 @@ public class Pacman {
         lpane.add(gp, new Integer(0), 0); //add gridpanel to the layeredpane
         lpane.add(np, new Integer(1), 0); //add derppanel to the layeredpane
         frame.setVisible(true); //set frame visable
-        gp.setBorder(BorderFactory.createLineBorder(Color.blue, 8)); //create border around program
+        gp.setBorder(BorderFactory.createLineBorder(Color.black, 8)); //create border around program
 
         //fill array up with normal for array and cheddar
         for (int i = 0; i < 10; i++) {
@@ -110,8 +111,8 @@ public class Pacman {
 
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
-            g.setColor(Color.lightGray);
-            g2.setStroke(new BasicStroke(3));
+            g.setColor(Color.blue);
+            g2.setStroke(new BasicStroke(1));
 
             //Draw the gray lines onto the canvas
             for (int col = 0; col < 10; col++) {
@@ -212,12 +213,12 @@ public class Pacman {
                     int c = cheddar[i][j];
 
                     if (a == 4) { //pacman open
-                        g.setColor(Color.blue);
+                        g.setColor(Color.yellow);
                         g.fillArc(((i + 1) * 48) - 35, ((j + 1) * 48) - 35, 40, 40, 20, 320);
                     }
 
                     if (a == 5) { //pacman closed
-                        g.setColor(Color.blue);
+                        g.setColor(Color.yellow);
                         g.fillArc(((i + 1) * 48) - 35, ((j + 1) * 48) - 35, 40, 40, 0, 350);
                     }
 
