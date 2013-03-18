@@ -13,39 +13,36 @@ Revision Three:
 			- Blue frame around game (setBorder)
 			- 10x10 grid with a 5px gray stroke around each box
 			- On bottom, red background, black text, Helvetica
+			
 	2. Create 10x10 array 'array'. Each array would be 
 	   single box on the grid. 
 	   
-	   	Array System:
+	   	Key:
 	   	1 - Empty
 	   	2 - Cheese
 	   	3 - Ghost
 	   	4 - Pacman mouth open
 	   	5 - Pacman mouth closed
-	   	
-		Purpose of array would be keeping track of what each box 		is currently. First, we would fill all the array with 		default, which would be 1. Afterwords, using a random 
-		generator, we would fill the cheese, ghost, and Pacman.
-		
-		After ths is done, we need to have defined templates for 
-		drawing Pacman, ghosts, and cheese. Pacman would be a arc,
-		Ghosts would be circles with circle eyes and rectangular
-		mouths, and cheese would be rectangular yellow objects. 
-	3. Animations. Pacman's animations would be drawn at 2ms. 
-	   This would simulate the opening and closing of his mouth. 
-	   We would have this in a infinate loop. Possible extra
-	   would be smooth animations by doing 1ms, and adding
-	   gradual closing + opening.
+	   	 
+	3. Animations. Start the two timers
+	   		timer.start(), timer1.start()
+				timer(500, ghostmove)
+				timer1(500, pacmanmouth)
+				
 	4. Ghost switching. Have a timer for 3s, where then the ghost
 	   would then move to a new random location. Changes to array.
 	   After this, check if Pacman is on the array square. If so,
 	   player loses (see 6).
+	   
 	5. Game Logic. The following would need to be implemented:
-			-Pacman eating cheese. Counter would start with 0, and
-			 everytime Pacman eats a cheese, this counter would rise
-			 until 6, where it would tell the player they have won.
-			-Ghost. If Pacman is on the same array square as a ghost, 
-			 then the game is over, and the player loses and does not 
-			 collect $200. 
+			if (cheese)
+				add +1 to cheese
+					if (cheesecounter =6)
+						tell player they have just won the game
+			
+			if (ghost)
+				write to screen= "you have lost";
+				
 	6. Getting input from the user. Using the keylistner, we would 
       want to know where the user wants to go. This would be done 
       via a switch-case statement, with each assigned key as a 		 choice. 
