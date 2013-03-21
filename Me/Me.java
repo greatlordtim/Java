@@ -9,18 +9,17 @@ import javax.swing.*;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
-import java.net.*;
 
 public class Me {
  
 	private JFrame frame;
 	private DrawingArea canvas;
-	int slide = 1;
 	BufferedImage image2;
+	int slide = 1;
 
 	private String imageName = "sprite.png";
 	
-	public Me ( )   { }
+	public Me()   { }
 	
 	public static void main (String[] args) {
 		Me me = new Me();
@@ -30,7 +29,7 @@ public class Me {
 	public void Run( )  {
 		// Create the JPanel canvas
 		canvas = new DrawingArea ( );
-		canvas.setBackground( Color.gray );
+		canvas.setBackground(Color.gray);
 		
 		// Get the Image from a file
 		GetMyImage();
@@ -46,17 +45,13 @@ public class Me {
 	}
 
 	public void GetMyImage() {
-		try {
-			image2 = ImageIO.read(new File(imageName));
-		} catch (IOException e) {System.err.println("File was not found"); System.exit(1);}
+		try { image2 = ImageIO.read(new File(imageName));} catch (IOException e) {System.err.println("File was not found"); System.exit(1);}
 	} //end GetMyImage
 	
 	// canvas 
 	class DrawingArea extends JPanel implements MouseListener {
 
-		public DrawingArea ( )   {
-			addMouseListener (this);
-		}
+		public DrawingArea ( )   { addMouseListener (this); }
 
 		public void paintComponent ( Graphics g ) {
 			Color colr = new Color(75,75,75,200);
@@ -105,7 +100,7 @@ public class Me {
 					g.setColor(Color.white);
 					g.drawString("I love my brother", 20, 330);
 					g.setFont(new Font("Helvetica", Font.PLAIN, 14));
-					g.drawString("My brother's name is Tommy, and he is currently 4 years old. He's ", 20, 360);
+					g.drawString("My brother's name is Tommy, and he is currently 4 years old. He's ", 20, 360); 
 					g.drawString("quite cute, and I love him a lot. We love spending time together", 20, 380);
 					g.drawString("and although I am far busier than he is, we always find time to do", 20, 400);
 					g.drawString("so. My brother is the best!", 20, 420);
@@ -124,17 +119,10 @@ public class Me {
 				break;
 			}
 		}
-
-		// Mouse methods
 		public void mousePressed ( MouseEvent e )   {}
-		public void mouseClicked ( MouseEvent e )    {
-			slide++;
-			if (slide == 6) { slide = 1; }
-			repaint();
-		}
+		public void mouseClicked ( MouseEvent e )    {slide++; if (slide == 6) slide = 1; repaint();}
 		public void mouseReleased ( MouseEvent e )    {}
 		public void mouseEntered ( MouseEvent e )    {}
 		public void mouseExited ( MouseEvent e )    {}
-		
 	} //end Run
 } //end program
