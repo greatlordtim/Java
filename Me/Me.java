@@ -16,13 +16,11 @@ public class Me {
 	private JFrame frame;
 	private DrawingArea canvas;
 	int slide = 1;
-	BufferedImage image, image2;
+	BufferedImage image2;
 
 	private String imageName = "sprite.png";
 	
-	public Me ( )   {
-
-	}
+	public Me ( )   { }
 	
 	public static void main (String[] args) {
 		Me me = new Me();
@@ -49,8 +47,6 @@ public class Me {
 
 	public void GetMyImage() {
 		try {
-			URL url = new URL("http://farm9.staticflickr.com/8150/7480814166_6b0febe23f.jpg");
-			image = ImageIO.read(url);
 			image2 = ImageIO.read(new File(imageName));
 		} catch (IOException e) {System.err.println("File was not found"); System.exit(1);}
 	} //end GetMyImage
