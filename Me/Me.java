@@ -6,6 +6,7 @@
 import java.awt.*;			
 import java.awt.event.*;	
 import javax.swing.*;	
+import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
 import java.net.*;
@@ -15,7 +16,7 @@ public class Me {
 	private JFrame frame;
 	private DrawingArea canvas;
 	int slide = 1;
-	Image image;
+	BufferedImage image, image2;
 
 	private String imageName = "sprite.png";
 	
@@ -48,9 +49,9 @@ public class Me {
 
 	public void GetMyImage() {
 		try {
-			//image = ImageIO.read(new File(imageName));
 			URL url = new URL("http://farm9.staticflickr.com/8150/7480814166_6b0febe23f.jpg");
 			image = ImageIO.read(url);
+			image2 = ImageIO.read(new File(imageName));
 		} catch (IOException e) {System.err.println("File was not found"); System.exit(1);}
 	} //end GetMyImage
 	
@@ -67,7 +68,7 @@ public class Me {
 			g.setFont(new Font("Helvetica", Font.BOLD, 26));
 			switch (slide) {
 				case 1: // case 1: About me
-					g.drawImage(image, 0, 0, 500, 500, this);
+					g.drawImage(image2.getSubimage(515, 5, 500, 500), 0, 0, 500, 500, this);
 					g.fillRect(0, 300, 500, 200);
 					g.setColor(Color.white);
 					g.drawString("Hi, my name is Jimmy Liu", 20, 330);
@@ -78,7 +79,7 @@ public class Me {
 				break;
 
 				case 2: // case 2: What I love, computers
-					g.drawImage(image, 0, 0, 500, 500, this);
+					g.drawImage(image2.getSubimage(2125, 5, 500, 500), 0, 0, 500, 500, this);
 					g.fillRect(0, 300, 500, 200);
 					g.setColor(Color.white);
 					g.drawString("I love computers", 20, 330);
@@ -91,7 +92,7 @@ public class Me {
 				break;
 
 				case 3: // case 3: I love design
-					g.drawImage(image, 0, 0, 500, 500, this);
+					g.drawImage(image2.getSubimage(2635, 5, 500, 500), 0, 0, 500, 500, this);
 					g.fillRect(0, 300, 500, 200);
 					g.setColor(Color.white);
 					g.drawString("I love design", 20, 330);
@@ -103,7 +104,7 @@ public class Me {
 				break;
 
 				case 4: // case 4: What I love, brother
-					g.drawImage(image, 0, 0, 500, 500, this);
+					g.drawImage(image2.getSubimage(1025, 5, 500, 500), 0, 0, 500, 500, this);
 					g.fillRect(0, 300, 500, 200);
 					g.setColor(Color.white);
 					g.drawString("I love my brother", 20, 330);
@@ -115,7 +116,7 @@ public class Me {
 				break;
 
 				case 5: // case 5: TV Show, house of cards
-					g.drawImage(image, 0, 0, 500, 500, this);
+					g.drawImage(image2.getSubimage(5, 5, 500, 500), 0, 0, 500, 500, this);
 					g.fillRect(0, 300, 500, 200);
 					g.setColor(Color.white);
 					g.drawString("I love House of Cards", 20, 330);
