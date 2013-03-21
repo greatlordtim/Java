@@ -355,7 +355,8 @@ public class Pacman {
             System.out.println("keyPressed, c= " + c);
             switch (c) { //Switch case for getting what direction the user wants to go
 
-                case 'a':
+                case 'a': //if user presses a
+
                     if (xloc == 0) {
                         array[9][yloc] = 4;
 
@@ -390,32 +391,32 @@ public class Pacman {
 
                     break;
 
-                case 'd':
+                case 'd': //free for d
 
                     if (xloc == 9) {
                         array[0][yloc] = 4;
 
-                        if (cheddar[0][yloc] == 2) {
-                            cheese++;
-                            cheddar[0][yloc] = 1;
+                        if (cheddar[0][yloc] == 2) { //if this is cheese
+                            cheese++; //Pacman just ate the cheese
+                            cheddar[0][yloc] = 1; //and byebye it goes
                         }
 
-                        if (array[0][yloc] == 3) {
-                            gameover = true;
+                        if (array[0][yloc] == 3) { //ghost?
+                            gameover = true; //gameover :(
                         }
                         array[xloc][yloc] = 1;
                         xloc = 0;
 
-                        repaint();
+                        repaint(); //repaint the stuff
                         break;
 
                     } //end if for wrapping
-                    if (cheddar[xloc + 1][yloc] == 2) {
+                    if (cheddar[xloc + 1][yloc] == 2) { //check for wrapping cheese
                         cheese++;
                         cheddar[xloc + 1][yloc] = 1;
                     }
 
-                    if (array[xloc + 1][yloc] == 3) {
+                    if (array[xloc + 1][yloc] == 3) { //check for wrapping ghost
                         gameover = true;
                     }
                     array[xloc + 1][yloc] = 4;
@@ -425,32 +426,32 @@ public class Pacman {
 
                     break;
 
-                case 'w':
+                case 'w': //if user presses w
 
                     if (yloc == 0) {
                         array[xloc][9] = 4;
 
-                        if (cheddar[xloc][9] == 2) {
+                        if (cheddar[xloc][9] == 2) { //check if cheese
                             cheese++;
                             cheddar[xloc][9] = 1;
                         }
 
-                        if (array[xloc][9] == 3) {
+                        if (array[xloc][9] == 3) { //check if game is over
                             gameover = true;
                         }
-                        array[xloc][yloc] = 1;
+                        array[xloc][yloc] = 1; //move
                         yloc = 9;
 
-                        repaint();
+                        repaint(); //repaint
                         break;
                     } //end if for wrapping
 
-                    if (cheddar[xloc][yloc - 1] == 2) {
+                    if (cheddar[xloc][yloc - 1] == 2) { //cheese++
                         cheese++;
                         cheddar[xloc][yloc - 1] = 1;
                     }
 
-                    if (array[xloc][yloc - 1] == 3) {
+                    if (array[xloc][yloc - 1] == 3) { //wrapping game over
                         gameover = true;
                     }
 
@@ -461,17 +462,17 @@ public class Pacman {
 
                     break;
 
-                case 's':
+                case 's': //if user presses s
 
                     if (yloc == 9) {
                         array[xloc][0] = 4;
 
-                        if (cheddar[xloc][0] == 2) {
+                        if (cheddar[xloc][0] == 2) { //if cheese
                             cheese++;
                             cheddar[xloc][0] = 1;
                         }
 
-                        if (array[xloc][0] == 3) {
+                        if (array[xloc][0] == 3) { //if ghost
                             gameover = true;
                         }
                         array[xloc][yloc] = 1;
@@ -481,12 +482,12 @@ public class Pacman {
                         break;
                     } //end if for wrapping				
 
-                    if (cheddar[xloc][yloc + 1] == 2) {
+                    if (cheddar[xloc][yloc + 1] == 2) { //wrapping ghost
                         cheese++;
                         cheddar[xloc][yloc + 1] = 1;
                     }
 
-                    if (array[xloc][yloc + 1] == 3) {
+                    if (array[xloc][yloc + 1] == 3) { //wrapping ghost
                         gameover = true;
                     }
                     array[xloc][yloc + 1] = 4;
@@ -496,17 +497,17 @@ public class Pacman {
 
                     break;
 
-                case 'r':
-                    for (int i = 0; i < 10; i++) {
+                case 'r': //resetting
+                    for (int i = 0; i < 10; i++) { //dump array
                         for (int j = 0; j < 10; j++) {
                             array[i][j] = 1;
                             cheddar[i][j] = 1;
                         }
                     }
-                    move = 0;
-                    gameover = false;
-                    cheese = 0;
-                    break;
+                    move = 0; //reset move
+                    gameover = false; //no longer game over
+                    cheese = 0; //reset cheese
+                    break; //and...we break!
             }
 
             repaint(); //repaint after movement
