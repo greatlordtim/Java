@@ -1,0 +1,15 @@
+byte b16 = (double)34 + (int)'V'/8;
+short s16 = (double)34 + (int)'V'/8;
+int i16 = (double)34 + (int)'V'/8;
+long l16 = (double)34 + (int)'V'/8;
+char c16 = (double)34 + (int)'V'/8;
+float fl16 = (double)34 + (int)'V'/8;
+double d16 = (double)34 + (int)'V'/8;
+
+System.out.println("(double)34 + (int)'V'/8 " + b16 + " (byte)");
+System.out.println("(double)34 + (int)'V'/8 " + s16 + " (short)");
+System.out.println("(double)34 + (int)'V'/8 " + i16 + " (int)");
+System.out.println("(double)34 + (int)'V'/8 " + l16 + " (long)");
+System.out.println("(double)34 + (int)'V'/8 " + c16 + " (char)");
+System.out.println("(double)34 + (int)'V'/8 " + fl16 + " (float)");
+System.out.println("(double)34 + (int)'V'/8 " + d16 + " (double)");

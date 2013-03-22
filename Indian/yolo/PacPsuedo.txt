@@ -1,0 +1,86 @@
+Anindit Gopalakrishnan
+3/7/13
+Java
+Mr. Greenstein 
+
+Pacman Java Pseudocode:
+	-create 5 classes
+		-one of them extends JPanel, actionlistener - this will have 
+		the timer as well as the paintComponent method
+		-one implements keyListener and comands the pacman
+		-one is as simple class which holds the cheese 
+		-one is a more complicated class which controls the monsters
+		-and finally one is the main class used to set up the JFrame
+	
+	1)Create a JFrame of size approximately 600x580. 
+		paintComponent
+			-use a for loop to draw the grid of gray lines using the 
+			g.fillRect method
+			-Draw blue rectangles around to stand for the picture 
+			part of the frame
+			-On the bottom use g.drawString to write the directions
+	
+	2)To do the animations, create 2 methods to draw the pacman 
+		-make an integer which counts up on each time 
+		actionPerformed is called
+		-if the integer%2 is = 0, draw it using one method (drawFull())
+		-if the integer%2 is = 1, draw it using the other method
+												(drawIncPac());
+		-each animation would occur at 5 ms.
+		
+	3) Pacman Class: 
+		-create variables for x, y, and moveAmount- x and y
+		hold the x and y positions of the object, while moveAmount
+		would be the amount in pixels needed to make exactly one hop
+		-randomize x, y in the constructor using Random.nextInt
+			-number = offset + rand.nextInt(9)*moveAmount
+		-make the class implement key listener, and in the main class 
+		add the keyListener to the JFrame
+		-use the KeyPressed method to check which key has been pressed
+			-if a, subtract moveamount from x
+			-if d, add moveamount to x
+			-if w, subdract moveamount from y
+			if s, add moveamount to y
+		-also have a drawPacman() method that draws the pacman when
+		placed inside paintComponent
+		-finally have a rectangle object which surrounds the pacman
+		that can be used to check intersections with the other objects
+	
+	4) Cheese Class 
+		-create x, y which are randomly assigned in constructor
+		-have a drawCheese() Method which draws the chese 
+		-have a method called isEaten(Pacman p) which is able to
+		check if the pacman has collided with the cheese, in which case
+		the cheese disapears and toggles a boolean that says so
+	
+	5) Mosnter class
+		-create random x ,y in constructor
+		-have a method called doAction, which generates 2 random 
+		numbers.
+			-the first number determines whether to do anything at all
+			 	-make it a very small possiblilty of doing anything
+			-the 2nd number determines which directio to move:
+				0 - up, 1 - down ,2 - right 3 - left
+		-have a method to draw the monster
+		-have a method to check if the pacman has been moved on top,
+		in which case end the game
+		
+	6) JPanel Class: 
+		-create instances of the following
+			-one instance of the Pacman 
+			-an array of size 6 which holds all the monsters
+			-an array of size 6 which holds all the cheeses
+		-in the paintcomponent, check for collisions between
+		the pacman and the monsters and the chese
+		-in the actionListener, animate the pacman to open and close
+		the mouth
+			-also implement the random actions of the monsters, so 
+			as to attack the pacman
+		-for the reset - have a method which resets all the integers 
+		and arrays to their starting values to make it a new game
+		-also create a new method called checkWinLoss, and if the 
+		method returns true (it will be of type boolean) then 
+		stop all activities and make a large string flash in the 
+		middle of the screen with whichever happened during your
+		game
+		
