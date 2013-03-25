@@ -27,6 +27,8 @@ public class Me {
 	private DrawingArea canvas;
 	BufferedImage image2;
 	int slide = 1;
+	int w = 1;
+	Timer timer;
 
 	private String imageName = "sprite.png"; //create a variable for sprite image
 	
@@ -62,7 +64,12 @@ public class Me {
 	// canvas 
 	class DrawingArea extends JPanel implements MouseListener {
 
-		public DrawingArea ( )   { addMouseListener (this); } //add mouse listener to panel
+		public DrawingArea ()   { 
+			addMouseListener (this);
+			Slider slider = new Slider();
+            timer = new Timer(15, slider);
+            timer.start();
+			} //add mouse listener to panel
 
 		public void paintComponent ( Graphics g ) {
 			Color colr = new Color(75,75,75,200); //Creating a new beautiful color
@@ -129,11 +136,28 @@ public class Me {
 					g.drawString("politics. Everybody should watch House of Cards", 20, 420);
 				break;
 			}
-		}
+			g.setColor(Color.white);
+			g.fillRect(0, 475, w, 3);
+		} //end paint compeoennt
+
+
+		private class Slider implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				w++;
+				if (w==500) {
+					slide++;
+					w = 1;
+					if (slide==6)
+						slide = 1;
+				}
+				repaint();
+			} //end action performed
+		} //end Slider
+
 		public void mousePressed ( MouseEvent e )   {}
-		public void mouseClicked ( MouseEvent e )    {slide++; if (slide == 6) slide = 1; repaint();} //incremenets slide per click. If slide is 6, makes cycles back.
+		public void mouseClicked ( MouseEvent e )    {slide++; if (slide == 6) slide = 1; w = 1;repaint();} //incremenets slide per click. If slide is 6, makes cycles back.
 		public void mouseReleased ( MouseEvent e )    {}
-		public void mouseEntered ( MouseEvent e )    {}
-		public void mouseExited ( MouseEvent e )    {}
+		public void mouseEntered ( MouseEvent e )    {timer.start();}
+		public void mouseExited ( MouseEvent e )    {timer.stop();}
 	} //end Run
 } //end program
