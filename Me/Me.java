@@ -13,6 +13,7 @@
 // 	image2: A buffered image sprite that includes all the images that is used in the program. 
 // 	slide: A count of what slide the program is on. Default is one, click = +1, if reaches 6, reset to 1
 // 	imageName: Name of the image (which is sprite.png)
+//  timer: The
 
 import java.awt.*;			
 import java.awt.event.*;	
@@ -144,11 +145,8 @@ public class Me {
 		private class Slider implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				w++;
-				if (w==500) {
-					slide++;
-					w = 1;
-					if (slide==6)
-						slide = 1;
+				if (w==500) {slide++;w = 1;
+					if (slide==6) slide = 1;
 				}
 				repaint();
 			} //end action performed
