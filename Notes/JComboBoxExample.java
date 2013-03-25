@@ -42,6 +42,8 @@ public class JComboBoxExample {
 		comboBox1.addItem("Yellow");
 		comboBox1.addItem("Orange");
 		comboBox1.addItem("Black");
+		ComboBoxListener cblistener = new ComboBoxListener();
+		comboBox1.addActionListener(cblistener);
 		frame.add(comboBox1);
 
 		//////////////////////////////////////////////////////////////
