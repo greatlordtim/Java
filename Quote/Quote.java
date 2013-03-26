@@ -3,32 +3,29 @@
 // Quote.java
 // Display quotes
 
-//API Usage:
-//format: return the result 'text', 'html', or 'json' format. The default is text.
-//max_lines: maximum number of lines in the quote.
-//min_lines: minimum number of lines in the quote.
-//max_characters: maximum number of characters in the quote.
-//min_characters: minimum number of characters in the quote.
-//source: pulls quotes from one of the sources listed. Multiple sources should be space or "+" separated, ex: calvin+xfiles
-//show_permalink: show the quote's permalink at the bottom of the text by default. Turn this off with "false" or "0".
-//show_source: show the quote's source at the bottom of the text by default. Turn this off with "false" or "0".
-//font_family:Render the text in the specified font-family.
-//font_color: Render the text in the specified font color.
-//width: The width of the box to render the quote in.
-//height: The height of the box to render the quote in.
+// Class Methods
+
+// Class Variables
+
+// API Usage (Ilovequotes):
+// format: return the result 'text', 'html', or 'json' format. The default is text.
+// max_lines: maximum number of lines in the quote.
+// min_lines: minimum number of lines in the quote.
+// max_characters: maximum number of characters in the quote.
+// min_characters: minimum number of characters in the quote.
+// source: pulls quotes from one of the sources listed. Multiple sources should be space or "+" separated, ex: calvin+xfiles
+// show_permalink: show the quote's permalink at the bottom of the text by default. Turn this off with "false" or "0".
+// show_source: show the quote's source at the bottom of the text by default. Turn this off with "false" or "0".
 
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.event.*;
 import javax.swing.*;
-import java.net.*;
 import java.io.*;
+import java.net.*;
 
 public class Quote {
-	JFrame frame;
-	JPanel panel1, panel2;
-	JSlider slider;
-	JLabel jl;
-	JComboBox comboBox1;
+	JFrame frame; JPanel panel1, panel2; JSlider slider2; JLabel jl; JComboBox comboBox1; ButtonGroup group; JRadioButton r, g, b;
 	String inputLine;
 	BufferedReader in;
 	URL text;
@@ -52,7 +49,7 @@ public class Quote {
 		panel2 = new JPanel();
 		panel1.setPreferredSize(new Dimension(400,200));
 		panel2.setPreferredSize(new Dimension(400,200));
-		panel2.setBackground(Color.green);
+		panel2.setBackground(Color.lightGray);
 		frame.add(panel1);
 		frame.add(panel2);
 
@@ -63,24 +60,30 @@ public class Quote {
 		jb.addActionListener(jblistener);
 		panel1.add(jb);
 
-		JRadioButton red = new JRadioButton("Red");
-		JRadioButton green = new JRadioButton("Green");
-		JRadioButton blue = new JRadioButton("Blue");
+		group = new ButtonGroup();
+		r = new JRadioButton("Red");
+		g = new JRadioButton("Green");
+		b = new JRadioButton("Blue");
+		r.setSelected(true);
+		group.add(r);
+		group.add(g);
+		group.add(b);
 		JRadioListener jrlistener = new JRadioListener();
-		red.addActionListener(jrlistener);
-		panel1.add(red);
-		panel1.add(green);
-		panel1.add(blue);
+		r.addActionListener(jrlistener);
+		g.addActionListener(jrlistener);
+		b.addActionListener(jrlistener);
+		panel1.add(r);
+		panel1.add(g);
+		panel1.add(b);
 
-		slider = new JSlider();
-    	slider.setMajorTickSpacing(2);
-    	slider.setMinimum(16);
-    	slider.setMaximum(24);
-    	slider.setPaintTicks(true);
-    	slider.setPaintLabels(true);
-    	slider.setSnapToTicks(true);
+		slider2 = new JSlider(16, 24, 16);
+    	slider2.setMajorTickSpacing(2);
+    	slider2.setPaintTicks(true);
+    	slider2.setPaintLabels(true);
+    	slider2.setSnapToTicks(true);
     	JSliderListener jlistener = new JSliderListener();
-    	panel1.add(slider);
+    	slider2.addChangeListener(jlistener);
+    	panel1.add(slider2);
 
     	comboBox1 = new JComboBox();
 		comboBox1.addItem("Calvin");
@@ -95,6 +98,7 @@ public class Quote {
 
     	jl = new JLabel("Hello.");
     	jl.setFont(new Font("Helvetica", Font.PLAIN, 16));
+    	jl.setForeground(Color.red);
         panel2.add(jl);
 	}
 
@@ -107,14 +111,15 @@ public class Quote {
 
 	class JRadioListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Radio Changed");
+			if (r.isSelected()) { jl.setForeground(Color.red); }
+			if (g.isSelected()) { jl.setForeground(Color.green);}
+			if (b.isSelected()) {jl.setForeground(Color.blue);}
 		} //end actionPerformed
 	} //end ActionListerne
 
-	class JSliderListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Slider Changed");
-			int slide = slider.getValue();
+	class JSliderListener implements ChangeListener {
+		public void stateChanged(ChangeEvent e) {
+			int slide = slider2.getValue();
 			switch (slide) {
 				case 16: jl.setFont(new Font("Helvetica", Font.PLAIN, 16)); break;
 				case 18: jl.setFont(new Font("Helvetica", Font.PLAIN, 18)); break;
@@ -128,13 +133,7 @@ public class Quote {
 	class ComboBoxListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			int cmd = comboBox1.getSelectedIndex();
-			switch (cmd) {
-				case 0: cat = 0; break;
-				case 1: cat = 1; break;
-				case 2: cat = 2; break;
-				case 3: cat = 3; break;
-				case 4: cat = 4; break;
-				case 5: cat = 5; break;
+			switch (cmd) {case 0: cat = 0; break; case 1: cat = 1; break; case 2: cat = 2; break; case 3: cat = 3; break; case 4: cat = 4; break; case 5: cat = 5; break;
 			}
 		}
 	}
@@ -159,9 +158,7 @@ public class Quote {
 	public String ReadBigStringIn() throws IOException {
 		String line;
 		StringBuilder everything = new StringBuilder();
-	    while( (line = in.readLine()) != null) {
-	       everything.append(line);
-	    }
+	    while( (line = in.readLine()) != null) { everything.append(line); }
 	    inputLine = everything.toString();
 	    return everything.toString();
 	}
