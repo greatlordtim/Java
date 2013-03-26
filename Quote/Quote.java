@@ -28,8 +28,10 @@ public class Quote {
 	JPanel panel1, panel2;
 	JSlider slider;
 	JLabel jl;
+	JComboBox comboBox1;
 	String inputLine;
 	BufferedReader in;
+	int cat =1;
 	
 	public static void main(String[] args) {
 		Quote quote = new Quote();
@@ -79,6 +81,16 @@ public class Quote {
     	JSliderListener jlistener = new JSliderListener();
     	panel1.add(slider);
 
+    	comboBox1 = new JComboBox();
+		comboBox1.addItem("Calvin");
+		comboBox1.addItem("Forest Gump");
+		comboBox1.addItem("South Park");
+		comboBox1.addItem("Star Wars");
+		comboBox1.addItem("Futurama");
+		ComboBoxListener cblistener = new ComboBoxListener();
+		comboBox1.addActionListener(cblistener);
+		panel1.add(comboBox1);
+
     	jl = new JLabel("Hello.");
     	jl.setFont(new Font("Helvetica", Font.PLAIN, 16));
         panel2.add(jl);
@@ -111,8 +123,26 @@ public class Quote {
 		} //end actionPerformed
 	} //end ActionListerne
 
+	class ComboBoxListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			int cmd = comboBox1.getSelectedIndex();
+			switch (cmd) {
+				case 0: cat = 0; break;
+				case 1: cat = 1; break;
+				case 2: cat = 2; break;
+				case 3: cat = 3; break;
+				case 4: cat = 4; break;
+			}
+		}
+	}
+
 	public void ReadURL() throws Exception {
-        URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=calvin");
+		if (cat == 0) {
+        	URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=calvin");
+    	}
+    	if (cat == 1) {
+    		URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=forestgump");
+    	}
         in = new BufferedReader(new InputStreamReader(text.openStream()));
         ReadBigStringIn();
         in.close();
