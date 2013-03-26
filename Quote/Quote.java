@@ -4,8 +4,20 @@
 // Display quotes from iheartquotes.com
 
 // Class Methods
+//  Run:
+//  JButtonListener:
+//  JRadioListener:
+//  JSliderListener:
+//  ComboBoxListener:
+//  ReadURL:
+//  ReadBigStringIn:
 
 // Class Variables
+//	JElements frame, panel1, panel2, slider2, jl, comboBox1, gropu, r, g, b,:
+//	String inputLine:
+//  BufferedREader in:
+//  URL text:
+//  int cat:
 
 // API Usage (iheartquotes):
 // format: return the result 'text', 'html', or 'json' format. The default is text.
