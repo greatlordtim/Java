@@ -3,6 +3,20 @@
 // Quote.java
 // Display quotes
 
+//API Usage:
+//format: return the result 'text', 'html', or 'json' format. The default is text.
+//max_lines: maximum number of lines in the quote.
+//min_lines: minimum number of lines in the quote.
+//max_characters: maximum number of characters in the quote.
+//min_characters: minimum number of characters in the quote.
+//source: pulls quotes from one of the sources listed. Multiple sources should be space or "+" separated, ex: calvin+xfiles
+//show_permalink: show the quote's permalink at the bottom of the text by default. Turn this off with "false" or "0".
+//show_source: show the quote's source at the bottom of the text by default. Turn this off with "false" or "0".
+//font_family:Render the text in the specified font-family.
+//font_color: Render the text in the specified font color.
+//width: The width of the box to render the quote in.
+//height: The height of the box to render the quote in.
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -12,12 +26,10 @@ import java.io.*;
 public class Quote {
 	JFrame frame;
 	JPanel panel1, panel2;
+	JSlider slider;
 	JLabel jl;
 	String inputLine;
-	StringBuilder everything = new StringBuilder();
 	BufferedReader in;
-
-	    String line;
 	
 	public static void main(String[] args) {
 		Quote quote = new Quote();
@@ -57,13 +69,14 @@ public class Quote {
 		panel1.add(green);
 		panel1.add(blue);
 
-		JSlider slider = new JSlider();
+		slider = new JSlider();
     	slider.setMajorTickSpacing(2);
     	slider.setMinimum(16);
     	slider.setMaximum(24);
     	slider.setPaintTicks(true);
     	slider.setPaintLabels(true);
     	slider.setSnapToTicks(true);
+    	JSliderListener jlistener = new JSliderListener();
     	panel1.add(slider);
 
     	jl = new JLabel("Hello.");
@@ -87,19 +100,30 @@ public class Quote {
 	class JSliderListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Slider Changed");
+			int slide = slider.getValue();
+			switch (slide) {
+				case 16: jl.setFont(new Font("Helvetica", Font.PLAIN, 16)); break;
+				case 18: jl.setFont(new Font("Helvetica", Font.PLAIN, 18)); break;
+				case 20: jl.setFont(new Font("Helvetica", Font.PLAIN, 20)); break;
+				case 22: jl.setFont(new Font("Helvetica", Font.PLAIN, 22)); break;
+				case 24: jl.setFont(new Font("Helvetica", Font.PLAIN, 24)); break;
+			}
 		} //end actionPerformed
 	} //end ActionListerne
 
 	public void ReadURL() throws Exception {
-        URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=1&source=calvin");
+        URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=calvin");
         in = new BufferedReader(new InputStreamReader(text.openStream()));
         ReadBigStringIn();
         in.close();
-        jl.setText(inputLine);
+		jl.setText("<html><div style=width:300px><p>" + inputLine + "</p></div></html>");
+       // jl.setText(inputLine);
 
     } //end ReadURL
 
 	public String ReadBigStringIn() throws IOException {
+		String line;
+		StringBuilder everything = new StringBuilder();
 	    while( (line = in.readLine()) != null) {
 	       everything.append(line);
 	    }
