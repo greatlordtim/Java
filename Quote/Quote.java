@@ -31,7 +31,8 @@ public class Quote {
 	JComboBox comboBox1;
 	String inputLine;
 	BufferedReader in;
-	int cat =1;
+	URL text;
+	int cat = 0;
 	
 	public static void main(String[] args) {
 		Quote quote = new Quote();
@@ -87,6 +88,7 @@ public class Quote {
 		comboBox1.addItem("South Park");
 		comboBox1.addItem("Star Wars");
 		comboBox1.addItem("Futurama");
+		comboBox1.addItem("Albert Einstein");
 		ComboBoxListener cblistener = new ComboBoxListener();
 		comboBox1.addActionListener(cblistener);
 		panel1.add(comboBox1);
@@ -132,17 +134,20 @@ public class Quote {
 				case 2: cat = 2; break;
 				case 3: cat = 3; break;
 				case 4: cat = 4; break;
+				case 5: cat = 5; break;
 			}
 		}
 	}
 
 	public void ReadURL() throws Exception {
-		if (cat == 0) {
-        	URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=calvin");
-    	}
-    	if (cat == 1) {
-    		URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=forestgump");
-    	}
+		switch (cat) {
+			case 0: text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=calvin"); break;
+			case 1:	text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=forrestgump"); break;
+			case 2: text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=south_park"); break;
+			case 3:	text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=starwars"); break;
+			case 4:	text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=futurama"); break;
+			case 5: text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=albert_einstein"); break;
+		}
         in = new BufferedReader(new InputStreamReader(text.openStream()));
         ReadBigStringIn();
         in.close();
