@@ -14,7 +14,10 @@ public class Quote {
 	JPanel panel1, panel2;
 	JLabel jl;
 	String inputLine;
-	StringBuilder everything = new Stringbuilder();
+	StringBuilder everything = new StringBuilder();
+	BufferedReader in;
+
+	    String line;
 	
 	public static void main(String[] args) {
 		Quote quote = new Quote();
@@ -89,11 +92,19 @@ public class Quote {
 
 	public void ReadURL() throws Exception {
         URL text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=1&source=calvin");
-        BufferedReader in = new BufferedReader(new InputStreamReader(text.openStream()));
-        inputLine = in.readLine();
+        in = new BufferedReader(new InputStreamReader(text.openStream()));
+        ReadBigStringIn();
         in.close();
         jl.setText(inputLine);
 
     } //end ReadURL
+
+	public String ReadBigStringIn() throws IOException {
+	    while( (line = in.readLine()) != null) {
+	       everything.append(line);
+	    }
+	    inputLine = everything.toString();
+	    return everything.toString();
+	}
 		
 }	// end class ComponentExample
