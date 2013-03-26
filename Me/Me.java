@@ -53,7 +53,7 @@ public class Me {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().add(canvas); //Add ContentPane 
 		frame.setBackground(Color.gray);
-		frame.setSize(500, 500); //500x500 JFrame
+		frame.setSize(500, 501); //500x500 JFrame
 		frame.setLocation(300, 0);
 		frame.setVisible(true); //set JFrame visable
 	}
