@@ -99,6 +99,7 @@ public class Quote {
     	jl = new JLabel("Hello.");
     	jl.setFont(new Font("Helvetica", Font.PLAIN, 16));
     	jl.setForeground(Color.red);
+    	jl.setBackground(Color.white);
         panel2.add(jl);
 	}
 
@@ -151,7 +152,6 @@ public class Quote {
         ReadBigStringIn();
         in.close();
 		jl.setText("<html><div style=width:300px><p>" + inputLine + "</p></div></html>");
-       // jl.setText(inputLine);
 
     } //end ReadURL
 
