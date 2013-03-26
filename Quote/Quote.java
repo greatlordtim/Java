@@ -1,13 +1,13 @@
-// Jimmy Liu
-// March 23, 2013
+// Author: Jimmy Liu
+// March 25, 2013
 // Quote.java
-// Display quotes
+// Display quotes from iheartquotes.com
 
 // Class Methods
 
 // Class Variables
 
-// API Usage (Ilovequotes):
+// API Usage (iheartquotes):
 // format: return the result 'text', 'html', or 'json' format. The default is text.
 // max_lines: maximum number of lines in the quote.
 // min_lines: minimum number of lines in the quote.
@@ -45,6 +45,7 @@ public class Quote {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBackground(Color.gray);
 		frame.setVisible(true);
+		frame.setResizable(false);
 		panel1 = new JPanel();
 		panel2 = new JPanel();
 		panel1.setPreferredSize(new Dimension(400,200));
@@ -101,12 +102,13 @@ public class Quote {
     	jl.setForeground(Color.red);
     	jl.setBackground(Color.white);
         panel2.add(jl);
+        panel1.revalidate();
+        panel2.revalidate();
 	}
 
 	class JButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			try {ReadURL();}
-			catch (Exception f) {}
+			try {ReadURL();} catch (Exception f) {}
 		} //end actionPerformed
 	} //end ActionListerne
 
@@ -162,5 +164,4 @@ public class Quote {
 	    inputLine = everything.toString();
 	    return everything.toString();
 	}
-		
-}	// end class ComponentExample
+}	// end class Quote
