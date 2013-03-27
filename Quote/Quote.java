@@ -37,11 +37,12 @@ import java.io.*;
 import java.net.*;
 
 public class Quote {
-	JFrame frame; JPanel panel1, panel2; JSlider slider2; JLabel jl; JComboBox comboBox1; ButtonGroup group; JRadioButton r, g, b;
+	JFrame frame; JPanel panel1, panel2; JSlider slider2; JLabel jl, jl2; JComboBox comboBox1; ButtonGroup group; JRadioButton r, g, b;
 	String inputLine;
 	BufferedReader in;
 	URL text;
 	int cat = 0;
+	long duration;
 	
 	public static void main(String[] args) {
 		Quote quote = new Quote();
@@ -67,11 +68,15 @@ public class Quote {
 		frame.add(panel2);
 
 		JButton jb = new JButton("PRESS FOR A RANDOM QUOTE");
-		jb.setFont(new Font("Helvetica", Font.BOLD, 20));
+		jb.setFont(new Font("Helvetica", Font.PLAIN, 23));
 		JButtonListener jblistener = new JButtonListener();
 		jb.addActionListener(jblistener);
 		jb.setPreferredSize(new Dimension(390, 80));
 		panel1.add(jb);
+		jl2 = new JLabel("");
+        jl2.setFont(new Font("Helvetica", Font.PLAIN, 10));
+        jl2.setPreferredSize(new Dimension(350, 30));
+        panel1.add(jl2);
 
 		group = new ButtonGroup();
 		r = new JRadioButton("Red");
@@ -88,7 +93,7 @@ public class Quote {
 		panel1.add(r);
 		panel1.add(g);
 		panel1.add(b);
-		b.setPreferredSize(new Dimension(100, 200));
+		b.setPreferredSize(new Dimension(100, 150));
 
 		comboBox1 = new JComboBox();
 		comboBox1.addItem("Calvin");
@@ -109,20 +114,25 @@ public class Quote {
     	JSliderListener jlistener = new JSliderListener();
     	slider2.addChangeListener(jlistener);
     	panel1.add(slider2);
-    	slider2.setPreferredSize(new Dimension(390, 80));
+    	slider2.setPreferredSize(new Dimension(300, 80));
 
     	jl = new JLabel("Hello.");
     	jl.setFont(new Font("Helvetica", Font.PLAIN, 16));
     	jl.setForeground(Color.red);
     	jl.setBackground(Color.white);
         panel2.add(jl);
-        panel1.revalidate();
+
+		panel1.revalidate();
         panel2.revalidate();
 	}
 
 	class JButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			long startTime = System.nanoTime();
 			try {ReadURL();} catch (Exception f) {}
+			long endTime = System.nanoTime();
+			duration = endTime - startTime;
+			jl2.setText("It took " + duration + " nanoseconds to retreive the API");
 		} //end actionPerformed
 	} //end ActionListerne
 
