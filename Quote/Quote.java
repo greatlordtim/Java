@@ -42,7 +42,7 @@ public class Quote {
 	BufferedReader in;
 	URL text;
 	int cat = 0;
-	long duration;
+	double duration;
 	
 	public static void main(String[] args) {
 		Quote quote = new Quote();
@@ -75,7 +75,7 @@ public class Quote {
 		panel1.add(jb);
 		jl2 = new JLabel("");
         jl2.setFont(new Font("Helvetica", Font.PLAIN, 10));
-        jl2.setPreferredSize(new Dimension(350, 30));
+        jl2.setPreferredSize(new Dimension(360, 30));
         panel1.add(jl2);
 
 		group = new ButtonGroup();
@@ -131,8 +131,9 @@ public class Quote {
 			long startTime = System.nanoTime();
 			try {ReadURL();} catch (Exception f) {}
 			long endTime = System.nanoTime();
-			duration = endTime - startTime;
-			jl2.setText("It took " + duration + " nanoseconds to retreive the API");
+			long d = endTime - startTime;
+			duration = (double)d /1000000000.0;
+			jl2.setText("It took " + duration + " seconds to retreive the API");
 		} //end actionPerformed
 	} //end ActionListerne
 
