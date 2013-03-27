@@ -66,11 +66,11 @@ public class Quote {
 		frame.add(panel1);
 		frame.add(panel2);
 
-						
 		JButton jb = new JButton("PRESS FOR A RANDOM QUOTE");
 		jb.setFont(new Font("Helvetica", Font.BOLD, 20));
 		JButtonListener jblistener = new JButtonListener();
 		jb.addActionListener(jblistener);
+		jb.setPreferredSize(new Dimension(390, 80));
 		panel1.add(jb);
 
 		group = new ButtonGroup();
@@ -88,17 +88,9 @@ public class Quote {
 		panel1.add(r);
 		panel1.add(g);
 		panel1.add(b);
+		b.setPreferredSize(new Dimension(100, 200));
 
-		slider2 = new JSlider(16, 24, 16);
-    	slider2.setMajorTickSpacing(2);
-    	slider2.setPaintTicks(true);
-    	slider2.setPaintLabels(true);
-    	slider2.setSnapToTicks(true);
-    	JSliderListener jlistener = new JSliderListener();
-    	slider2.addChangeListener(jlistener);
-    	panel1.add(slider2);
-
-    	comboBox1 = new JComboBox();
+		comboBox1 = new JComboBox();
 		comboBox1.addItem("Calvin");
 		comboBox1.addItem("Forest Gump");
 		comboBox1.addItem("South Park");
@@ -108,6 +100,16 @@ public class Quote {
 		ComboBoxListener cblistener = new ComboBoxListener();
 		comboBox1.addActionListener(cblistener);
 		panel1.add(comboBox1);
+
+		slider2 = new JSlider(16, 24, 16);
+    	slider2.setMajorTickSpacing(2);
+    	slider2.setPaintTicks(true);
+    	slider2.setPaintLabels(true);
+    	slider2.setSnapToTicks(true);
+    	JSliderListener jlistener = new JSliderListener();
+    	slider2.addChangeListener(jlistener);
+    	panel1.add(slider2);
+    	slider2.setPreferredSize(new Dimension(390, 80));
 
     	jl = new JLabel("Hello.");
     	jl.setFont(new Font("Helvetica", Font.PLAIN, 16));
