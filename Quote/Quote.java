@@ -87,7 +87,7 @@ public class Quote {
 		comboBox1 = new JComboBox(); //Create new comoboBox
 		comboBox1.addItem("Calvin"); 
 		comboBox1.addItem("Forest Gump");
-		comboBox1.addItem("South Park");
+		comboBox1.addItem("Work");
 		comboBox1.addItem("Star Wars");
 		comboBox1.addItem("Futurama");
 		comboBox1.addItem("Albert Einstein");
@@ -159,7 +159,7 @@ public class Quote {
 		switch (cat) { //Get from above, what catagory
 			case 0: text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=calvin"); break;
 			case 1:	text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=forrestgump"); break;
-			case 2: text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=south_park"); break;
+			case 2: text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=work"); break;
 			case 3:	text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=starwars"); break;
 			case 4:	text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=futurama"); break;
 			case 5: text = new URL("http://www.iheartquotes.com/api/v1/random?show_permalink=false&show_source=false&max_lines=3&source=albert_einstein"); break;
