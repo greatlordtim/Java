@@ -9,12 +9,18 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.io.*;
 import java.util.*;
-import java.net.*
+import java.net.*;
 
 public class MyFrame {
 	private MyColorPanel colors;
 	private MyButtonPanel buttons;
 	private JFrame frame;
+	JTextField jt;
+	String username, inputLine;
+	BufferedReader in;
+	JLabel sentence;
+	URL text;
+	public CardLayout cards;
 	
 	public static void main (String[] args) {
 		MyFrame gpa = new MyFrame();
@@ -43,7 +49,6 @@ public class MyFrame {
 	class MyColorPanel extends JPanel implements MouseListener {
 		//////////////////////////////////////////////////////////
 		// Declare CardLayout and JPanel objects
-		private CardLayout cards;
 		private JPanel color1, color2, color3;
 
 		
@@ -62,6 +67,22 @@ public class MyFrame {
 			color3 = new JPanel();
 			color3.setBackground(Color.red);
 
+			JLabel jl = new JLabel("How much Reddit karma do you have?");
+			jl.setFont(new Font("Helvetica", Font.PLAIN, 18));
+			jl.setForeground(Color.white);
+			color1.add(jl);
+
+		 	jt = new JTextField("Enter your username");
+			color1.add(jt);
+
+			JButton jb = new JButton("Check now");
+			color1.add(jb);
+			JBListener jblistener = new JBListener();
+			jb.addActionListener(jblistener);
+
+			sentence = new JLabel("");
+			color2.add(sentence);
+
 			////////////////////////////////////////////////////////
 			// Add the MouseListener to *each* JPanel and add
 			// each JPanel to MyColorPanel (this)
@@ -75,11 +96,7 @@ public class MyFrame {
 			this.add(color3, "Panel 3");
 
 		}
-		public void mousePressed(MouseEvent evt) {
-			////////////////////////////////////////////////////////
-			// Select the next panel on the stack of panels
-			cards.next(colors);
-		}
+		public void mousePressed(MouseEvent evt) {}
 		public void mouseEntered(MouseEvent evt) { }
 		public void mouseExited(MouseEvent evt) { }
 		public void mouseClicked(MouseEvent evt) { }
@@ -109,11 +126,38 @@ public class MyFrame {
 			langField = new JTextField(languages[0], 9);
 			this.add(langField);
 		}
+
 		
 		public void actionPerformed (ActionEvent a) {
 			String command = a.getActionCommand();
 			for (int i=0; i < 3; i++)
 				if (command.equals(languages[i])) langField.setText(languages[i]);
 		}
+	}
+
+	class JBListener implements ActionListener { //ACtion for JButton to get a new quote
+			public void actionPerformed(ActionEvent e) {
+					String search1 = "link_karma"; String search2 = "comment_karma";
+					username = jt.getText();
+					try {text = new URL("http://www.reddit.com/user/" + username + "/about.json");}  catch (Exception f) {}
+					try {in = new BufferedReader(new InputStreamReader(text.openStream())); } catch (Exception f) {}
+        			ReadBigStringIn(); 
+        			System.out.println(inputLine);
+        			try {in.close();} catch (Exception f) {}
+        			cards.next(colors);
+        			int t = inputLine.indexOf(search1);
+        			int j = inputLine.indexOf(search2);
+        			String karma = inputLine.substring(t + 13, t + 14);
+        			String karma2 = inputLine.substring(j + 16, j + 18);
+        			sentence.setText("Hey " + username + " looks like you have " + karma + " link karma and " + karma2 + " comment karma.");
+        }
+	}
+
+	public String ReadBigStringIn() { //Read our txt int a string
+		String line;
+		StringBuilder everything = new StringBuilder();
+	    try {while( (line = in.readLine()) != null) { everything.append(line); }} catch (Exception f) {}
+	    inputLine = everything.toString();
+	    return everything.toString();
 	}
 }
