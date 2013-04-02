@@ -16,7 +16,7 @@ public class MyFrame {
 	private MyButtonPanel buttons;
 	private JFrame frame;
 	JTextField jt;
-	String username, inputLine;
+	String username, inputLine, karma, karma2;
 	BufferedReader in;
 	JLabel sentence;
 	URL text;
@@ -29,7 +29,7 @@ public class MyFrame {
 	
 	public void Run() {
 		// Initialize and set up the JFrame
-		frame = new JFrame();
+		frame = new JFrame("Reddit Karma Checker");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
 
@@ -47,19 +47,13 @@ public class MyFrame {
 	}
 	
 	class MyColorPanel extends JPanel implements MouseListener {
-		//////////////////////////////////////////////////////////
-		// Declare CardLayout and JPanel objects
 		private JPanel color1, color2, color3;
 
 		
-		public MyColorPanel() {			// constructor
-			////////////////////////////////////////////////////////
-			// Initialize CardLayout and setLayout() to this panel
+		public MyColorPanel() {	
+
 			cards = new CardLayout();
 			this.setLayout(cards);
-
-			////////////////////////////////////////////////////////
-			// Create blue, green and red JPanels and set their backgrounds
 			color1 = new JPanel();
 			color1.setBackground(Color.blue);
 			color2 = new JPanel();
@@ -68,7 +62,7 @@ public class MyFrame {
 			color3.setBackground(Color.red);
 
 			JLabel jl = new JLabel("How much Reddit karma do you have?");
-			jl.setFont(new Font("Helvetica", Font.PLAIN, 18));
+			jl.setFont(new Font("Helvetica", Font.PLAIN, 22));
 			jl.setForeground(Color.white);
 			color1.add(jl);
 
@@ -82,6 +76,11 @@ public class MyFrame {
 
 			sentence = new JLabel("");
 			color2.add(sentence);
+
+			JButton jb2 = new JButton("Try again?");
+			color2.add(jb2);
+			JBListener2 jblistener2 = new JBListener2();
+			jb2.addActionListener(jblistener2);
 
 			////////////////////////////////////////////////////////
 			// Add the MouseListener to *each* JPanel and add
@@ -109,22 +108,9 @@ public class MyFrame {
 		private String[] languages = { "English", "French", "German" };
 		
 		public MyButtonPanel() {
-			////////////////////////////////////////////////////////
-			// Change FlowLayout (default) to GridLayout
-			// with 1 row and 4 columns.
-			this.setLayout(new GridLayout(1, 4));
-					
-			lang1 = new JButton (languages[0]);
-			lang1.addActionListener(this); 		
-			this.add(lang1);
-			lang2 = new JButton (languages[1]);
-			lang2.addActionListener(this); 		
-			this.add(lang2);
-			lang3 = new JButton (languages[2]);
-			lang3.addActionListener(this); 		
-			this.add(lang3);
-			langField = new JTextField(languages[0], 9);
-			this.add(langField);
+			this.setLayout(new GridLayout(1, 1));
+			JLabel name = new JLabel("Created by Jimmy Liu. Powered by Reddit API.");
+			this.add(name);
 		}
 
 		
@@ -132,8 +118,8 @@ public class MyFrame {
 			String command = a.getActionCommand();
 			for (int i=0; i < 3; i++)
 				if (command.equals(languages[i])) langField.setText(languages[i]);
+			}
 		}
-	}
 
 	class JBListener implements ActionListener { //ACtion for JButton to get a new quote
 			public void actionPerformed(ActionEvent e) {
@@ -141,16 +127,26 @@ public class MyFrame {
 					username = jt.getText();
 					try {text = new URL("http://www.reddit.com/user/" + username + "/about.json");}  catch (Exception f) {}
 					try {in = new BufferedReader(new InputStreamReader(text.openStream())); } catch (Exception f) {}
-        			ReadBigStringIn(); 
-        			System.out.println(inputLine);
+        			ReadBigStringIn();
         			try {in.close();} catch (Exception f) {}
         			cards.next(colors);
-        			int t = inputLine.indexOf(search1);
-        			int j = inputLine.indexOf(search2);
-        			String karma = inputLine.substring(t + 13, t + 14);
-        			String karma2 = inputLine.substring(j + 16, j + 18);
-        			sentence.setText("Hey " + username + " looks like you have " + karma + " link karma and " + karma2 + " comment karma.");
+        			int t = inputLine.indexOf(search1); int a = inputLine.indexOf(" ", t + 13); int j = inputLine.indexOf(search2); int b = inputLine.indexOf(" ", j + 16);
+        			if (t == -1) {
+        				karma = "0";
+        				karma2 = "0";
+        			}
+        			else {
+        				karma = inputLine.substring(t + 13, a - 1);
+        				karma2 = inputLine.substring(j + 16, b - 1);
+        			}
+        			sentence.setText("<html><div style=width:350px><p>Hey " + username + " looks like you have " + karma + " link karma and " + karma2 + " comment karma.</p></div></html>");
         }
+	}
+
+	class JBListener2 implements ActionListener { //ACtion for JButton to get a new quote
+			public void actionPerformed(ActionEvent e) {
+				cards.previous(colors);
+		}
 	}
 
 	public String ReadBigStringIn() { //Read our txt int a string
