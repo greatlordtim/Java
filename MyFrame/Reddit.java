@@ -40,7 +40,7 @@ public class Reddit {
 		// Initialize and set up the JFrame
 		frame = new JFrame("Java Reddit Reader");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 600);
+		frame.setSize(730, 600);
 
 		// Create the colors panel and buttons panel
 		colors = new MyColorPanel();
@@ -82,6 +82,11 @@ public class Reddit {
 			imagel = new JLabel(image2);
 			color2.add(imagel);
 
+			JButton jb2 = new JButton("Go Back");
+			color2.add(jb2);
+			JBListener2 jblistener2 = new JBListener2();
+			jb2.addActionListener(jblistener2);
+
 			color1.addMouseListener(this);
 			this.add(color1, "Panel 1");
 
@@ -92,11 +97,12 @@ public class Reddit {
 			this.add(color3, "Panel 3");
 
 			JBListener jblistener = new JBListener();
+
 			for (int p = 0; p < 15; p++) {
 				JLabel jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + content[0][p] + "   [Score: " + content[1][p]+ "]" + "\n</p></div></html>");
 				jl1.setForeground(Color.white);
 				color1.add(jl1);
-				jb = new JButton("View");
+				jb = new JButton("View" + p);
 				jb.addActionListener(jblistener);
 				color1.add(jb);
 			}
@@ -157,7 +163,11 @@ public class Reddit {
 
 	public class JBListener implements ActionListener { //Action for viewing a picture
 			public void actionPerformed(ActionEvent e) {
-				try {image = ImageIO.read(new URL(content[2][1] + ".jpg"));} catch (Exception t) {}
+				String buttontext = new String (jb.getText());
+				String buttonnumber = new String (buttontext.substring(4));
+				int c = Integer.parseInt(buttonnumber);
+				System.out.println(buttonnumber);
+				try {image = ImageIO.read(new URL(content[2][c] + ".jpg"));} catch (Exception t) {}
 				ImageIcon image2 = new ImageIcon(image);
 				image2.getImage().flush();
 				imagel.setIcon(image2);
@@ -165,6 +175,12 @@ public class Reddit {
 				color2.repaint();
 			}
 	}
+
+	public class JBListener2 implements ActionListener { //Action for viewing a picture
+			public void actionPerformed(ActionEvent e) {
+				cards.previous(colors);
+			}
+		}
 	
 	class MyButtonPanel extends JPanel implements ActionListener {
 		private JButton lang1, lang2, lang3;
