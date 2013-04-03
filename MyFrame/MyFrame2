@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 
-public class MyFrame {
+public class MyFrame2 {
 	private MyColorPanel colors;
 	private MyButtonPanel buttons;
 	private JFrame frame;
@@ -23,7 +23,7 @@ public class MyFrame {
 	public CardLayout cards;
 	
 	public static void main (String[] args) {
-		MyFrame gpa = new MyFrame();
+		MyFrame2 gpa = new MyFrame2();
 		gpa.Run();
 	}
 	
