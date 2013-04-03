@@ -1,7 +1,7 @@
 // Author: Jimmy Liu
 // March 29, 2013
-// MyFrame.java
-// Get Reddit Karma
+// Reddit.java
+// Get the latest and cutest content from Reddit r/aww.
 
 import java.awt.*;
 import java.awt.event.*;
@@ -19,7 +19,7 @@ public class Reddit {
 	private JFrame frame;
 	JButton jb;
 	String inputLine;
-	BufferedReader in;
+	BufferedReader in, in2;
 	JLabel sentence, imagel;
 	URL text, imageurl;
 	int z = 0;
@@ -27,7 +27,7 @@ public class Reddit {
 	ImageIcon image2;
 	BufferedImage image;
 	JPanel color1, color2, color3;
-	String[][] content = new String[4][100];
+	String[][] content = new String[100][300];
 	public CardLayout cards;
 
 	
@@ -62,7 +62,6 @@ public class Reddit {
 			if (q == 0) {
 				try {image = ImageIO.read(new URL("http://placehold.it/350x150"));} catch (Exception e) {}
 				image2 = new ImageIcon(image);
-				System.out.println("hi");
 				q++;
 			}
 			getContent();
@@ -97,7 +96,7 @@ public class Reddit {
 			this.add(color3, "Panel 3");
 
 			for (int p = 0; p < 15; p++) {
-				JLabel jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + content[0][p] + "   [Score: " + content[1][p]+ "]" + "\n</p></div></html>");
+				JLabel jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + content[0][p] + "   [Author: " + content[3][p]+ "]" + "   [Score: " + content[1][p]+ "]" + "\n</p></div></html>");
 				jl1.setForeground(Color.white);
 				color1.add(jl1);
 				jb = new JButton("View");
@@ -111,11 +110,12 @@ public class Reddit {
 								imagel.setIcon(image2);
 								cards.next(colors);
 								color2.repaint();
+        						
         				}
     			}); //end action listener
 
 				color1.add(jb);
-			}
+			} //end for statement
 
 		}
 		public void mousePressed(MouseEvent evt) {}
@@ -129,11 +129,11 @@ public class Reddit {
 			try {in = new BufferedReader(new InputStreamReader(text.openStream())); } catch (Exception f) {}
         	ReadBigStringIn();
         	try {in.close();} catch (Exception f) {}
+        	System.out.println("API LOAD: COMPLETE");
 
 			// parse JSON "title"
 			for (int i = -1; (i = inputLine.indexOf("\"title\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf("\", \"", i);
-			    System.out.println(inputLine.substring(i+10, a));
 			    content[0][z] = inputLine.substring(i+10, a);
 			    z++;
 			} //end "title" parse
@@ -143,7 +143,6 @@ public class Reddit {
 			// parse JSON "score"
 			for (int i = -1; (i = inputLine.indexOf("\"score\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf(",", i);
-			    System.out.println(inputLine.substring(i+9, a));
 			    content[1][z] = inputLine.substring(i+9, a);
 			    z++;
 			} //end "score" parse
@@ -152,12 +151,28 @@ public class Reddit {
 
 			for (int i = -1; (i = inputLine.indexOf("\"url\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf(",", i);
-			    System.out.println(inputLine.substring(i+8, a-1));
 			    content[2][z] = inputLine.substring(i+8, a-1);
 			    z++;
-			} //end "score" parse
+			} //end "url" parse
 
-		}
+			z = 0;
+
+			for (int i = -1; (i = inputLine.indexOf("\"author\":", i + 1)) != -1; ) {
+			    int a = inputLine.indexOf(",", i);
+			    content[3][z] = inputLine.substring(i+11, a-1);
+			    z++;
+			} //end "author" parse
+
+			for (int i = -1; (i = inputLine.indexOf("\"permalink\":", i + 1)) != -1; ) {
+			    int a = inputLine.indexOf(",", i);
+			    content[4][z] = inputLine.substring(i+14, a-1);
+			    z++;
+			} //end "permalink" parse
+
+			System.out.println("JSON PARSE: COMPLETE");
+
+		} //end get content
+
 
 		public String ReadBigStringIn() { //Read our txt int a string
 			String line;
@@ -165,7 +180,7 @@ public class Reddit {
 		    try {while( (line = in.readLine()) != null) { everything.append(line); }} catch (Exception f) {}
 		    inputLine = everything.toString();
 		    return everything.toString();
-		}	
+		} //end get content	
 
 
 
@@ -175,7 +190,7 @@ public class Reddit {
 			public void actionPerformed(ActionEvent e) {
 				cards.previous(colors);
 			}
-		}
+	}
 	
 	class MyButtonPanel extends JPanel implements ActionListener {
 		private JButton lang1, lang2, lang3;
