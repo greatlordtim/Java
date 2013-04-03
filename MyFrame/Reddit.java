@@ -10,20 +10,26 @@ import javax.swing.event.*;
 import java.io.*;
 import java.util.*;
 import java.net.*;
-import java.util.regex.Pattern;
+import javax.imageio.*;
+import java.awt.image.*;
 
 public class Reddit {
 	private MyColorPanel colors;
 	private MyButtonPanel buttons;
 	private JFrame frame;
 	JButton jb;
-	String username, inputLine, karma, karma2;
+	String inputLine;
 	BufferedReader in;
-	JLabel sentence;
-	URL text, image;
+	JLabel sentence, imagel;
+	URL text, imageurl;
 	int z = 0;
+	int q = 0;
+	ImageIcon image2;
+	BufferedImage image;
+	JPanel color1, color2, color3;
 	String[][] content = new String[4][100];
 	public CardLayout cards;
+
 	
 	public static void main (String[] args) {
 		Reddit gpa = new Reddit();
@@ -47,14 +53,19 @@ public class Reddit {
 
 		// make the frame visible
 		frame.setVisible(true);
+
 	}
 	
 	class MyColorPanel extends JPanel implements MouseListener {
-		private JPanel color1, color2, color3;
 
-		
 		public MyColorPanel() {	
-
+			if (q == 0) {
+				try {image = ImageIO.read(new URL("http://placehold.it/350x150"));} catch (Exception e) {}
+				image2 = new ImageIcon(image);
+				System.out.println("hi");
+				q++;
+			}
+			getContent();
 			cards = new CardLayout();
 			this.setLayout(cards);
 			color1 = new JPanel();
@@ -68,6 +79,8 @@ public class Reddit {
 			jl.setFont(new Font("Helvetica", Font.PLAIN, 22));
 			jl.setForeground(Color.white);
 			color1.add(jl);
+			imagel = new JLabel(image2);
+			color2.add(imagel);
 
 			color1.addMouseListener(this);
 			this.add(color1, "Panel 1");
@@ -77,7 +90,6 @@ public class Reddit {
 
 			color3.addMouseListener(this);
 			this.add(color3, "Panel 3");
-			getContent();
 
 			JBListener jblistener = new JBListener();
 			for (int p = 0; p < 15; p++) {
@@ -124,8 +136,8 @@ public class Reddit {
 
 			for (int i = -1; (i = inputLine.indexOf("\"url\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf(",", i);
-			    System.out.println(inputLine.substring(i+8, a));
-			    content[2][z] = inputLine.substring(i+8, a);
+			    System.out.println(inputLine.substring(i+8, a-1));
+			    content[2][z] = inputLine.substring(i+8, a-1);
 			    z++;
 			} //end "score" parse
 
@@ -139,16 +151,18 @@ public class Reddit {
 		    return everything.toString();
 		}	
 
-		public void paintComponent ( Graphics g ) {
-
-		}
 
 
-	} //end panel
+	} //end MyColorPanel
 
-	class JBListener implements ActionListener { //Action for viewing a picture
+	public class JBListener implements ActionListener { //Action for viewing a picture
 			public void actionPerformed(ActionEvent e) {
-				try {image = new URL(content[2][0]);} catch (Exception z) {}
+				try {image = ImageIO.read(new URL(content[2][1] + ".jpg"));} catch (Exception t) {}
+				ImageIcon image2 = new ImageIcon(image);
+				image2.getImage().flush();
+				imagel.setIcon(image2);
+				cards.next(colors);
+				color2.repaint();
 			}
 	}
 	
