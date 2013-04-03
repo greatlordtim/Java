@@ -96,14 +96,24 @@ public class Reddit {
 			color3.addMouseListener(this);
 			this.add(color3, "Panel 3");
 
-			JBListener jblistener = new JBListener();
-
 			for (int p = 0; p < 15; p++) {
 				JLabel jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + content[0][p] + "   [Score: " + content[1][p]+ "]" + "\n</p></div></html>");
 				jl1.setForeground(Color.white);
 				color1.add(jl1);
-				jb = new JButton("View" + p);
-				jb.addActionListener(jblistener);
+				jb = new JButton("View");
+				final int buttonIndex = p;
+
+				jb.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent ae2) {
+								try {image = ImageIO.read(new URL(content[2][buttonIndex] + ".jpg"));} catch (Exception t) {}
+								ImageIcon image2 = new ImageIcon(image.getScaledInstance(650, 500, Image.SCALE_SMOOTH));
+								image2.getImage().flush();
+								imagel.setIcon(image2);
+								cards.next(colors);
+								color2.repaint();
+        				}
+    			}); //end action listener
+
 				color1.add(jb);
 			}
 
@@ -160,21 +170,6 @@ public class Reddit {
 
 
 	} //end MyColorPanel
-
-	public class JBListener implements ActionListener { //Action for viewing a picture
-			public void actionPerformed(ActionEvent e) {
-				String buttontext = new String (jb.getText());
-				String buttonnumber = new String (buttontext.substring(4));
-				int c = Integer.parseInt(buttonnumber);
-				System.out.println(buttonnumber);
-				try {image = ImageIO.read(new URL(content[2][c] + ".jpg"));} catch (Exception t) {}
-				ImageIcon image2 = new ImageIcon(image);
-				image2.getImage().flush();
-				imagel.setIcon(image2);
-				cards.next(colors);
-				color2.repaint();
-			}
-	}
 
 	public class JBListener2 implements ActionListener { //Action for viewing a picture
 			public void actionPerformed(ActionEvent e) {
