@@ -28,6 +28,7 @@ public class Reddit {
 	BufferedImage image;
 	JPanel color1, color2, color3;
 	String[][] content = new String[100][300];
+	double seconds;
 	public CardLayout cards;
 
 	
@@ -125,6 +126,7 @@ public class Reddit {
 		public void mouseReleased(MouseEvent evt) { }
 
 		public void getContent() {
+			long startTime = System.nanoTime();
 			try {text = new URL("http://www.reddit.com/r/aww/.json");}  catch (Exception f) {}
 			try {in = new BufferedReader(new InputStreamReader(text.openStream())); } catch (Exception f) {}
         	ReadBigStringIn();
@@ -170,6 +172,9 @@ public class Reddit {
 			} //end "permalink" parse
 
 			System.out.println("JSON PARSE: COMPLETE");
+			long endTime = System.nanoTime();
+			long duration = endTime - startTime;
+			seconds = (double)duration / 1000000000.0;
 
 		} //end get content
 
@@ -198,7 +203,7 @@ public class Reddit {
 		
 		public MyButtonPanel() {
 			this.setLayout(new GridLayout(1, 1));
-			JLabel name = new JLabel("Created by Jimmy Liu. Powered by Reddit API.");
+			JLabel name = new JLabel(" Created by Jimmy Liu. Powered by Reddit API. It took " + seconds + " seconds to call the API.");
 			this.add(name);
 		}
 
