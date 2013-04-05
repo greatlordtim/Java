@@ -1,33 +1,3 @@
-// Author: Jimmy Liu
-// March 25, 2013
-// Quote.java
-// Display quotes from iheartquotes.com. Ability to choose catogories, font size, and font color
-
-// Class Methods
-//  Run: Creates all the elements needed by the program.  
-//  JButtonListener: When button is pressed, goes on the internet and gets a new quote
-//  JRadioListener: When radio button is changed, tells listener to use a case statement to switch font colors
-//  JSliderListener: When slider is changed, gets the slider changed
-//  ComboBoxListener: When combo box is changed, change the API where the quote is getting drawn from
-//  ReadURL: NET for reading the API
-//  ReadBigStringIn: Class for reading the string, using a stringbuilder to combine everything into one string
-
-// Class Variables
-//	JElements frame, panel1, panel2, slider2, jl, comboBox1, gropu, r, g, b,:
-//	String inputLine: This is what the quote comes from. String for the quotes
-//  BufferedREader in: This reads the .txt format generated from the URL API, and creates it into a string.
-//  URL text: This is the URL for the API used to draw the URL's
-//  int cat: What catogory the user wants to see quotes from
-
-// API Usage (iheartquotes):
-// 	format: return the result 'text', 'html', or 'json' format. The default is text.
-// 	max_lines: maximum number of lines in the quote.
-// 	min_lines: minimum number of lines in the quote.
-// 	max_characters: maximum number of characters in the quote.
-// 	min_characters: minimum number of characters in the quote.
-// 	source: pulls quotes from one of the sources listed. Multiple sources should be space or "+" separated, ex: calvin+xfiles
-// 	show_permalink: show the quote's permalink at the bottom of the text by default. Turn this off with "false" or "0".
-// 	show_source: show the quote's source at the bottom of the text by default. Turn this off with "false" or "0".
 
 import java.awt.*;
 import java.awt.event.*;
