@@ -3,6 +3,8 @@
 // Reddit.java
 // Get the latest and cutest content from Reddit r/aww.
 
+// 
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -96,6 +98,13 @@ public class Reddit {
 			color3.addMouseListener(this);
 			this.add(color3, "Panel 3");
 
+			JSlider myslider = new JSlider(10, 30);
+			color1.add(myslider);
+			SliderChange sliderchange = new SliderChange();
+			myslider.addChangeListener(sliderchange);
+			myslider.setLayout(null);
+			myslider.setBounds(30, 30, 30, 30);
+
 			for (int p = 0; p < 15; p++) {
 				JLabel jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + content[0][p] + "   [Author: " + content[3][p]+ "]" + "   [Score: " + content[1][p]+ "]" + "\n</p></div></html>");
 				jl1.setForeground(Color.white);
@@ -165,12 +174,6 @@ public class Reddit {
 			    z++;
 			} //end "author" parse
 
-			for (int i = -1; (i = inputLine.indexOf("\"permalink\":", i + 1)) != -1; ) {
-			    int a = inputLine.indexOf(",", i);
-			    content[4][z] = inputLine.substring(i+14, a-1);
-			    z++;
-			} //end "permalink" parse
-
 			System.out.println("JSON PARSE: COMPLETE");
 			long endTime = System.nanoTime();
 			long duration = endTime - startTime;
@@ -195,6 +198,12 @@ public class Reddit {
 			public void actionPerformed(ActionEvent e) {
 				cards.previous(colors);
 			}
+	}
+
+	public class SliderChange implements ChangeListener {
+		public void stateChanged(ChangeEvent e) {
+			color1.setBackground(Color.black);
+		}
 	}
 	
 	class MyButtonPanel extends JPanel implements ActionListener {
