@@ -18,6 +18,7 @@ import java.awt.image.*;
 public class Reddit {
 	private MyColorPanel colors;
 	private MyButtonPanel buttons;
+	private MyAwesomePanel awesome;
 	private JFrame frame;
 	JButton jb;
 	String inputLine;
@@ -26,9 +27,10 @@ public class Reddit {
 	URL text, imageurl;
 	int z = 0;
 	int q = 0;
+	int u = 0;
 	ImageIcon image2;
 	BufferedImage image;
-	JPanel color1, color2, color3;
+	JPanel color1, color2, color3, color4, yolo;
 	String[][] content = new String[100][300];
 	double seconds;
 	public CardLayout cards;
@@ -48,11 +50,14 @@ public class Reddit {
 		// Create the colors panel and buttons panel
 		colors = new MyColorPanel();
 		buttons = new MyButtonPanel();
+		awesome = new MyAwesomePanel();
 		buttons.setBackground(Color.gray);
+		awesome.setBackground(Color.white);
 		
 		// add the JPanels to the frame
 		frame.getContentPane().add(colors, BorderLayout.CENTER);
 		frame.getContentPane().add(buttons, BorderLayout.SOUTH);
+		frame.getContentPane().add(awesome, BorderLayout.NORTH);
 
 		// make the frame visible
 		frame.setVisible(true);
@@ -76,6 +81,7 @@ public class Reddit {
 			color2.setBackground(Color.green);
 			color3 = new JPanel();
 			color3.setBackground(Color.red);
+			color4 = new JPanel();
 
 			JLabel jl = new JLabel("What's hot on Reddit r/aww?\n");
 			jl.setFont(new Font("Helvetica", Font.PLAIN, 22));
@@ -98,12 +104,18 @@ public class Reddit {
 			color3.addMouseListener(this);
 			this.add(color3, "Panel 3");
 
-			JSlider myslider = new JSlider(10, 30);
+			JSlider myslider = new JSlider(0, 1);
 			color1.add(myslider);
 			SliderChange sliderchange = new SliderChange();
 			myslider.addChangeListener(sliderchange);
-			myslider.setLayout(null);
-			myslider.setBounds(30, 30, 30, 30);
+
+			ButtonGroup bg = new ButtonGroup();
+			JRadioButton jradio = new JRadioButton("Helvetica");
+			JRadioButton jradio2 = new JRadioButton("Comic Sans");
+			bg.add(jradio);
+			bg.add(jradio2);
+			color1.add(jradio);
+			color1.add(jradio2);
 
 			for (int p = 0; p < 15; p++) {
 				JLabel jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + content[0][p] + "   [Author: " + content[3][p]+ "]" + "   [Score: " + content[1][p]+ "]" + "\n</p></div></html>");
@@ -202,7 +214,10 @@ public class Reddit {
 
 	public class SliderChange implements ChangeListener {
 		public void stateChanged(ChangeEvent e) {
-			color1.setBackground(Color.black);
+			switch (u) {
+				case 0: color1.setBackground(Color.BLACK); u = 1;break;
+				case 1: color1.setBackground(Color.blue); u = 0;break;
+			}
 		}
 	}
 	
@@ -220,4 +235,16 @@ public class Reddit {
 		public void actionPerformed (ActionEvent a) {
 			}
 		}
+
+		class MyAwesomePanel extends JPanel {
+		
+		public MyAwesomePanel() {
+			JLabel label4 = new JLabel("Reddit Viewer");
+			this.setLayout(null);
+			this.add(label4);
+			this.setBounds(0,0,40,40);
+			label4.setForeground(Color.black);
+			this.setVisible(true);
+		}
+	}
 }
