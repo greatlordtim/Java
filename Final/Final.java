@@ -20,7 +20,7 @@ public class Final {
 	URL card;
 	JPanel color1;
 	String token = new String("528uWf4NCb");
-	String set = new String("415");
+	int set = 415;
 	String question = new String("yolo");
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];  
@@ -54,14 +54,14 @@ public class Final {
 
 		public MyColorPanel() {
 			getSearch();
-			getCards();
 			cards = new CardLayout();
 			this.setLayout(cards);
 			color1 = new JPanel();
 			color1.setBackground(Color.blue); //First Background as blue
+			color1.addMouseListener(this); //NOT USED
+			this.add(color1, "Panel 1");
 
 			for (int p = 0; p < 15; p++) { //While array has stuff, print it out 
-				//HTML hacks for formatting = awesome
 				jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + searchresults[1][p] + "\n</p></div></html>");
 				jl1.setForeground(Color.white);
 				color1.add(jl1);
@@ -70,7 +70,9 @@ public class Final {
 
 				jb.addActionListener(new ActionListener() { //Mad science here
 						public void actionPerformed(ActionEvent ae2) {
-        						
+							set = Integer.parseInt(searchresults[0][buttonIndex]);
+        					getCards();
+
         				}
     			}); //end action listener
 				color1.add(jb);
