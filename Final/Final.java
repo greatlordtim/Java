@@ -123,7 +123,6 @@ public class Final {
 			for (int i = -1; (i = inputLine.indexOf("\"term\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf("\",", i);
 			    flashcards[0][z] = inputLine.substring(i + 9, a);
-			    System.out.println(flashcards[0][z]);
 			    z++;
 			} //end "term" parse
 
@@ -132,10 +131,14 @@ public class Final {
 			for (int i = -1; (i = inputLine.indexOf("\"definition\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf("\",", i);
 			    flashcards[1][z] = inputLine.substring(i + 15, a);
-			    System.out.println(flashcards[1][z]);
+
+			    System.out.println(flashcards[0][z]);
+				System.out.println(flashcards[1][z]);
+				System.out.println();
 			    z++;
 			} //end "definition" parse
 
+			System.out.println("--END OF SET--");
 		} //end get content
 
 		public String ReadBigStringIn() { //Read our txt int a string
