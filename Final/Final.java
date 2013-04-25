@@ -16,6 +16,8 @@ public class Final {
 	int z;
 	URL text, imageurl; //URL of API
 	JPanel color1;
+	String token = new String("528uWf4NCb");
+	String question = new String("yolo");
 	String[][] content = new String[100][300]; //Very big array for storing data
 	public CardLayout cards; //Card Layout
 
@@ -61,48 +63,22 @@ public class Final {
 		public void mouseReleased(MouseEvent evt) { }
 
 		public void getContent() {
-			try {text = new URL("http://www.reddit.com/r/aww/.json");}  catch (Exception f) {}
+			try {text = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + question);}  catch (Exception f) {}
 			try {in = new BufferedReader(new InputStreamReader(text.openStream())); } catch (Exception f) {}
         	ReadBigStringIn();
         	try {in.close();} catch (Exception f) {}
-        	System.out.println("API LOAD: COMPLETE");
 
-			// parse JSON "title"
-			for (int i = -1; (i = inputLine.indexOf("\"title\":", i + 1)) != -1; ) {
-			    int a = inputLine.indexOf("\", \"", i);
-			    content[0][z] = inputLine.substring(i+10, a);
+        	z = 0;
+			//parse JSON "title"
+			for (int i = -1; (i = inputLine.indexOf("\"id\":", i + 1)) != -1; ) {
+			    int a = inputLine.indexOf(",", i);
+			    content[0][z] = inputLine.substring(i + 6, a);
+			    System.out.println(content[0][z]);
 			    z++;
 			} //end "title" parse
 
-			z = 0;
-
-			// parse JSON "score"
-			for (int i = -1; (i = inputLine.indexOf("\"score\":", i + 1)) != -1; ) {
-			    int a = inputLine.indexOf(",", i);
-			    content[1][z] = inputLine.substring(i+9, a);
-			    z++;
-			} //end "score" parse
-
-			z = 0;
-
-			for (int i = -1; (i = inputLine.indexOf("\"url\":", i + 1)) != -1; ) {
-			    int a = inputLine.indexOf(",", i);
-			    content[2][z] = inputLine.substring(i+8, a-1);
-			    z++;
-			} //end "url" parse
-
-			z = 0;
-
-			for (int i = -1; (i = inputLine.indexOf("\"author\":", i + 1)) != -1; ) {
-			    int a = inputLine.indexOf(",", i);
-			    content[3][z] = inputLine.substring(i+11, a-1);
-			    z++;
-			} //end "author" parse
-
-			System.out.println("JSON PARSE: COMPLETE");
 
 		} //end get content
-
 
 		public String ReadBigStringIn() { //Read our txt int a string
 			String line;
