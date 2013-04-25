@@ -14,11 +14,16 @@ public class Final {
 	String inputLine; //JSON is here
 	BufferedReader in;
 	int z;
-	URL text, imageurl; //URL of API
+	JLabel jl1;
+	JButton jb;
+	URL search; //URL of 
+	URL card;
 	JPanel color1;
 	String token = new String("528uWf4NCb");
+	String set = new String("415");
 	String question = new String("yolo");
-	String[][] content = new String[100][300]; //Very big array for storing data
+	String[][] searchresults = new String[2][300];
+	String[][] flashcards = new String[2][300];  
 	public CardLayout cards; //Card Layout
 
 	
@@ -48,11 +53,29 @@ public class Final {
 	class MyColorPanel extends JPanel implements MouseListener {
 
 		public MyColorPanel() {
-			getContent();
+			getSearch();
+			getCards();
 			cards = new CardLayout();
 			this.setLayout(cards);
 			color1 = new JPanel();
 			color1.setBackground(Color.blue); //First Background as blue
+
+			for (int p = 0; p < 15; p++) { //While array has stuff, print it out 
+				//HTML hacks for formatting = awesome
+				jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + searchresults[1][p] + "\n</p></div></html>");
+				jl1.setForeground(Color.white);
+				color1.add(jl1);
+				jb = new JButton("View");
+				final int buttonIndex = p; //Button Index is pretty awesome
+
+				jb.addActionListener(new ActionListener() { //Mad science here
+						public void actionPerformed(ActionEvent ae2) {
+        						
+        				}
+    			}); //end action listener
+				color1.add(jb);
+			} //end for statement
+
 		}
 
 		//Nothing to do here
@@ -62,21 +85,54 @@ public class Final {
 		public void mouseClicked(MouseEvent evt) { }
 		public void mouseReleased(MouseEvent evt) { }
 
-		public void getContent() {
-			try {text = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + question);}  catch (Exception f) {}
-			try {in = new BufferedReader(new InputStreamReader(text.openStream())); } catch (Exception f) {}
+		public void getSearch() {
+			try {search = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + question);}  catch (Exception f) {}
+			try {in = new BufferedReader(new InputStreamReader(search.openStream())); } catch (Exception f) {}
         	ReadBigStringIn();
         	try {in.close();} catch (Exception f) {}
 
         	z = 0;
-			//parse JSON "title"
+			//parse JSON "seach"
 			for (int i = -1; (i = inputLine.indexOf("\"id\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf(",", i);
-			    content[0][z] = inputLine.substring(i + 6, a);
-			    System.out.println(content[0][z]);
+			    searchresults[0][z] = inputLine.substring(i + 6, a);
+			    System.out.println(searchresults[0][z]);
 			    z++;
-			} //end "title" parse
+			} //end "search" parse
 
+			z= 0;
+			for (int i = -1; (i = inputLine.indexOf("\"title\":", i + 1)) != -1; ) {
+			    int a = inputLine.indexOf(",", i);
+			    searchresults[1][z] = inputLine.substring(i + 10, a -1);
+			    System.out.println(searchresults[1][z]);
+			    z++;
+			} //end "search" parse
+
+		} //end get content
+
+		public void getCards() {
+			try {card = new URL("https://api.quizlet.com/2.0/sets/" + set + "?client_id=" + token + "&whitespace=1");}  catch (Exception f) {}
+			try {in = new BufferedReader(new InputStreamReader(card.openStream())); } catch (Exception f) {}
+        	ReadBigStringIn();
+        	try {in.close();} catch (Exception f) {}
+
+        	z = 0;
+			//parse JSON "term"
+			for (int i = -1; (i = inputLine.indexOf("\"term\":", i + 1)) != -1; ) {
+			    int a = inputLine.indexOf("\",", i);
+			    flashcards[0][z] = inputLine.substring(i + 9, a);
+			    System.out.println(flashcards[0][z]);
+			    z++;
+			} //end "term" parse
+
+			z = 0;
+			//parse JSON "definintion"
+			for (int i = -1; (i = inputLine.indexOf("\"definition\":", i + 1)) != -1; ) {
+			    int a = inputLine.indexOf("\",", i);
+			    flashcards[1][z] = inputLine.substring(i + 15, a);
+			    System.out.println(flashcards[1][z]);
+			    z++;
+			} //end "definition" parse
 
 		} //end get content
 
@@ -86,7 +142,7 @@ public class Final {
 		    try {while( (line = in.readLine()) != null) { everything.append(line); }} catch (Exception f) {}
 		    inputLine = everything.toString();
 		    return everything.toString();
-		} //end get content	
+		} //end ReadBigStringIn
 
 	} //end MyColorPanel
 
