@@ -18,12 +18,14 @@ public class Final {
 	JButton jb;
 	URL search; //URL of 
 	URL card;
+	int q = 0;
 	JPanel color1;
+	JTextField jtf;
 	String token = new String("528uWf4NCb");
 	int set = 415;
-	String question = new String("yolo");
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];  
+	String[][] searchword = new String[1][300];  
 	public CardLayout cards; //Card Layout
 
 	
@@ -53,7 +55,6 @@ public class Final {
 	class MyColorPanel extends JPanel implements MouseListener {
 
 		public MyColorPanel() {
-			getSearch();
 			cards = new CardLayout();
 			this.setLayout(cards);
 			color1 = new JPanel();
@@ -61,22 +62,36 @@ public class Final {
 			color1.addMouseListener(this); //NOT USED
 			this.add(color1, "Panel 1");
 
-			for (int p = 0; p < 15; p++) { //While array has stuff, print it out 
-				jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + searchresults[1][p] + "\n</p></div></html>");
-				jl1.setForeground(Color.white);
-				color1.add(jl1);
-				jb = new JButton("View");
-				final int buttonIndex = p; //Button Index is pretty awesome
 
-				jb.addActionListener(new ActionListener() { //Mad science here
+			jtf =  new JTextField(30);
+			color1.add(jtf);
+
+			JButton jb1 = new JButton("Search Quizlet");
+			color1.add(jb1);
+			jb1.addActionListener(new ActionListener() { 
 						public void actionPerformed(ActionEvent ae2) {
-							set = Integer.parseInt(searchresults[0][buttonIndex]);
-        					getCards();
+							searchword[0][q] = jtf.getText();
+        					getSearch();
+        					for (int p = 0; p < 15; p++) { //While array has stuff, print it out
+								jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + searchresults[1][p] + "\n</p></div></html>");
+								jl1.setForeground(Color.white);
+								color1.add(jl1);
+								jb = new JButton("View");
+								final int buttonIndex = p; //Button Index is pretty awesome
 
-        				}
-    			}); //end action listener
-				color1.add(jb);
-			} //end for statement
+								jb.addActionListener(new ActionListener() { //Mad science here
+										public void actionPerformed(ActionEvent ae2) {
+											set = Integer.parseInt(searchresults[0][buttonIndex]);
+				        					getCards();
+
+				        				}
+				    			}); //end action listener
+								color1.add(jb);
+							} //end for statement
+							revalidate();
+
+        		}
+    		}); //end action listener
 
 		}
 
@@ -88,10 +103,11 @@ public class Final {
 		public void mouseReleased(MouseEvent evt) { }
 
 		public void getSearch() {
-			try {search = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + question);}  catch (Exception f) {}
+			try {search = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + searchword[0][q]);}  catch (Exception f) {}
 			try {in = new BufferedReader(new InputStreamReader(search.openStream())); } catch (Exception f) {}
         	ReadBigStringIn();
         	try {in.close();} catch (Exception f) {}
+        	q++;
 
         	z = 0;
 			//parse JSON "seach"
