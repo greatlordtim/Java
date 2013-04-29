@@ -26,7 +26,7 @@ public class Final {
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];  
 	String[][] searchword = new String[1][300];  
-	public CardLayout cards; //Card Layout
+	public CardLayout cards, menu; //Card Layout
 
 	
 	public static void main (String[] args) {
@@ -44,8 +44,10 @@ public class Final {
 		colors = new MyColorPanel();
 		
 		// add the JPanels to the frame
+		cards = new CardLayout();
+		frame.setLayout(cards);
 
-		frame.getContentPane().add(colors, BorderLayout.CENTER); //Define Frame location of colors
+		frame.getContentPane().add(colors, "Panel 1"); //Define Frame location of colors
 
 		// make the frame visible
 		frame.setVisible(true);
@@ -55,15 +57,12 @@ public class Final {
 	class MyColorPanel extends JPanel implements MouseListener {
 
 		public MyColorPanel() {
-			cards = new CardLayout();
-			this.setLayout(cards);
+			menu = new CardLayout();
+			this.setLayout(menu);
 			color1 = new JPanel();
-			color2 = new JPanel();
 			color1.setBackground(Color.blue); 
 			color1.addMouseListener(this); 
-			color2.setBackground(Color.black);
 			this.add(color1, "Panel 1");
-			this.add(color2, "Panel 2");
 
 			jtf =  new JTextField(30);
 			color1.add(jtf);
@@ -85,7 +84,6 @@ public class Final {
 										public void actionPerformed(ActionEvent ae2) {
 											set = Integer.parseInt(searchresults[0][buttonIndex]);
 				        					getCards();
-				        					cards.next(colors);
 
 				        				}
 				    			}); //end action listener
@@ -95,14 +93,6 @@ public class Final {
 					}
     			}); //end action listener
 		}
-
-		public void paintComponent(Graphics g) {
-
-            super.paintComponent(g);
-            g.setColor(Color.white);
-            g.fillRect(5,5,5,5);
-
-        } //end paintComponennt
 
 		//Nothing to do here
 		public void mousePressed(MouseEvent evt) {}
