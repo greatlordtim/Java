@@ -10,6 +10,7 @@ import java.awt.image.*;
 
 public class Final {
 	private MyColorPanel colors; //Panel 1
+	private MyHelloPanel hello;
 	private JFrame frame; //JFrame
 	String inputLine; //JSON is here
 	BufferedReader in;
@@ -42,12 +43,14 @@ public class Final {
 
 		// Create the colors panel and buttons panel
 		colors = new MyColorPanel();
+		hello = new MyHelloPanel();
 		
 		// add the JPanels to the frame
 		cards = new CardLayout();
 		frame.setLayout(cards);
 
 		frame.getContentPane().add(colors, "Panel 1"); //Define Frame location of colors
+		frame.getContentPane().add(hello, "Panel 1");
 
 		// make the frame visible
 		frame.setVisible(true);
@@ -84,6 +87,7 @@ public class Final {
 										public void actionPerformed(ActionEvent ae2) {
 											set = Integer.parseInt(searchresults[0][buttonIndex]);
 				        					getCards();
+				        					cards.next(frame.getContentPane());
 
 				        				}
 				    			}); //end action listener
@@ -165,5 +169,15 @@ public class Final {
 		} //end ReadBigStringIn
 
 	} //end MyColorPanel
+
+
+
+	class MyHelloPanel extends JPanel {
+
+			public MyHelloPanel() {
+				this.setBackground(Color.black); 
+			}
+
+	}
 
 } //end program
