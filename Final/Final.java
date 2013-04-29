@@ -178,6 +178,15 @@ public class Final {
 				this.setBackground(Color.black); 
 			}
 
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+	            g.setColor(Color.blue);
+	            //STUFF HERE
+	            g.fillRect(5, 5, 5, 5);
+
+
+        	} //end paintComponennt
+
 	}
 
 } //end program
