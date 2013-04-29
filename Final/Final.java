@@ -25,8 +25,7 @@ public class Final {
 	String token = new String("528uWf4NCb");
 	int set = 415;
 	String[][] searchresults = new String[2][300];
-	String[][] flashcards = new String[2][300];  
-	String[][] searchword = new String[1][300];  
+	String[][] flashcards = new String[2][300];
 	public CardLayout cards, menu; //Card Layout
 
 	
@@ -74,7 +73,6 @@ public class Final {
 			color1.add(jb1);
 			jb1.addActionListener(new ActionListener() { 
 						public void actionPerformed(ActionEvent ae2) {
-							searchword[0][q] = jtf.getText();
         					getSearch();
         					for (int p = 0; p < 15; p++) { //While array has stuff, print it out
 								jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + searchresults[1][p] + "\n</p></div></html>");
@@ -106,7 +104,7 @@ public class Final {
 		public void mouseReleased(MouseEvent evt) {}
 
 		public void getSearch() {
-			try {search = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + searchword[0][q]);}  catch (Exception f) {}
+			try {search = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + jtf.getText());}  catch (Exception f) {}
 			try {in = new BufferedReader(new InputStreamReader(search.openStream())); } catch (Exception f) {}
         	ReadBigStringIn();
         	try {in.close();} catch (Exception f) {}
