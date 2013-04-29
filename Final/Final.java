@@ -65,7 +65,6 @@ public class Final {
 			this.add(color1, "Panel 1");
 			this.add(color2, "Panel 2");
 
-
 			jtf =  new JTextField(30);
 			color1.add(jtf);
 
@@ -95,7 +94,15 @@ public class Final {
 							revalidate();
 					}
     			}); //end action listener
-			}
+		}
+
+		public void paintComponent(Graphics g) {
+
+            super.paintComponent(g);
+            g.setColor(Color.white);
+            g.fillRect(5,5,5,5);
+
+        } //end paintComponennt
 
 		//Nothing to do here
 		public void mousePressed(MouseEvent evt) {}
