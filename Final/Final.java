@@ -19,7 +19,7 @@ public class Final {
 	URL search; //URL of 
 	URL card;
 	int q = 0;
-	JPanel color1;
+	JPanel color1, color2;
 	JTextField jtf;
 	String token = new String("528uWf4NCb");
 	int set = 415;
@@ -58,9 +58,12 @@ public class Final {
 			cards = new CardLayout();
 			this.setLayout(cards);
 			color1 = new JPanel();
-			color1.setBackground(Color.blue); //First Background as blue
-			color1.addMouseListener(this); //NOT USED
+			color2 = new JPanel();
+			color1.setBackground(Color.blue); 
+			color1.addMouseListener(this); 
+			color2.setBackground(Color.black);
 			this.add(color1, "Panel 1");
+			this.add(color2, "Panel 2");
 
 
 			jtf =  new JTextField(30);
@@ -76,31 +79,30 @@ public class Final {
 								jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + searchresults[1][p] + "\n</p></div></html>");
 								jl1.setForeground(Color.white);
 								color1.add(jl1);
-								jb = new JButton("View");
+								jb = new JButton("Use Set");
 								final int buttonIndex = p; //Button Index is pretty awesome
 
 								jb.addActionListener(new ActionListener() { //Mad science here
 										public void actionPerformed(ActionEvent ae2) {
 											set = Integer.parseInt(searchresults[0][buttonIndex]);
 				        					getCards();
+				        					cards.next(colors);
 
 				        				}
 				    			}); //end action listener
 								color1.add(jb);
 							} //end for statement
 							revalidate();
-
-        		}
-    		}); //end action listener
-
-		}
+					}
+    			}); //end action listener
+			}
 
 		//Nothing to do here
 		public void mousePressed(MouseEvent evt) {}
-		public void mouseEntered(MouseEvent evt) { }
-		public void mouseExited(MouseEvent evt) { }
-		public void mouseClicked(MouseEvent evt) { }
-		public void mouseReleased(MouseEvent evt) { }
+		public void mouseEntered(MouseEvent evt) {}
+		public void mouseExited(MouseEvent evt) {}
+		public void mouseClicked(MouseEvent evt) {}
+		public void mouseReleased(MouseEvent evt) {}
 
 		public void getSearch() {
 			try {search = new URL("https://api.quizlet.com/2.0/search/sets?client_id=" + token + "&whitespace=1&q=" + searchword[0][q]);}  catch (Exception f) {}
