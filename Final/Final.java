@@ -77,6 +77,12 @@ public class Final {
 			titlemenu.add(spaceevaders);
 
 			JButton play = new JButton("Play");
+			play.addActionListener(new ActionListener() { 
+				public void actionPerformed(ActionEvent ae2) {
+					menu.next(colors);
+				}
+			});
+
 			JButton settings = new JButton("Settings");
 			titlemenu.add(play); titlemenu.add(settings);
 
@@ -108,7 +114,7 @@ public class Final {
 							revalidate();
 					}
     			}); //end action listener
-		}
+			}
 
 		//Nothing to do here
 		public void mousePressed(MouseEvent evt) {}
