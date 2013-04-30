@@ -11,6 +11,7 @@ import java.awt.image.*;
 public class Final {
 	private MyColorPanel colors; //Panel 1
 	private MyHelloPanel hello;
+	private MyKnowledgePanel knowledge;
 	private JFrame frame; //JFrame
 	String inputLine; //JSON is here
 	BufferedReader in;
@@ -21,8 +22,11 @@ public class Final {
 	URL card;
 	int q = 0;
 	int player = 0;
+	int cardlocation = 0;
 	JPanel searchvocab, titlemenu, color2;
-	JTextField jtf;
+	JTextField jtf, answer;
+	JLabel question;
+	JButton go;
 	String token = new String("528uWf4NCb");
 	int set = 415;
 	String[][] searchresults = new String[2][300];
@@ -45,14 +49,16 @@ public class Final {
 		// Create the colors panel and buttons panel
 		colors = new MyColorPanel();
 		hello = new MyHelloPanel();
+		knowledge = new MyKnowledgePanel();
 		
 		// add the JPanels to the frame
 		cards = new CardLayout();
 		frame.setLayout(cards);
 		frame.setFocusable(true);
 
-		frame.getContentPane().add(colors, "Panel 1"); //Define Frame location of colors
-		frame.getContentPane().add(hello, "Panel 1");
+		frame.getContentPane().add(colors, "Panel 1");
+		frame.getContentPane().add(hello, "Panel 2");
+		frame.getContentPane().add(knowledge, "Panel 3");
 
 		// make the frame visible
 		frame.setVisible(true);
@@ -116,7 +122,7 @@ public class Final {
 										public void actionPerformed(ActionEvent ae2) {
 											set = Integer.parseInt(searchresults[0][buttonIndex]);
 				        					getCards();
-				        					cards.next(frame.getContentPane());
+				        					cards.last(frame.getContentPane());
 
 				        				}
 				    			}); //end action listener
@@ -243,6 +249,10 @@ public class Final {
                     		g.setColor(Color.green);
                     		g.fillRect(i * 75, j * 37, 5, 5);
                     	}
+                    	if (a == 3) {
+                    		g.setColor(Color.red);
+                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    	}
 
 
                     }
@@ -265,9 +275,36 @@ public class Final {
 	        		location[player][15] = 0;
 	        		player++;
 	        	}
+	        	if (c == 32) {
+	        		location[player][14] = 3;
+	        	}
 	        	repaint();
         	}
 
 	} //end MyHelloPanel
+
+	class MyKnowledgePanel extends JPanel {
+
+		public MyKnowledgePanel() {
+			question = new JLabel(flashcards[0][cardlocation]);
+			answer = new JTextField(30);
+			go = new JButton("Go");
+			this.add(question); this.add(answer); this.add(go);
+			go.addActionListener(new ActionListener() { 
+				public void actionPerformed(ActionEvent ae2) {
+					checkAnswer();
+				}
+			});
+		}
+
+		public void checkAnswer() {
+			if (answer.getText().equals(flashcards[1][cardlocation])) {
+				cardlocation++;
+				question.setText(flashcards[0][cardlocation]);
+			}
+
+		} 
+
+	} //end MyKnowledgePanel
 
 } //end program
