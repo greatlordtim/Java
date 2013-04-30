@@ -26,6 +26,7 @@ public class Final {
 	int set = 415;
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
+	int location[][] = new int[8][8];
 	public CardLayout cards, menu; //Card Layout
 
 	
@@ -63,6 +64,7 @@ public class Final {
 			this.setLayout(menu);
 
 			titlemenu = new JPanel();
+			titlemenu.setLayout(new BoxLayout(titlemenu, BoxLayout.Y_AXIS));
 			searchvocab = new JPanel();
 
 			titlemenu.setBackground(Color.black);
@@ -86,7 +88,7 @@ public class Final {
 			JButton settings = new JButton("Settings");
 			titlemenu.add(play); titlemenu.add(settings);
 
-			jtf =  new JTextField(30);
+			jtf =  new JTextField("Subject or Title (i.e. Java Facts)", 30);
 			searchvocab.add(jtf);
 
 			JButton jb1 = new JButton("Search Quizlet");
