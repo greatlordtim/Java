@@ -20,7 +20,7 @@ public class Final {
 	URL search; //URL of 
 	URL card;
 	int q = 0;
-	JPanel color1, color2;
+	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
 	String token = new String("528uWf4NCb");
 	int set = 415;
@@ -61,23 +61,37 @@ public class Final {
 		public MyColorPanel() {
 			menu = new CardLayout();
 			this.setLayout(menu);
-			color1 = new JPanel();
-			color1.setBackground(Color.blue); 
-			color1.addMouseListener(this); 
-			this.add(color1, "Panel 1");
+
+			titlemenu = new JPanel();
+			searchvocab = new JPanel();
+
+			titlemenu.setBackground(Color.black);
+			searchvocab.setBackground(Color.blue); 
+			searchvocab.addMouseListener(this);
+
+			this.add(titlemenu, "Panel 1");
+			this.add(searchvocab, "Panel 2");
+
+			JLabel spaceevaders = new JLabel("Space Evaders");
+			spaceevaders.setForeground(Color.white);
+			titlemenu.add(spaceevaders);
+
+			JButton play = new JButton("Play");
+			JButton settings = new JButton("Settings");
+			titlemenu.add(play); titlemenu.add(settings);
 
 			jtf =  new JTextField(30);
-			color1.add(jtf);
+			searchvocab.add(jtf);
 
 			JButton jb1 = new JButton("Search Quizlet");
-			color1.add(jb1);
+			searchvocab.add(jb1);
 			jb1.addActionListener(new ActionListener() { 
 						public void actionPerformed(ActionEvent ae2) {
         					getSearch();
         					for (int p = 0; p < 15; p++) { //While array has stuff, print it out
 								jl1 = new JLabel("<html><div style=width:350px><p>" + "--> " + searchresults[1][p] + "\n</p></div></html>");
 								jl1.setForeground(Color.white);
-								color1.add(jl1);
+								searchvocab.add(jl1);
 								jb = new JButton("Use Set");
 								final int buttonIndex = p; //Button Index is pretty awesome
 
@@ -89,7 +103,7 @@ public class Final {
 
 				        				}
 				    			}); //end action listener
-								color1.add(jb);
+								searchvocab.add(jb);
 							} //end for statement
 							revalidate();
 					}
