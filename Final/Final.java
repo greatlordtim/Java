@@ -20,13 +20,14 @@ public class Final {
 	URL search; //URL of 
 	URL card;
 	int q = 0;
+	int player = 0;
 	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
 	String token = new String("528uWf4NCb");
 	int set = 415;
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
-	int location[][] = new int[8][8];
+	int location[][] = new int[8][16];
 	public CardLayout cards, menu; //Card Layout
 
 	
@@ -39,7 +40,7 @@ public class Final {
 		// Initialize and set up the JFrame
 		frame = new JFrame("Space Evaders");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(730, 600);
+		frame.setSize(600, 600);
 
 		// Create the colors panel and buttons panel
 		colors = new MyColorPanel();
@@ -48,6 +49,7 @@ public class Final {
 		// add the JPanels to the frame
 		cards = new CardLayout();
 		frame.setLayout(cards);
+		frame.setFocusable(true);
 
 		frame.getContentPane().add(colors, "Panel 1"); //Define Frame location of colors
 		frame.getContentPane().add(hello, "Panel 1");
@@ -86,9 +88,16 @@ public class Final {
 			});
 
 			JButton settings = new JButton("Settings");
-			titlemenu.add(play); titlemenu.add(settings);
+			JButton skip = new JButton("Skip");
+			skip.addActionListener(new ActionListener() { 
+				public void actionPerformed(ActionEvent ae2) {
+					cards.next(frame.getContentPane());
+				}
+			});
 
-			jtf =  new JTextField("Subject or Title (i.e. Java Facts)", 30);
+			titlemenu.add(play); titlemenu.add(settings); titlemenu.add(skip);
+
+			jtf =  new JTextField("Subject or Title or Set ID(i.e. Java Facts)", 30);
 			searchvocab.add(jtf);
 
 			JButton jb1 = new JButton("Search Quizlet");
@@ -192,21 +201,73 @@ public class Final {
 
 
 
-	class MyHelloPanel extends JPanel {
+	class MyHelloPanel extends JPanel implements KeyListener{
 
 			public MyHelloPanel() {
 				this.setBackground(Color.black); 
+				frame.addKeyListener(this);
+
+				for (int i = 0; i < 8; i++) {
+                	for (int j = 0; j < 16; j++) {
+                		location[i][j] = 0;
+                	}	
+                } //end for
+
+               	for (int i = 0; i < 8; i++) {
+                	for (int j = 0; j < 8; j++) {
+                		location[i][j] = 1;
+                	}	
+                } //end for
+
 			}
 
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
-	            g.setColor(Color.blue);
+	            g.setColor(Color.white);
+	            location[player][15] = 2;
 	            //STUFF HERE
-	            g.fillRect(5, 5, 5, 5);
 
+				for (int i = 0; i < 8; i++) {
+                	for (int j = 0; j < 16; j++) {
+
+                    	int a = location[i][j];
+                    	if (a == 0) {
+                    		g.setColor(Color.black);
+                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    	}
+                    	if (a == 1) {
+                    		g.setColor(Color.white);
+                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    	}
+                    	if (a == 2) {
+                    		g.setColor(Color.green);
+                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    	}
+
+
+                    }
+                } //end for statement
 
         	} //end paintComponennt
 
-	}
+        	public void keyPressed(KeyEvent e) {}
+
+        	public void keyReleased(KeyEvent e) {} 
+
+        	public void keyTyped(KeyEvent e) {
+	        	char c = e.getKeyChar();
+	        	System.out.println(c);
+	        	if (c == 'a') {
+	        		location[player][15] = 0;
+	        		player--;
+	        	}
+	        	if (c == 'd') {
+	        		location[player][15] = 0;
+	        		player++;
+	        	}
+	        	repaint();
+        	}
+
+	} //end MyHelloPanel
 
 } //end program
