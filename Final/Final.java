@@ -217,7 +217,7 @@ public class Final {
 				Enemy enemy = new Enemy();
 				drop = new Timer(100, enemy);
 				Ran ran = new Ran();
-				rand = new Timer(1000, ran);
+				rand = new Timer(2000, ran);
 				rand.start();
 
 				for (int i = 0; i < 8; i++) {
@@ -290,7 +290,10 @@ public class Final {
             private class Ran implements ActionListener {
             	public void actionPerformed(ActionEvent e) {
             		random = 0 + (int)(Math.random() * ((7 - 0) + 1));
-            		droplocation = 8;
+            		for (int n = 0; n < 15; n++) {
+            			if (location[random][n] == 1)
+            				droplocation = n + 1;
+            		}
             		location[random][droplocation] = 4;
             		drop.start();
             	}
