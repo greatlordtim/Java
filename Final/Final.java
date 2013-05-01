@@ -12,12 +12,13 @@ public class Final {
 	private JFrame frame; //JFrame
 	String inputLine; //JSON is here
 	BufferedReader in;
-	int z, bulletx;
+	int z, bulletx, random;
 	int q = 0;
 	int player = 0;
 	int cardlocation = 0;
 	int set = 415;
 	int bulletlocation = 14;
+	int droplocation = 8;
 	ButtonGroup answers;
 	JRadioButton one, two, three, four;
 	JButton jb, go;
@@ -26,7 +27,7 @@ public class Final {
 	URL card;
 	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
-	Timer bullet;
+	Timer bullet, drop, rand;
 	String token = new String("528uWf4NCb");
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
@@ -213,6 +214,11 @@ public class Final {
 				frame.addKeyListener(this);
 				Shoot shoot = new Shoot();
 				bullet = new Timer(100, shoot);
+				Enemy enemy = new Enemy();
+				drop = new Timer(100, enemy);
+				Ran ran = new Ran();
+				rand = new Timer(1000, ran);
+				rand.start();
 
 				for (int i = 0; i < 8; i++) {
                 	for (int j = 0; j < 16; j++) {
@@ -254,6 +260,10 @@ public class Final {
                     		g.setColor(Color.red);
                     		g.fillRect(i * 100, j * 37, 5, 5);
                     	}
+                    	if (a==4) {
+                    		g.setColor(Color.yellow);
+                    		g.fillRect(i * 100, j * 37, 5, 5);
+                    	}
 
 					}
                 } //end for statement
@@ -272,6 +282,31 @@ public class Final {
             			location[bulletx][bulletlocation] = 0;
             			bulletlocation--;
             			location[bulletx][bulletlocation] = 3;
+            		}
+            		repaint();
+            	}
+            }
+
+            private class Ran implements ActionListener {
+            	public void actionPerformed(ActionEvent e) {
+            		random = 0 + (int)(Math.random() * ((7 - 0) + 1));
+            		droplocation = 8;
+            		location[random][droplocation] = 4;
+            		drop.start();
+            	}
+            }
+
+            private class Enemy implements ActionListener {
+            	public void actionPerformed(ActionEvent e) {
+            		location[random][droplocation] = 0;
+            		droplocation++;
+            		location[random][droplocation] = 4;
+            		if (location[random][droplocation] == 1) {
+            			drop.stop();
+            		}
+            		if (droplocation == 15) {
+            			drop.stop();
+            			location[random][droplocation] = 0;
             		}
             		repaint();
             	}
