@@ -304,8 +304,9 @@ public class Final {
             		location[random][droplocation] = 0;
             		droplocation++;
             		location[random][droplocation] = 4;
-            		if (location[random][droplocation] == 1) {
+            		if (location[random][droplocation] == 2) {
             			drop.stop();
+            			rand.stop();
             		}
             		if (droplocation == 15) {
             			drop.stop();
