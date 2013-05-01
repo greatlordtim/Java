@@ -16,6 +16,7 @@ public class Final {
 	String inputLine; //JSON is here
 	BufferedReader in;
 	int z;
+	ButtonGroup answers;
 	JLabel jl1;
 	JButton jb;
 	URL search; //URL of 
@@ -25,6 +26,7 @@ public class Final {
 	int cardlocation = 0;
 	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
+	JLabel nope;
 	JRadioButton one, two, three, four;
 	JLabel question;
 	JButton go;
@@ -288,10 +290,16 @@ public class Final {
 
 		public MyKnowledgePanel() {
 			question = new JLabel();
+			answers = new ButtonGroup();
 			one = new JRadioButton(); two = new JRadioButton(); three = new JRadioButton(); four = new JRadioButton();
 			go = new JButton("Go");
-			this.add(question); this.add(go);
+			this.add(question);
 			this.add(one); this.add(two); this.add(three); this.add(four);
+			this.add(go);
+			nope = new JLabel();
+			nope.setFont(new Font("Helvetica", Font.BOLD, 35));
+			this.add(nope);
+			answers.add(one); answers.add(two); answers.add(three); answers.add(four);
 			go.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent ae2) {
 					checkAnswer();
@@ -300,15 +308,44 @@ public class Final {
 		}
 
 		public void fillCards() {
-			question.setText(flashcards[0][cardlocation]);
-			one.setText(flashcards[1][cardlocation]);
-			two.setText(flashcards[1][cardlocation + 1]);
-			three.setText(flashcards[1][cardlocation + 2]);
-			four.setText(flashcards[1][cardlocation +3]);
+			question.setText("<html><div style=width:350px><p>" + flashcards[0][cardlocation] + "</p></div></html>");
+			one.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>");
+			two.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 1] + "</p></div></html>");
+			three.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
+			four.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 3] + "</p></div></html>");
+			nope.setText("");
 		}
 
 		public void checkAnswer() {
-		} 
+			if (one.isSelected()) {
+				if (one.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
+					cardlocation++;
+					fillCards();
+				}
+				else nope.setText("NOPE.AVI");
+			}
+			if (two.isSelected()) {
+				if (two.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
+					cardlocation++;
+					fillCards();
+				}
+				else nope.setText("NOPE.AVI");
+			}
+			if (three.isSelected()) {
+				if (three.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
+					cardlocation++;
+					fillCards();
+				}
+				else nope.setText("NOPE.AVI");
+			}
+			if (four.isSelected()) {
+				if (four.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
+					cardlocation++;
+					fillCards();
+				}
+				else nope.setText("NOPE.AVI");
+			}
+		}  //end CheckAnsswers
 
 	} //end MyKnowledgePanel
 
