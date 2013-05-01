@@ -24,7 +24,8 @@ public class Final {
 	int player = 0;
 	int cardlocation = 0;
 	JPanel searchvocab, titlemenu, color2;
-	JTextField jtf, answer;
+	JTextField jtf;
+	JRadioButton one, two, three, four;
 	JLabel question;
 	JButton go;
 	String token = new String("528uWf4NCb");
@@ -32,9 +33,8 @@ public class Final {
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
 	int location[][] = new int[8][16];
-	public CardLayout cards, menu; //Card Layout
+	public CardLayout cards, menu;
 
-	
 	public static void main (String[] args) {
 		Final space = new Final();
 		space.Run();
@@ -44,7 +44,7 @@ public class Final {
 		// Initialize and set up the JFrame
 		frame = new JFrame("Space Evaders");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 600);
+		frame.setSize(800, 600);
 
 		// Create the colors panel and buttons panel
 		colors = new MyColorPanel();
@@ -122,6 +122,7 @@ public class Final {
 										public void actionPerformed(ActionEvent ae2) {
 											set = Integer.parseInt(searchresults[0][buttonIndex]);
 				        					getCards();
+				        					knowledge.fillCards();
 				        					cards.last(frame.getContentPane());
 
 				        				}
@@ -239,19 +240,19 @@ public class Final {
                     	int a = location[i][j];
                     	if (a == 0) {
                     		g.setColor(Color.black);
-                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    		g.fillRect(i * 100, j * 37, 5, 5);
                     	}
                     	if (a == 1) {
                     		g.setColor(Color.white);
-                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    		g.fillRect(i * 100, j * 37, 5, 5);
                     	}
                     	if (a == 2) {
                     		g.setColor(Color.green);
-                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    		g.fillRect(i * 100, j * 37, 5, 5);
                     	}
                     	if (a == 3) {
                     		g.setColor(Color.red);
-                    		g.fillRect(i * 75, j * 37, 5, 5);
+                    		g.fillRect(i * 100, j * 37, 5, 5);
                     	}
 
 
@@ -286,10 +287,11 @@ public class Final {
 	class MyKnowledgePanel extends JPanel {
 
 		public MyKnowledgePanel() {
-			question = new JLabel(flashcards[0][cardlocation]);
-			answer = new JTextField(30);
+			question = new JLabel();
+			one = new JRadioButton(); two = new JRadioButton(); three = new JRadioButton(); four = new JRadioButton();
 			go = new JButton("Go");
-			this.add(question); this.add(answer); this.add(go);
+			this.add(question); this.add(go);
+			this.add(one); this.add(two); this.add(three); this.add(four);
 			go.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent ae2) {
 					checkAnswer();
@@ -297,12 +299,15 @@ public class Final {
 			});
 		}
 
-		public void checkAnswer() {
-			if (answer.getText().equals(flashcards[1][cardlocation])) {
-				cardlocation++;
-				question.setText(flashcards[0][cardlocation]);
-			}
+		public void fillCards() {
+			question.setText(flashcards[0][cardlocation]);
+			one.setText(flashcards[1][cardlocation]);
+			two.setText(flashcards[1][cardlocation + 1]);
+			three.setText(flashcards[1][cardlocation + 2]);
+			four.setText(flashcards[1][cardlocation +3]);
+		}
 
+		public void checkAnswer() {
 		} 
 
 	} //end MyKnowledgePanel
