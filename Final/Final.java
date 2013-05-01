@@ -212,7 +212,7 @@ public class Final {
 				this.setBackground(Color.black); 
 				frame.addKeyListener(this);
 				Shoot shoot = new Shoot();
-				bullet = new Timer(200, shoot);
+				bullet = new Timer(100, shoot);
 
 				for (int i = 0; i < 8; i++) {
                 	for (int j = 0; j < 16; j++) {
