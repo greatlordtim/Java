@@ -3,35 +3,31 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.io.*;
-import java.util.*;
 import java.net.*;
 import javax.imageio.*;
 import java.awt.image.*;
 
 public class Final {
-	private MyColorPanel colors; //Panel 1
-	private MyHelloPanel hello;
-	private MyKnowledgePanel knowledge;
+	private MyColorPanel colors; private MyHelloPanel hello; private MyKnowledgePanel knowledge;
 	private JFrame frame; //JFrame
 	String inputLine; //JSON is here
 	BufferedReader in;
-	int z;
-	ButtonGroup answers;
-	JLabel jl1;
-	JButton jb;
-	URL search; //URL of 
-	URL card;
+	int z, bulletx;
 	int q = 0;
 	int player = 0;
 	int cardlocation = 0;
+	int set = 415;
+	int bulletlocation = 14;
+	ButtonGroup answers;
+	JRadioButton one, two, three, four;
+	JButton jb, go;
+	JLabel jl1, nope, question;
+	URL search; //URL of 
+	URL card;
 	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
-	JLabel nope;
-	JRadioButton one, two, three, four;
-	JLabel question;
-	JButton go;
+	Timer bullet;
 	String token = new String("528uWf4NCb");
-	int set = 415;
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
 	int location[][] = new int[8][16];
@@ -215,6 +211,8 @@ public class Final {
 			public MyHelloPanel() {
 				this.setBackground(Color.black); 
 				frame.addKeyListener(this);
+				Shoot shoot = new Shoot();
+				bullet = new Timer(200, shoot);
 
 				for (int i = 0; i < 8; i++) {
                 	for (int j = 0; j < 16; j++) {
@@ -257,11 +255,27 @@ public class Final {
                     		g.fillRect(i * 100, j * 37, 5, 5);
                     	}
 
-
-                    }
+					}
                 } //end for statement
 
         	} //end paintComponennt
+
+        	private class Shoot implements ActionListener {
+            	public void actionPerformed(ActionEvent e) {
+            		if (location[bulletx][bulletlocation - 1] == 1) {
+            			location[bulletx][bulletlocation - 1] = 0;
+            			location[bulletx][bulletlocation] = 0;
+            			bullet.stop();
+            			bulletlocation = 14;
+            		}
+            		else {
+            			location[bulletx][bulletlocation] = 0;
+            			bulletlocation--;
+            			location[bulletx][bulletlocation] = 3;
+            		}
+            		repaint();
+            	}
+            }
 
         	public void keyPressed(KeyEvent e) {}
 
@@ -280,6 +294,8 @@ public class Final {
 	        	}
 	        	if (c == 32) {
 	        		location[player][14] = 3;
+	        		bullet.start();
+	        		bulletx = player;
 	        	}
 	        	repaint();
         	}
@@ -314,7 +330,7 @@ public class Final {
 			three.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
 			four.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 3] + "</p></div></html>");
 			nope.setText("");
-		}
+		} //end filCards
 
 		public void checkAnswer() {
 			if (one.isSelected()) {
