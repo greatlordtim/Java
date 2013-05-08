@@ -313,13 +313,13 @@ public class Final {
 
             private class Enemy implements ActionListener {
             	public void actionPerformed(ActionEvent e) {
-            		location[random][droplocation] = 0;
-            		droplocation++;
-            		location[random][droplocation] = 4;
             		if (location[random][droplocation] == 2) {
             			drop.stop();
             			rand.stop();
             		}
+            		location[random][droplocation] = 0;
+            		droplocation++;
+            		location[random][droplocation] = 4;
             		if (droplocation == 15) {
             			drop.stop();
             			location[random][droplocation] = 0;
@@ -336,12 +336,24 @@ public class Final {
 	        	char c = e.getKeyChar();
 	        	System.out.println(c);
 	        	if (c == 'a') {
-	        		location[player][15] = 0;
-	        		player--;
+	        		if (player == 0) {
+	        			location[player][15] = 0;
+	        			player = 7;
+	        		}
+	        		else {
+	        			location[player][15] = 0;
+	        			player--;
+	        		}
 	        	}
 	        	if (c == 'd') {
-	        		location[player][15] = 0;
-	        		player++;
+	        		if (player == 7) {
+	        			location[player][15] = 0;
+	        			player = 0;
+	        		}
+	        		else {
+	        			location[player][15] = 0;
+	        			player++;
+	        		}
 	        	}
 	        	if (c == 32) {
 	        		location[player][14] = 3;
@@ -376,10 +388,34 @@ public class Final {
 
 		public void fillCards() {
 			question.setText("<html><div style=width:350px><p>" + flashcards[0][cardlocation] + "</p></div></html>");
-			one.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>");
-			two.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 1] + "</p></div></html>");
-			three.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
-			four.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 3] + "</p></div></html>");
+			int randomize = 1 + (int)(Math.random() * ((4 - 1) + 1));
+			switch (randomize) {
+				case 1: 
+					one.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>");
+					two.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 1] + "</p></div></html>");
+					three.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
+					four.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 3] + "</p></div></html>");
+					break;
+				case 2: 
+					one.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 1] + "</p></div></html>");
+					two.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 3] + "</p></div></html>");
+					three.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>");
+					four.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
+					break;
+				case 3: 
+					one.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 3] + "</p></div></html>");
+					two.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
+					three.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 1] + "</p></div></html>");
+					four.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>");
+					break;
+				case 4: 
+					one.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
+					two.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>");
+					three.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 3] + "</p></div></html>");
+					four.setText("<html><div style=width:350px><p>" + flashcards[1][cardlocation + 2] + "</p></div></html>");
+					break;
+
+			}
 			nope.setText("");
 		} //end filCards
 
