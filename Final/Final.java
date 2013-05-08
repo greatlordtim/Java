@@ -290,6 +290,11 @@ public class Final {
             			bullet.stop();
             			bulletlocation = 14;
             		}
+            		/*if (bulletlocation == 0) {
+            			location[bulletx][bulletlocation] = 0;
+            			bullet.stop();
+            			bulletlocation = 14;
+            		}*/
             		else {
             			location[bulletx][bulletlocation] = 0;
             			bulletlocation--;
