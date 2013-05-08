@@ -12,6 +12,7 @@ public class Final {
 	private JFrame frame; //JFrame
 	String inputLine; //JSON is here
 	BufferedReader in;
+	
 	int z, bulletx, random;
 	int q = 0;
 	int player = 0;
@@ -209,15 +210,23 @@ public class Final {
 
 	class MyHelloPanel extends JPanel implements KeyListener{
 
+			public BufferedImage alien, ship, ammo;
+
 			public MyHelloPanel() {
+				try {alien = ImageIO.read(new File("alien.png"));} //Get my sprite sheet
+            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
+            	try {ship = ImageIO.read(new File("ship.png"));} //Get my sprite sheet
+            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
+            	try {ammo = ImageIO.read(new File("ammo.png"));} //Get my sprite sheet
+            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
 				this.setBackground(Color.black); 
 				frame.addKeyListener(this);
 				Shoot shoot = new Shoot();
-				bullet = new Timer(100, shoot);
+				bullet = new Timer(35, shoot);
 				Enemy enemy = new Enemy();
-				drop = new Timer(100, enemy);
+				drop = new Timer(50, enemy);
 				Ran ran = new Ran();
-				rand = new Timer(2000, ran);
+				rand = new Timer(1000, ran);
 				rand.start();
 
 				for (int i = 0; i < 8; i++) {
@@ -250,19 +259,22 @@ public class Final {
                     	}
                     	if (a == 1) {
                     		g.setColor(Color.white);
-                    		g.fillRect(i * 100, j * 37, 5, 5);
+                    		//g.fillRect(i * 100, j * 37, 5, 5);
+                    		g.drawImage(alien, i * 100, j * 37, null);
                     	}
                     	if (a == 2) {
                     		g.setColor(Color.green);
-                    		g.fillRect(i * 100, j * 37, 5, 5);
+                    		//g.fillRect(i * 100, j * 37, 5, 5);
+                    		g.drawImage(ship, i * 100, j * 37, null);
                     	}
                     	if (a == 3) {
-                    		g.setColor(Color.red);
-                    		g.fillRect(i * 100, j * 37, 5, 5);
+                    		g.setColor(Color.green);
+                    		g.fillRect((i * 100) + 10, j * 37, 5, 15);
                     	}
                     	if (a==4) {
                     		g.setColor(Color.yellow);
-                    		g.fillRect(i * 100, j * 37, 5, 5);
+                    		//g.fillRect(i * 100, j * 37, 5, 5);
+                    		g.drawImage(ammo, i * 100, j * 37, null);
                     	}
 
 					}
