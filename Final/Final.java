@@ -21,6 +21,7 @@ public class Final {
 	int bulletlocation = 14;
 	int droplocation = 8;
 	int score = 0;
+	Color transparent;
 	ButtonGroup answers;
 	JRadioButton one, two, three, four;
 	JButton jb, go;
@@ -211,7 +212,7 @@ public class Final {
 
 	class MyHelloPanel extends JPanel implements KeyListener{
 
-			public BufferedImage alien, ship, ammo;
+			public BufferedImage alien, ship, ammo, background;
 
 			public MyHelloPanel() {
 				try {alien = ImageIO.read(new File("alien.png"));} //Get my sprite sheet
@@ -220,7 +221,10 @@ public class Final {
             	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
             	try {ammo = ImageIO.read(new File("ammo.png"));} //Get my sprite sheet
             	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
-				this.setBackground(Color.black); 
+            	try {background = ImageIO.read(new File("background.jpeg"));} //Get my sprite sheet
+            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
+            	transparent = new Color(0, true);
+				this.setBackground(transparent);
 				frame.addKeyListener(this);
 				Shoot shoot = new Shoot();
 				bullet = new Timer(35, shoot);
@@ -249,13 +253,13 @@ public class Final {
 	            g.setColor(Color.white);
 	            location[player][15] = 2;
 	            //STUFF HERE
-
+	            g.drawImage(background,0,0,getSize().width,getSize().height,this);
 				for (int i = 0; i < 8; i++) {
                 	for (int j = 0; j < 16; j++) {
 
                     	int a = location[i][j];
                     	if (a == 0) {
-                    		g.setColor(Color.black);
+                    		g.setColor(transparent);
                     		g.fillRect(i * 100, j * 37, 5, 5);
                     	}
                     	if (a == 1) {
