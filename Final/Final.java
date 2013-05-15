@@ -20,6 +20,7 @@ public class Final {
 	int set = 415;
 	int bulletlocation = 14;
 	int droplocation = 8;
+	int score = 0;
 	ButtonGroup answers;
 	JRadioButton one, two, three, four;
 	JButton jb, go;
@@ -44,7 +45,7 @@ public class Final {
 		// Initialize and set up the JFrame
 		frame = new JFrame("Space Evaders");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 600);
+		frame.setSize(800, 650);
 
 		// Create the colors panel and buttons panel
 		colors = new MyColorPanel();
@@ -279,6 +280,8 @@ public class Final {
 
 					}
                 } //end for statement
+                g.setColor(Color.white);
+                g.drawString("Score:" + score, 30, 600);
 
         	} //end paintComponennt
 
@@ -289,6 +292,8 @@ public class Final {
             			location[bulletx][bulletlocation] = 0;
             			bullet.stop();
             			bulletlocation = 14;
+            			score = score + 10;
+            			System.out.println(score);
             		}
             		else if (bulletlocation == 1) {
             			location[bulletx][bulletlocation] = 0;
@@ -366,7 +371,7 @@ public class Final {
 	        	}
 	        	if (c == 32) {
 	        		if (bullet.isRunning()) {
-
+	        			//No spamming
 	        		}
 	        		else {
 	        		location[player][14] = 3;
