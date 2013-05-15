@@ -290,11 +290,11 @@ public class Final {
             			bullet.stop();
             			bulletlocation = 14;
             		}
-            		/*if (bulletlocation == 0) {
+            		else if (bulletlocation == 1) {
             			location[bulletx][bulletlocation] = 0;
-            			bullet.stop();
             			bulletlocation = 14;
-            		}*/
+            			bullet.stop();
+            		}
             		else {
             			location[bulletx][bulletlocation] = 0;
             			bulletlocation--;
@@ -307,6 +307,9 @@ public class Final {
             private class Ran implements ActionListener {
             	public void actionPerformed(ActionEvent e) {
             		random = 0 + (int)(Math.random() * ((7 - 0) + 1));
+            		while (location[random][0] == 0) {
+            			random = 0 + (int)(Math.random() * ((7 - 0) + 1));
+            		}
             		for (int n = 0; n < 15; n++) {
             			if (location[random][n] == 1)
             				droplocation = n + 1;
@@ -362,8 +365,8 @@ public class Final {
 	        	}
 	        	if (c == 32) {
 	        		location[player][14] = 3;
-	        		bullet.start();
 	        		bulletx = player;
+	        		bullet.start();
 	        	}
 	        	repaint();
         	}
@@ -430,28 +433,28 @@ public class Final {
 					cardlocation++;
 					fillCards();
 				}
-				else nope.setText("NOPE.AVI");
+				else nope.setText("Wrong Answer");
 			}
 			if (two.isSelected()) {
 				if (two.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
 				}
-				else nope.setText("NOPE.AVI");
+				else nope.setText("Wrong Answer");
 			}
 			if (three.isSelected()) {
 				if (three.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
 				}
-				else nope.setText("NOPE.AVI");
+				else nope.setText("Wrong Answer");
 			}
 			if (four.isSelected()) {
 				if (four.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
 				}
-				else nope.setText("NOPE.AVI");
+				else nope.setText("Wrong Answer");
 			}
 		}  //end CheckAnsswers
 
