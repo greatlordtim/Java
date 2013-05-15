@@ -365,9 +365,14 @@ public class Final {
 	        		}
 	        	}
 	        	if (c == 32) {
+	        		if (bullet.isRunning()) {
+
+	        		}
+	        		else {
 	        		location[player][14] = 3;
 	        		bulletx = player;
 	        		bullet.start();
+	        		}
 	        	}
 	        	repaint();
         	}
