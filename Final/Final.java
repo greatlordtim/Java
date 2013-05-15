@@ -56,9 +56,9 @@ public class Final {
 		frame.setLayout(cards);
 		frame.setFocusable(true);
 
-		frame.getContentPane().add(colors, "Panel 1");
-		frame.getContentPane().add(hello, "Panel 2");
-		frame.getContentPane().add(knowledge, "Panel 3");
+		frame.getContentPane().add(colors, "Panel 1"); //GETTING CARDS
+		frame.getContentPane().add(hello, "Panel 2"); //GAME
+		frame.getContentPane().add(knowledge, "Panel 3"); //CARDS
 
 		// make the frame visible
 		frame.setVisible(true);
@@ -123,7 +123,7 @@ public class Final {
 											set = Integer.parseInt(searchresults[0][buttonIndex]);
 				        					getCards();
 				        					knowledge.fillCards();
-				        					cards.last(frame.getContentPane());
+				        					cards.next(frame.getContentPane());
 
 				        				}
 				    			}); //end action listener
@@ -324,6 +324,7 @@ public class Final {
             		location[random][droplocation] = 0;
             		droplocation++;
             		if (location[random][droplocation] == 2) {
+            			cards.last(frame.getContentPane());
             			drop.stop();
             			rand.stop();
             		}
@@ -432,6 +433,8 @@ public class Final {
 				if (one.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
+					cards.previous(frame.getContentPane());
+					rand.start(); 
 				}
 				else nope.setText("Wrong Answer");
 			}
@@ -439,6 +442,8 @@ public class Final {
 				if (two.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
+					cards.previous(frame.getContentPane());
+					rand.start(); 
 				}
 				else nope.setText("Wrong Answer");
 			}
@@ -446,6 +451,8 @@ public class Final {
 				if (three.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
+					cards.previous(frame.getContentPane());
+					rand.start(); 
 				}
 				else nope.setText("Wrong Answer");
 			}
@@ -453,6 +460,8 @@ public class Final {
 				if (four.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
+					cards.previous(frame.getContentPane());
+					rand.start(); 
 				}
 				else nope.setText("Wrong Answer");
 			}
