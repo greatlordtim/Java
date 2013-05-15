@@ -321,12 +321,12 @@ public class Final {
 
             private class Enemy implements ActionListener {
             	public void actionPerformed(ActionEvent e) {
+            		location[random][droplocation] = 0;
+            		droplocation++;
             		if (location[random][droplocation] == 2) {
             			drop.stop();
             			rand.stop();
             		}
-            		location[random][droplocation] = 0;
-            		droplocation++;
             		location[random][droplocation] = 4;
             		if (droplocation == 15) {
             			drop.stop();
