@@ -15,23 +15,25 @@ public class Final {
 	
 	int z, bulletx, random;
 	int q = 0;
+	int level = 1;
 	int player = 0;
 	int cardlocation = 0;
 	int set = 415;
 	int bulletlocation = 14;
 	int droplocation = 8;
 	int score = 0;
+	boolean playmovie = true;
 	Color transparent;
 	ButtonGroup answers;
 	JRadioButton one, two, three, four;
 	JButton jb, go;
 	JLabel jl1, nope, question;
-	URL search; //URL of 
+	URL search;
 	URL card;
 	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
 	Timer bullet, drop, rand;
-	String token = new String("528uWf4NCb");
+	String token = new String("528uWf4NCb"); //Quizlet API Key
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
 	int location[][] = new int[8][16];
@@ -85,6 +87,8 @@ public class Final {
 			this.add(searchvocab, "Panel 2");
 
 			JLabel spaceevaders = new JLabel("Space Evaders");
+			spaceevaders.setAlignmentX(Component.CENTER_ALIGNMENT);
+			spaceevaders.setFont(new Font("Helvetica", Font.BOLD, 30));
 			spaceevaders.setForeground(Color.white);
 			titlemenu.add(spaceevaders);
 
@@ -94,16 +98,16 @@ public class Final {
 					menu.next(colors);
 				}
 			});
-
-			JButton settings = new JButton("Settings");
+			play.setAlignmentX(Component.CENTER_ALIGNMENT);
 			JButton skip = new JButton("Skip");
+			skip.setAlignmentX(Component.CENTER_ALIGNMENT);
 			skip.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent ae2) {
 					cards.next(frame.getContentPane());
 				}
 			});
 
-			titlemenu.add(play); titlemenu.add(settings); titlemenu.add(skip);
+			titlemenu.add(play); titlemenu.add(skip);
 
 			jtf =  new JTextField("Subject or Title or Set ID(i.e. Java Facts)", 30);
 			searchvocab.add(jtf);
@@ -215,14 +219,10 @@ public class Final {
 			public BufferedImage alien, ship, ammo, background;
 
 			public MyHelloPanel() {
-				try {alien = ImageIO.read(new File("alien.png"));} //Get my sprite sheet
-            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
-            	try {ship = ImageIO.read(new File("ship.png"));} //Get my sprite sheet
-            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
-            	try {ammo = ImageIO.read(new File("ammo.png"));} //Get my sprite sheet
-            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
-            	try {background = ImageIO.read(new File("background.jpeg"));} //Get my sprite sheet
-            	catch (IOException ex) {System.out.println("Image error");} //Oh noeeesss! 404!
+				try {alien = ImageIO.read(new File("alien.png"));} catch (IOException ex) {System.out.println("Image error");}
+            	try {ship = ImageIO.read(new File("ship.png"));} catch (IOException ex) {System.out.println("Image error");} 
+            	try {ammo = ImageIO.read(new File("ammo.png"));} catch (IOException ex) {System.out.println("Image error");} 
+            	try {background = ImageIO.read(new File("background.png"));} catch (IOException ex) {System.out.println("Image error");}
             	transparent = new Color(0, true);
 				this.setBackground(transparent);
 				frame.addKeyListener(this);
@@ -252,40 +252,42 @@ public class Final {
 				super.paintComponent(g);
 	            g.setColor(Color.white);
 	            location[player][15] = 2;
-	            //STUFF HERE
-	            g.drawImage(background,0,0,getSize().width,getSize().height,this);
+	  
+
+				g.drawImage(background,0,0,getSize().width,getSize().height,this);
 				for (int i = 0; i < 8; i++) {
                 	for (int j = 0; j < 16; j++) {
 
                     	int a = location[i][j];
                     	if (a == 0) {
                     		g.setColor(transparent);
-                    		g.fillRect(i * 100, j * 37, 5, 5);
+                    		g.fillRect(i * 100, j * 37+15, 5, 5);
                     	}
                     	if (a == 1) {
                     		g.setColor(Color.white);
                     		//g.fillRect(i * 100, j * 37, 5, 5);
-                    		g.drawImage(alien, i * 100, j * 37, null);
+                    		g.drawImage(alien, i * 100 +20 , j * 37+15, null);
                     	}
                     	if (a == 2) {
                     		g.setColor(Color.green);
                     		//g.fillRect(i * 100, j * 37, 5, 5);
-                    		g.drawImage(ship, i * 100, j * 37, null);
+                    		g.drawImage(ship, i * 100 +20, j * 37+15, null);
                     	}
                     	if (a == 3) {
                     		g.setColor(Color.green);
-                    		g.fillRect((i * 100) + 10, j * 37, 5, 15);
+                    		g.fillRect((i * 100) + 30, j * 37+15, 5, 15);
                     	}
                     	if (a==4) {
                     		g.setColor(Color.yellow);
                     		//g.fillRect(i * 100, j * 37, 5, 5);
-                    		g.drawImage(ammo, i * 100, j * 37, null);
+                    		g.drawImage(ammo, i * 100 +20, j * 37+15, null);
                     	}
 
 					}
                 } //end for statement
                 g.setColor(Color.white);
-                g.drawString("Score:" + score, 30, 600);
+                g.drawString("Score: " + score, 30, 610);
+                g.drawString("Level: " + level, 710, 610);
 
         	} //end paintComponennt
 
@@ -374,9 +376,7 @@ public class Final {
 	        		}
 	        	}
 	        	if (c == 32) {
-	        		if (bullet.isRunning()) {
-	        			//No spamming
-	        		}
+	        		if (bullet.isRunning()) {}
 	        		else {
 	        		location[player][14] = 3;
 	        		bulletx = player;
@@ -391,6 +391,7 @@ public class Final {
 	class MyKnowledgePanel extends JPanel {
 
 		public MyKnowledgePanel() {
+			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			question = new JLabel();
 			answers = new ButtonGroup();
 			one = new JRadioButton(); two = new JRadioButton(); three = new JRadioButton(); four = new JRadioButton();
