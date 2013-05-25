@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 public class Final {
-	private MyColorPanel colors; private MyHelloPanel hello; private MyKnowledgePanel knowledge;
+	private MyColorPanel colors; private MyHelloPanel hello; private MyKnowledgePanel knowledge; private MyUpgradePanel upgrade;
 	private JFrame frame; //JFrame
 	String inputLine; //JSON is here
 	BufferedReader in;
@@ -30,8 +30,13 @@ public class Final {
 	int score = 0;
 	int dropspeed = 50;
 	int randspeed = 750;
+	int lives = 1;
+	int resetlives = 1;
+
 	boolean gameover = false;
 	boolean read = true;
+	boolean bulletupgrade = false;
+
 	Color transparent;
 	ButtonGroup answers;
 	JRadioButton one, two, three, four;
@@ -63,6 +68,7 @@ public class Final {
 		colors = new MyColorPanel();
 		hello = new MyHelloPanel();
 		knowledge = new MyKnowledgePanel();
+		upgrade = new MyUpgradePanel();
 		
 		// add the JPanels to the frame
 		cards = new CardLayout();
@@ -71,7 +77,8 @@ public class Final {
 
 		frame.getContentPane().add(colors, "Panel 1"); //GETTING CARDS
 		frame.getContentPane().add(hello, "Panel 2"); //GAME
-		frame.getContentPane().add(knowledge, "Panel 3"); //CARDS
+		frame.getContentPane().add(upgrade, "Panel 3");
+		frame.getContentPane().add(knowledge, "Panel 4"); //CARDS
 
 		// make the frame visible
 		frame.setVisible(true);
@@ -234,8 +241,6 @@ public class Final {
 				drop = new Timer(dropspeed, enemy);
 				Ran ran = new Ran();
 				rand = new Timer(randspeed, ran);
-				NewLevel newlevel = new NewLevel();
-				levelup = new Timer(4000, newlevel);
 				rand.start();
 
 				for (int i = 0; i < 8; i++) {
@@ -270,24 +275,24 @@ public class Final {
                     	}
                     	if (a == 1) {
                     		g.setColor(Color.white);
-                    		//g.fillRect(i * 100, j * 37, 5, 5);
                     		g.drawImage(alien, i * 100 +20 , j * 37+15, null);
                     	}
                     	if (a == 2) {
                     		g.setColor(Color.green);
-                    		//g.fillRect(i * 100, j * 37, 5, 5);
                     		g.drawImage(ship, i * 100 +20, j * 37+15, null);
                     	}
                     	if (a == 3) {
                     		g.setColor(Color.green);
                     		g.fillRect((i * 100) + 30, j * 37+15, 5, 15);
                     	}
-                    	if (a==4) {
-                    		g.setColor(Color.yellow);
-                    		//g.fillRect(i * 100, j * 37, 5, 5);
+                    	if (a == 4) {
                     		g.drawImage(ammo, i * 100 +20, j * 37+15, null);
                     	}
                     	if (a == 5) {
+                    		g.setColor(Color.green);
+                    		g.drawImage(ship, i * 100 +20, j * 37+15, null);
+                    	}
+                    	if (a == 6) {
                     		g.setColor(transparent);
                     		g.fillRect(i * 100, j * 37+15, 5, 5);
                     	}
@@ -300,6 +305,7 @@ public class Final {
                 g.drawString("High Score: " + score, 120, 610);
             	else 
             	g.drawString("High Score: " + oldscore, 120, 610);
+           		g.drawString("Lives: " + lives, 630, 610);
                 g.drawString("Level: " + level, 710, 610);
 
                 gameover = true;
@@ -312,37 +318,49 @@ public class Final {
                 if (gameover == true) {
                 	bulletlocation = 14;
 					droplocation = 8;
-                	location[0][0] = 5;
+                	location[0][0] = 6;
                 	bullet.stop();
                 	drop.stop();
-                	levelup.start();
+                	rand.stop();
                 	g.setFont(new Font("Helvetica", Font.BOLD, 35));
                 	g.drawString("YOU WIN :D", 150, 500);
-                }
+				    cards.next(frame.getContentPane());
+				}
 
         	} //end paintComponennt
 
         	private class Shoot implements ActionListener {
             	public void actionPerformed(ActionEvent e) {
-            		if (location[bulletx][bulletlocation - 1] == 1) {
-            			location[bulletx][bulletlocation - 1] = 0;
-            			location[bulletx][bulletlocation] = 0;
-            			bullet.stop();
-            			bulletlocation = 14;
-            			score = score + 10;
-            			highscore();
-            		}
-            		else if (bulletlocation == 1) {
-            			location[bulletx][bulletlocation] = 0;
-            			bulletlocation = 14;
-            			bullet.stop();
-            		}
-            		else {
-            			location[bulletx][bulletlocation] = 0;
-            			bulletlocation--;
-            			location[bulletx][bulletlocation] = 3;
-            		}
+
+	            		if (location[bulletx][bulletlocation - 1] == 1) {
+	            			if (bulletupgrade == false) {
+		            			location[bulletx][bulletlocation - 1] = 0;
+		            			location[bulletx][bulletlocation] = 0; 
+		            			score = score + 10;
+		            		}
+	            			else {
+	            				location[bulletx][bulletlocation - 1] = 0;
+	            				location[bulletx][bulletlocation - 2] = 0;
+	            				location[bulletx][bulletlocation] = 0;
+	            				score = score + 20;
+	            			}
+	            			bullet.stop();
+	            			bulletlocation = 14;
+	            			highscore();
+	            		}
+	            		else if (bulletlocation == 1) {
+	            			location[bulletx][bulletlocation] = 0;
+	            			bulletlocation = 14;
+	            			bullet.stop();
+	            		}
+	            		else {
+	            			location[bulletx][bulletlocation] = 0;
+	            			bulletlocation--;
+	            			location[bulletx][bulletlocation] = 3;
+	            		}
+
             		repaint();
+
             	}
             }
 
@@ -366,9 +384,14 @@ public class Final {
             		location[random][droplocation] = 0;
             		droplocation++;
             		if (location[random][droplocation] == 2) {
-            			cards.last(frame.getContentPane());
-            			drop.stop();
-            			rand.stop();
+            			lives--;
+            			if (lives == 0) {
+	            			cards.last(frame.getContentPane());
+	            			drop.stop();
+	            			rand.stop();
+	            			lives = 1;
+            			}
+            			else {}
             		}
             		location[random][droplocation] = 4;
             		if (droplocation == 15) {
@@ -379,8 +402,7 @@ public class Final {
             	}
             }
 
-            private class NewLevel implements ActionListener {
-            	public void actionPerformed(ActionEvent e) {
+            public void newlevel() {
             		for (int i = 0; i < 8; i++) {
 		                for (int j = 0; j < 16; j++) {
 		                	location[i][j] = 0;
@@ -395,17 +417,15 @@ public class Final {
                 	level = level + 1;
                 	dropspeed = dropspeed -5;
                 	randspeed = randspeed - 75;
-                	if (dropspeed = 0)
+                	if (dropspeed == 0)
                 	dropspeed = 10;
-                	if (randspeed = 50) 
+                	if (randspeed == 50) 
                 	randspeed = 500;
                 	drop.setDelay(dropspeed);
                 	rand.setDelay(randspeed);
-                	System.out.println(drop.getDelay());
                 	bullet.start();
+                	rand.start();
                 	repaint();
-                	levelup.stop();
-            	}
             }
 
 
@@ -463,10 +483,46 @@ public class Final {
 	        		bullet.start();
 	        		}
 	        	}
+	        	if (c == '1') {
+	        		lives++;
+	        	}
 	        	repaint();
         	}
 
 	} //end MyHelloPanel
+
+	class MyUpgradePanel extends JPanel {
+		public MyUpgradePanel() {
+			this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+			JLabel titletext = new JLabel("Choose your upgrade");
+			JButton speed = new JButton("Speed");
+			JButton bullet1 = new JButton("Bullet");
+			JButton life = new JButton("lives");
+			speed.addActionListener(new ActionListener() { 
+				public void actionPerformed(ActionEvent ae2) {
+					bullet.setDelay(15);
+					cards.previous(frame.getContentPane());
+					hello.newlevel();
+				}
+			});
+			bullet1.addActionListener(new ActionListener() { 
+				public void actionPerformed(ActionEvent ae2) {
+					bulletupgrade = true;
+					cards.previous(frame.getContentPane());
+					hello.newlevel();
+				}
+			});
+			life.addActionListener(new ActionListener() { 
+				public void actionPerformed(ActionEvent ae2) {
+					resetlives++;
+					lives = resetlives;
+					cards.previous(frame.getContentPane());
+					hello.newlevel();
+				}
+			});
+			this.add(titletext); this.add(speed); this.add(life); this.add(bullet1);
+		}
+	}
 
 	class MyKnowledgePanel extends JPanel {
 
@@ -534,6 +590,7 @@ public class Final {
 					cards.previous(frame.getContentPane());
 					rand.start();
 					score = score + 50;
+					lives = resetlives;
 				}
 				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
@@ -543,7 +600,8 @@ public class Final {
 					fillCards();
 					cards.previous(frame.getContentPane());
 					rand.start();
-					score = score + 50; 
+					score = score + 50;
+					lives = resetlives;
 				}
 				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
@@ -554,6 +612,7 @@ public class Final {
 					cards.previous(frame.getContentPane());
 					rand.start(); 
 					score = score + 50;
+					lives = resetlives;
 				}
 				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
@@ -564,6 +623,7 @@ public class Final {
 					cards.previous(frame.getContentPane());
 					rand.start(); 
 					score = score + 50;
+					lives = resetlives;
 				}
 				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
