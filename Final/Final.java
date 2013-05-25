@@ -28,18 +28,20 @@ public class Final {
 	int bulletlocation = 14;
 	int droplocation = 8;
 	int score = 0;
+	int dropspeed = 50;
+	int randspeed = 750;
 	boolean gameover = false;
 	boolean read = true;
 	Color transparent;
 	ButtonGroup answers;
 	JRadioButton one, two, three, four;
 	JButton jb, go;
-	JLabel jl1, nope, question;
+	JLabel jl1, nope, question, questionscore;
 	URL search;
 	URL card;
 	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
-	Timer bullet, drop, rand;
+	Timer bullet, drop, rand, levelup;
 	String token = new String("528uWf4NCb"); //Quizlet API Key
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
@@ -229,9 +231,11 @@ public class Final {
 				Shoot shoot = new Shoot();
 				bullet = new Timer(35, shoot);
 				Enemy enemy = new Enemy();
-				drop = new Timer(50, enemy);
+				drop = new Timer(dropspeed, enemy);
 				Ran ran = new Ran();
-				rand = new Timer(1000, ran);
+				rand = new Timer(randspeed, ran);
+				NewLevel newlevel = new NewLevel();
+				levelup = new Timer(4000, newlevel);
 				rand.start();
 
 				for (int i = 0; i < 8; i++) {
@@ -283,15 +287,19 @@ public class Final {
                     		//g.fillRect(i * 100, j * 37, 5, 5);
                     		g.drawImage(ammo, i * 100 +20, j * 37+15, null);
                     	}
+                    	if (a == 5) {
+                    		g.setColor(transparent);
+                    		g.fillRect(i * 100, j * 37+15, 5, 5);
+                    	}
 
 					}
                 } //end for statement
                 g.setColor(Color.white);
                 g.drawString("Score: " + score, 30, 610);
                 if (score > oldscore)
-                g.drawString("High Score: " + score, 100, 610);
+                g.drawString("High Score: " + score, 120, 610);
             	else 
-            	g.drawString("High Score: " + oldscore, 100, 610);
+            	g.drawString("High Score: " + oldscore, 120, 610);
                 g.drawString("Level: " + level, 710, 610);
 
                 gameover = true;
@@ -300,8 +308,14 @@ public class Final {
                 		gameover = false;
                 	}
                 }
+
                 if (gameover == true) {
+                	bulletlocation = 14;
+					droplocation = 8;
+                	location[0][0] = 5;
                 	bullet.stop();
+                	drop.stop();
+                	levelup.start();
                 	g.setFont(new Font("Helvetica", Font.BOLD, 35));
                 	g.drawString("YOU WIN :D", 150, 500);
                 }
@@ -317,7 +331,6 @@ public class Final {
             			bulletlocation = 14;
             			score = score + 10;
             			highscore();
-            			System.out.println(score);
             		}
             		else if (bulletlocation == 1) {
             			location[bulletx][bulletlocation] = 0;
@@ -365,6 +378,36 @@ public class Final {
             		repaint();
             	}
             }
+
+            private class NewLevel implements ActionListener {
+            	public void actionPerformed(ActionEvent e) {
+            		for (int i = 0; i < 8; i++) {
+		                for (int j = 0; j < 16; j++) {
+		                	location[i][j] = 0;
+		                }	
+		            } //end for
+
+		            for (int i = 0; i < 8; i++) {
+		                for (int j = 0; j < 8; j++) {
+		                	location[i][j] = 1;
+		                }	
+                	} //end for
+                	level = level + 1;
+                	dropspeed = dropspeed -5;
+                	randspeed = randspeed - 75;
+                	if (dropspeed = 0)
+                	dropspeed = 10;
+                	if (randspeed = 50) 
+                	randspeed = 500;
+                	drop.setDelay(dropspeed);
+                	rand.setDelay(randspeed);
+                	System.out.println(drop.getDelay());
+                	bullet.start();
+                	repaint();
+                	levelup.stop();
+            	}
+            }
+
 
             public void highscore() {
 
@@ -445,6 +488,9 @@ public class Final {
 					checkAnswer();
 				}
 			});
+			questionscore = new JLabel("Score: " + score);
+			this.add(questionscore);
+
 		}
 
 		public void fillCards() {
@@ -486,18 +532,20 @@ public class Final {
 					cardlocation++;
 					fillCards();
 					cards.previous(frame.getContentPane());
-					rand.start(); 
+					rand.start();
+					score = score + 50;
 				}
-				else nope.setText("Wrong Answer");
+				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
 			if (two.isSelected()) {
 				if (two.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
 					cards.previous(frame.getContentPane());
-					rand.start(); 
+					rand.start();
+					score = score + 50; 
 				}
-				else nope.setText("Wrong Answer");
+				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
 			if (three.isSelected()) {
 				if (three.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
@@ -505,8 +553,9 @@ public class Final {
 					fillCards();
 					cards.previous(frame.getContentPane());
 					rand.start(); 
+					score = score + 50;
 				}
-				else nope.setText("Wrong Answer");
+				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
 			if (four.isSelected()) {
 				if (four.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
@@ -514,8 +563,9 @@ public class Final {
 					fillCards();
 					cards.previous(frame.getContentPane());
 					rand.start(); 
+					score = score + 50;
 				}
-				else nope.setText("Wrong Answer");
+				else {nope.setText("Wrong Answer"); score = score - 20; questionscore = new JLabel("Score: " + score);}
 			}
 		}  //end CheckAnsswers
 
