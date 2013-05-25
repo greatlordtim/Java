@@ -6,23 +6,30 @@ import java.io.*;
 import java.net.*;
 import javax.imageio.*;
 import java.awt.image.*;
+import java.util.Scanner;
+
 
 public class Final {
 	private MyColorPanel colors; private MyHelloPanel hello; private MyKnowledgePanel knowledge;
 	private JFrame frame; //JFrame
 	String inputLine; //JSON is here
 	BufferedReader in;
+	File newscore;
+	PrintWriter out;
 	
 	int z, bulletx, random;
 	int q = 0;
+	int testint = 0;
 	int level = 1;
 	int player = 0;
+	int oldscore;
 	int cardlocation = 0;
 	int set = 415;
 	int bulletlocation = 14;
 	int droplocation = 8;
 	int score = 0;
-	boolean playmovie = true;
+	boolean gameover = false;
+	boolean read = true;
 	Color transparent;
 	ButtonGroup answers;
 	JRadioButton one, two, three, four;
@@ -159,7 +166,6 @@ public class Final {
 			for (int i = -1; (i = inputLine.indexOf("\"id\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf(",", i);
 			    searchresults[0][z] = inputLine.substring(i + 6, a);
-			    System.out.println(searchresults[0][z]);
 			    z++;
 			} //end "search" parse
 
@@ -167,7 +173,6 @@ public class Final {
 			for (int i = -1; (i = inputLine.indexOf("\"title\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf(",", i);
 			    searchresults[1][z] = inputLine.substring(i + 10, a -1);
-			    System.out.println(searchresults[1][z]);
 			    z++;
 			} //end "search" parse
 
@@ -192,14 +197,8 @@ public class Final {
 			for (int i = -1; (i = inputLine.indexOf("\"definition\":", i + 1)) != -1; ) {
 			    int a = inputLine.indexOf("\",", i);
 			    flashcards[1][z] = inputLine.substring(i + 15, a);
-
-			    System.out.println(flashcards[0][z]);
-				System.out.println(flashcards[1][z]);
-				System.out.println();
 			    z++;
 			} //end "definition" parse
-
-			System.out.println("--END OF SET--");
 		} //end get content
 
 		public String ReadBigStringIn() { //Read our txt int a string
@@ -223,6 +222,7 @@ public class Final {
             	try {ship = ImageIO.read(new File("ship.png"));} catch (IOException ex) {System.out.println("Image error");} 
             	try {ammo = ImageIO.read(new File("ammo.png"));} catch (IOException ex) {System.out.println("Image error");} 
             	try {background = ImageIO.read(new File("background.png"));} catch (IOException ex) {System.out.println("Image error");}
+            	newscore = new File("highscore.json");
             	transparent = new Color(0, true);
 				this.setBackground(transparent);
 				frame.addKeyListener(this);
@@ -249,6 +249,7 @@ public class Final {
 			}
 
 			public void paintComponent(Graphics g) {
+				highscore();
 				super.paintComponent(g);
 	            g.setColor(Color.white);
 	            location[player][15] = 2;
@@ -287,7 +288,23 @@ public class Final {
                 } //end for statement
                 g.setColor(Color.white);
                 g.drawString("Score: " + score, 30, 610);
+                if (score > oldscore)
+                g.drawString("High Score: " + score, 100, 610);
+            	else 
+            	g.drawString("High Score: " + oldscore, 100, 610);
                 g.drawString("Level: " + level, 710, 610);
+
+                gameover = true;
+                for (int j = 0; j < 8; j++) {
+                	if (location[j][0] == 1) {
+                		gameover = false;
+                	}
+                }
+                if (gameover == true) {
+                	bullet.stop();
+                	g.setFont(new Font("Helvetica", Font.BOLD, 35));
+                	g.drawString("YOU WIN :D", 150, 500);
+                }
 
         	} //end paintComponennt
 
@@ -299,6 +316,7 @@ public class Final {
             			bullet.stop();
             			bulletlocation = 14;
             			score = score + 10;
+            			highscore();
             			System.out.println(score);
             		}
             		else if (bulletlocation == 1) {
@@ -348,13 +366,32 @@ public class Final {
             	}
             }
 
+            public void highscore() {
+
+            	if (read == true) {
+			        try {
+						Scanner in = new Scanner(newscore);
+						oldscore = in.nextInt();
+					} catch (FileNotFoundException e) {}
+					read = false;
+				}
+
+				if (score > oldscore) {
+					try {
+						out = new PrintWriter(newscore);
+					} catch (IOException e) {System.out.println("hi");}
+					out.print(score);
+					out.close();
+				}
+
+            }
+
         	public void keyPressed(KeyEvent e) {}
 
         	public void keyReleased(KeyEvent e) {} 
 
         	public void keyTyped(KeyEvent e) {
 	        	char c = e.getKeyChar();
-	        	System.out.println(c);
 	        	if (c == 'a') {
 	        		if (player == 0) {
 	        			location[player][15] = 0;
