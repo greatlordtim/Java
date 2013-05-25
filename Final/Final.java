@@ -17,8 +17,10 @@ public class Final {
 	File newscore;
 	PrintWriter out;
 	
-	int z, bulletx, random;
+	int z, bulletx, random, spacex;
 	int q = 0;
+	int t = 1;
+	int o = 0;
 	int testint = 0;
 	int level = 1;
 	int player = 0;
@@ -32,6 +34,7 @@ public class Final {
 	int randspeed = 750;
 	int lives = 1;
 	int resetlives = 1;
+	int u = 1;
 
 	boolean gameover = false;
 	boolean read = true;
@@ -46,7 +49,7 @@ public class Final {
 	URL card;
 	JPanel searchvocab, titlemenu, color2;
 	JTextField jtf;
-	Timer bullet, drop, rand, levelup;
+	Timer bullet, drop, rand, levelup, animate, explodeme, death;
 	String token = new String("528uWf4NCb"); //Quizlet API Key
 	String[][] searchresults = new String[2][300];
 	String[][] flashcards = new String[2][300];
@@ -224,13 +227,20 @@ public class Final {
 
 	class MyHelloPanel extends JPanel implements KeyListener{
 
-			public BufferedImage alien, ship, ammo, background;
+			public BufferedImage alien1, alien2, alien3, alien4, alien5, alien6, ship, ammo, background, explode, die;
 
 			public MyHelloPanel() {
-				try {alien = ImageIO.read(new File("alien.png"));} catch (IOException ex) {System.out.println("Image error");}
+				try {alien1 = ImageIO.read(new File("alien1.png"));} catch (IOException ex) {System.out.println("Image error");}
+				try {alien2 = ImageIO.read(new File("alien2.png"));} catch (IOException ex) {System.out.println("Image error");}
+				try {alien3 = ImageIO.read(new File("alien3.png"));} catch (IOException ex) {System.out.println("Image error");}
+				try {alien4 = ImageIO.read(new File("alien4.png"));} catch (IOException ex) {System.out.println("Image error");}
+				try {alien5 = ImageIO.read(new File("alien5.png"));} catch (IOException ex) {System.out.println("Image error");}
+				try {alien6 = ImageIO.read(new File("alien6.png"));} catch (IOException ex) {System.out.println("Image error");}
+				try {explode = ImageIO.read(new File("explode.png"));} catch (IOException ex) {System.out.println("Image error");}
             	try {ship = ImageIO.read(new File("ship.png"));} catch (IOException ex) {System.out.println("Image error");} 
             	try {ammo = ImageIO.read(new File("ammo.png"));} catch (IOException ex) {System.out.println("Image error");} 
             	try {background = ImageIO.read(new File("background.png"));} catch (IOException ex) {System.out.println("Image error");}
+            	try {die = ImageIO.read(new File("death.png"));} catch (IOException ex) {System.out.println("Image error");}
             	newscore = new File("highscore.json");
             	transparent = new Color(0, true);
 				this.setBackground(transparent);
@@ -241,6 +251,13 @@ public class Final {
 				drop = new Timer(dropspeed, enemy);
 				Ran ran = new Ran();
 				rand = new Timer(randspeed, ran);
+				Animation animation = new Animation();
+				animate = new Timer(500, animation);
+				animate.start();
+				Explosion explosion = new Explosion();
+				explodeme = new Timer(300, explosion);
+				SpaceDeath spacedeath = new SpaceDeath();
+				death = new Timer(50, spacedeath);
 				rand.start();
 
 				for (int i = 0; i < 8; i++) {
@@ -261,6 +278,8 @@ public class Final {
 				highscore();
 				super.paintComponent(g);
 	            g.setColor(Color.white);
+	            if (death.isRunning()){}
+	           	else
 	            location[player][15] = 2;
 	  
 
@@ -273,17 +292,17 @@ public class Final {
                     		g.setColor(transparent);
                     		g.fillRect(i * 100, j * 37+15, 5, 5);
                     	}
-                    	if (a == 1) {
+                    	if (a == 1) { //alien1
                     		g.setColor(Color.white);
-                    		g.drawImage(alien, i * 100 +20 , j * 37+15, null);
+                    		g.drawImage(alien1, i * 100 +20 , j * 37+15, null);
                     	}
                     	if (a == 2) {
                     		g.setColor(Color.green);
                     		g.drawImage(ship, i * 100 +20, j * 37+15, null);
                     	}
                     	if (a == 3) {
-                    		g.setColor(Color.green);
-                    		g.fillRect((i * 100) + 30, j * 37+15, 5, 15);
+                    		g.setColor(Color.white);
+                    		g.fillRect((i * 100) + 30, j * 37+15, 3, 15);
                     	}
                     	if (a == 4) {
                     		g.drawImage(ammo, i * 100 +20, j * 37+15, null);
@@ -296,6 +315,35 @@ public class Final {
                     		g.setColor(transparent);
                     		g.fillRect(i * 100, j * 37+15, 5, 5);
                     	}
+                    	if (a == 7) { //alien2
+                    		g.setColor(Color.white);
+                    		g.drawImage(alien2, i * 100 +20 , j * 37+15, null);
+                    	}
+                    	if (a == 8) { //explode
+                    		g.setColor(Color.white);
+                    		g.drawImage(explode, i * 100 +20 , j * 37+15, null);
+                    	}
+                    	if (a == 9) { //death
+                    		g.setColor(Color.white);
+                    		g.drawImage(die, i * 100 +20, j * 37+15, null);
+                    	}
+                    	if (a == 10) { //alien3
+                    		g.setColor(Color.white);
+                    		g.drawImage(alien3, i * 100 +20 , j * 37+15, null);
+                    	}
+                    	if (a == 11) { //alien2
+                    		g.setColor(Color.white);
+                    		g.drawImage(alien2, i * 100 +20 , j * 37+15, null);
+                    	}
+                    	if (a == 12) { //alien2
+                    		g.setColor(Color.white);
+                    		g.drawImage(alien2, i * 100 +20 , j * 37+15, null);
+                    	}
+                    	if (a == 13) { //alien2
+                    		g.setColor(Color.white);
+                    		g.drawImage(alien2, i * 100 +20 , j * 37+15, null);
+                    	}
+
 
 					}
                 } //end for statement
@@ -310,7 +358,7 @@ public class Final {
 
                 gameover = true;
                 for (int j = 0; j < 8; j++) {
-                	if (location[j][0] == 1) {
+                	if ((location[j][0] == 1) || (location[j][0] == 7)) {
                 		gameover = false;
                 	}
                 }
@@ -322,6 +370,7 @@ public class Final {
                 	bullet.stop();
                 	drop.stop();
                 	rand.stop();
+                	animate.stop();
                 	g.setFont(new Font("Helvetica", Font.BOLD, 35));
                 	g.drawString("YOU WIN :D", 150, 500);
 				    cards.next(frame.getContentPane());
@@ -332,16 +381,18 @@ public class Final {
         	private class Shoot implements ActionListener {
             	public void actionPerformed(ActionEvent e) {
 
-	            		if (location[bulletx][bulletlocation - 1] == 1) {
+	            		if ((location[bulletx][bulletlocation - 1] == 1) || (location[bulletx][bulletlocation - 1] == 7)) {
 	            			if (bulletupgrade == false) {
-		            			location[bulletx][bulletlocation - 1] = 0;
-		            			location[bulletx][bulletlocation] = 0; 
+		            			location[bulletx][bulletlocation - 1] = 8;
+		            			location[bulletx][bulletlocation] = 0;
+		            			explodeme.start();
 		            			score = score + 10;
 		            		}
 	            			else {
-	            				location[bulletx][bulletlocation - 1] = 0;
-	            				location[bulletx][bulletlocation - 2] = 0;
+	            				location[bulletx][bulletlocation - 1] = 8;
+	            				location[bulletx][bulletlocation - 2] = 8;
 	            				location[bulletx][bulletlocation] = 0;
+	            				explodeme.start();
 	            				score = score + 20;
 	            			}
 	            			bullet.stop();
@@ -371,11 +422,80 @@ public class Final {
             			random = 0 + (int)(Math.random() * ((7 - 0) + 1));
             		}
             		for (int n = 0; n < 15; n++) {
-            			if (location[random][n] == 1)
+            			if ((location[random][n] == 1) || (location[random][n] == 7))
             				droplocation = n + 1;
             		}
             		location[random][droplocation] = 4;
             		drop.start();
+            	}
+            }
+
+            private class Animation implements ActionListener {
+            	public void actionPerformed(ActionEvent e) {
+            		switch (u) {
+						case 1: 
+	            		for (int i = 0; i < 8; i++) {
+			                for (int j = 0; j < 8; j++) {
+			                	if (location[i][j] == 1)
+			                		location[i][j] = 7;
+			                	}	
+	                	} //end for
+	                	u = 2;
+	                	break;
+
+	            		case 2: 
+	            		for (int i = 0; i < 8; i++) {
+			                for (int j = 0; j < 8; j++) {
+			                	if (location[i][j] == 7)
+			                		location[i][j] = 1;
+			                	}	
+	                	} //end for
+	                	u = 1;
+						break;
+
+					}
+
+            	}
+            }
+
+            private class Explosion implements ActionListener {
+            	public void actionPerformed(ActionEvent e) {
+            		for (int i = 0; i < 8; i++) {
+			            for (int j = 0; j < 8; j++) {
+			            	if (location[i][j] == 8)
+			            		location[i][j] = 0;
+			            }
+			        }
+            		explodeme.stop();
+            	}
+            }
+
+            private class SpaceDeath implements ActionListener {
+            	public void actionPerformed(ActionEvent e) {
+            		if (o < 10) {
+            			switch (t) {
+            				case 1: 
+            				location[spacex][15] = 0;
+		            		repaint();
+            				t = 2;
+            				break;
+            				case 2: 
+            				location[spacex][15] = 9;
+            				repaint();
+            				t = 1;
+            				break;
+            			}
+            			o++;
+            			System.out.println(o);
+            		}
+			        else {
+			        	location[spacex][15] = 5;
+            			death.stop();
+            			rand.start();
+            			o = 0;
+            			t = 1;
+            			repaint();
+            		}
             	}
             }
 
@@ -387,11 +507,16 @@ public class Final {
             			lives--;
             			if (lives == 0) {
 	            			cards.last(frame.getContentPane());
-	            			drop.stop();
 	            			rand.stop();
 	            			lives = 1;
             			}
-            			else {}
+            			else {
+            				rand.stop();
+            				location[random][droplocation] = 9;
+            				spacex = random;
+            				death.start();
+            				repaint();
+            			}
             		}
             		location[random][droplocation] = 4;
             		if (droplocation == 15) {
@@ -425,6 +550,7 @@ public class Final {
                 	rand.setDelay(randspeed);
                 	bullet.start();
                 	rand.start();
+                	animate.start();
                 	repaint();
             }
 
@@ -456,7 +582,8 @@ public class Final {
         	public void keyTyped(KeyEvent e) {
 	        	char c = e.getKeyChar();
 	        	if (c == 'a') {
-	        		if (player == 0) {
+	        		if (death.isRunning()) {}
+	        		else if (player == 0) {
 	        			location[player][15] = 0;
 	        			player = 7;
 	        		}
@@ -466,7 +593,8 @@ public class Final {
 	        		}
 	        	}
 	        	if (c == 'd') {
-	        		if (player == 7) {
+	        		if (death.isRunning()) {}
+	        		else if (player == 7) {
 	        			location[player][15] = 0;
 	        			player = 0;
 	        		}
@@ -477,6 +605,7 @@ public class Final {
 	        	}
 	        	if (c == 32) {
 	        		if (bullet.isRunning()) {}
+	        		else if (death.isRunning()) {}
 	        		else {
 	        		location[player][14] = 3;
 	        		bulletx = player;
