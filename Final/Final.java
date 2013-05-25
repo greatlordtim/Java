@@ -266,11 +266,30 @@ public class Final {
                 	}	
                 } //end for
 
-               	for (int i = 0; i < 8; i++) {
-                	for (int j = 0; j < 8; j++) {
-                		location[i][j] = 1;
-                	}	
-                } //end for
+               	for (int j = 0; j < 8; j++) {
+                		location[j][0] = 1;
+                }
+                for (int j = 0; j < 8; j++) {
+                		location[j][1] = 10;
+                }
+                for (int j = 0; j < 8; j++) {
+                		location[j][2] = 10;
+                }
+                for (int j = 0; j < 8; j++) {
+                		location[j][3] = 12;
+                }
+                for (int j = 0; j < 8; j++) {
+                		location[j][4] = 12;
+                }
+                for (int j = 0; j < 8; j++) {
+                		location[j][5] = 1;
+                }
+                for (int j = 0; j < 8; j++) {
+                		location[j][6] = 10;
+                }
+                for (int j = 0; j < 8; j++) {
+                		location[j][7] = 12;
+                }
 
 			}
 
@@ -331,17 +350,17 @@ public class Final {
                     		g.setColor(Color.white);
                     		g.drawImage(alien3, i * 100 +20 , j * 37+15, null);
                     	}
-                    	if (a == 11) { //alien2
+                    	if (a == 11) { //alien4
                     		g.setColor(Color.white);
-                    		g.drawImage(alien2, i * 100 +20 , j * 37+15, null);
+                    		g.drawImage(alien4, i * 100 +20 , j * 37+15, null);
                     	}
-                    	if (a == 12) { //alien2
+                    	if (a == 12) { //alien5
                     		g.setColor(Color.white);
-                    		g.drawImage(alien2, i * 100 +20 , j * 37+15, null);
+                    		g.drawImage(alien5, i * 100 +20 , j * 37+15, null);
                     	}
-                    	if (a == 13) { //alien2
+                    	if (a == 13) { //alien6
                     		g.setColor(Color.white);
-                    		g.drawImage(alien2, i * 100 +20 , j * 37+15, null);
+                    		g.drawImage(alien6, i * 100 +20 , j * 37+15, null);
                     	}
 
 
@@ -381,7 +400,7 @@ public class Final {
         	private class Shoot implements ActionListener {
             	public void actionPerformed(ActionEvent e) {
 
-	            		if ((location[bulletx][bulletlocation - 1] == 1) || (location[bulletx][bulletlocation - 1] == 7)) {
+	            		if ((location[bulletx][bulletlocation - 1] == 1) || (location[bulletx][bulletlocation - 1] == 7) || (location[bulletx][bulletlocation - 1] == 10) || (location[bulletx][bulletlocation - 1] == 11) || (location[bulletx][bulletlocation - 1] == 12) || (location[bulletx][bulletlocation - 1] == 13)) {
 	            			if (bulletupgrade == false) {
 		            			location[bulletx][bulletlocation - 1] = 8;
 		            			location[bulletx][bulletlocation] = 0;
@@ -422,7 +441,7 @@ public class Final {
             			random = 0 + (int)(Math.random() * ((7 - 0) + 1));
             		}
             		for (int n = 0; n < 15; n++) {
-            			if ((location[random][n] == 1) || (location[random][n] == 7))
+            			if ((location[random][n] == 1) || (location[random][n] == 7) || (location[random][n] == 10) || (location[random][n] == 11) || (location[random][n] == 12) || (location[random][n] == 13))
             				droplocation = n + 1;
             		}
             		location[random][droplocation] = 4;
@@ -438,7 +457,11 @@ public class Final {
 			                for (int j = 0; j < 8; j++) {
 			                	if (location[i][j] == 1)
 			                		location[i][j] = 7;
-			                	}	
+			                	if (location[i][j] == 10)
+			                		location[i][j] = 11;
+			                	if (location[i][j] == 12)
+			                		location[i][j] = 13;
+			                }
 	                	} //end for
 	                	u = 2;
 	                	break;
@@ -448,12 +471,18 @@ public class Final {
 			                for (int j = 0; j < 8; j++) {
 			                	if (location[i][j] == 7)
 			                		location[i][j] = 1;
+			                	if (location[i][j] == 11)
+			                		location[i][j] = 10;
+			                	if (location[i][j] == 13)
+			                		location[i][j] = 12;
 			                	}	
 	                	} //end for
 	                	u = 1;
 						break;
 
 					}
+
+					repaint();
 
             	}
             }
@@ -464,6 +493,7 @@ public class Final {
 			            for (int j = 0; j < 8; j++) {
 			            	if (location[i][j] == 8)
 			            		location[i][j] = 0;
+			            		repaint();
 			            }
 			        }
             		explodeme.stop();
@@ -534,11 +564,30 @@ public class Final {
 		                }	
 		            } //end for
 
-		            for (int i = 0; i < 8; i++) {
-		                for (int j = 0; j < 8; j++) {
-		                	location[i][j] = 1;
-		                }	
-                	} //end for
+	               	for (int j = 0; j < 8; j++) {
+	                		location[j][0] = 1;
+	                }
+	                for (int j = 0; j < 8; j++) {
+	                		location[j][1] = 10;
+	                }
+	                for (int j = 0; j < 8; j++) {
+	                		location[j][2] = 10;
+	                }
+	                for (int j = 0; j < 8; j++) {
+	                		location[j][3] = 12;
+	                }
+	                for (int j = 0; j < 8; j++) {
+	                		location[j][4] = 12;
+	                }
+	                for (int j = 0; j < 8; j++) {
+	                		location[j][5] = 1;
+	                }
+	                for (int j = 0; j < 8; j++) {
+	                		location[j][6] = 10;
+	                }
+	                for (int j = 0; j < 8; j++) {
+	                		location[j][7] = 12;
+	                }
                 	level = level + 1;
                 	dropspeed = dropspeed -5;
                 	randspeed = randspeed - 75;
