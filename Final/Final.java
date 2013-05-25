@@ -1,3 +1,8 @@
+// Jimmy Liu
+// May 24th, 2013
+// Final.java
+// This program is a recreation of Space Invaders, named Space Evaders. You shoot aliens and answer flash card questions from Quizlet
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -538,7 +543,7 @@ public class Final {
             			if (lives == 0) {
 	            			cards.last(frame.getContentPane());
 	            			rand.stop();
-	            			lives = 1;
+	            			lives = resetlives;
             			}
             			else {
             				rand.stop();
@@ -546,6 +551,7 @@ public class Final {
             				spacex = random;
             				death.start();
             				repaint();
+            				drop.stop();
             			}
             		}
             		location[random][droplocation] = 4;
@@ -765,7 +771,7 @@ public class Final {
 				if (one.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
-					cards.previous(frame.getContentPane());
+					cards.show(frame.getContentPane(), "Panel 2");
 					rand.start();
 					score = score + 50;
 					lives = resetlives;
@@ -776,7 +782,7 @@ public class Final {
 				if (two.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
-					cards.previous(frame.getContentPane());
+					cards.show(frame.getContentPane(), "Panel 2");
 					rand.start();
 					score = score + 50;
 					lives = resetlives;
@@ -787,7 +793,7 @@ public class Final {
 				if (three.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
-					cards.previous(frame.getContentPane());
+					cards.show(frame.getContentPane(), "Panel 2");
 					rand.start(); 
 					score = score + 50;
 					lives = resetlives;
@@ -798,7 +804,7 @@ public class Final {
 				if (four.getText().equals("<html><div style=width:350px><p>" + flashcards[1][cardlocation] + "</p></div></html>")) {
 					cardlocation++;
 					fillCards();
-					cards.previous(frame.getContentPane());
+					cards.show(frame.getContentPane(), "Panel 2");
 					rand.start(); 
 					score = score + 50;
 					lives = resetlives;
