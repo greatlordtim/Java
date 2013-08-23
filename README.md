@@ -1,9 +1,9 @@
 Java
 ====
 
-Here is a years worth of Java files, and every single program, working. Made for Greenstein Java. 
+Java Class at Monta Vista High School taught by Mr. Greenstein. Files from 2012-2013 school year. 
 
-Want more information? Take a look here: http://lele0108.github.com/Java/
+In AP Computer Science? I've got <a href="http://github.com/lele0108/APCS">files</a> for that as well. 
 
 #License
 (The MIT License)
